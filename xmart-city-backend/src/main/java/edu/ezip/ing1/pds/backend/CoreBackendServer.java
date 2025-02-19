@@ -26,7 +26,9 @@ import java.util.concurrent.LinkedBlockingDeque;
 // mvn clean compile assembly:single install
 
 public class CoreBackendServer implements Runnable
+
 {
+    private ServerSocket serverSocket;
     private final static String LoggingLabel = "C o re - B a c k e n d - S e r v e r";
     private final Logger logger = LoggerFactory.getLogger(LoggingLabel);
     private final static String coreBackendServerConfigDefaultFileName = "core-backend-server.yaml";
@@ -125,5 +127,15 @@ public class CoreBackendServer implements Runnable
         } catch (SQLException e) {
             logger.error("Something wrong while terminating the pool : exception tells  {}", e) ;
         }
+        try {
+            serverSocket.close();
+            System.out.println("Serveur arrêté");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
 }

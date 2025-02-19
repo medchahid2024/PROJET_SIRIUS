@@ -1,12 +1,16 @@
 package edu.ezip.ing1.pds;
 
 import de.vandermeer.asciitable.AsciiTable;
-import edu.ezip.ing1.pds.business.dto.Student;
-import edu.ezip.ing1.pds.business.dto.Students;
+import edu.ezip.ing1.pds.business.dto.Stagee;
+import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
-import edu.ezip.ing1.pds.services.StudentService;
+import edu.ezip.ing1.pds.services.StageService;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +18,19 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class MainFrontEnd {
+public class MainFrontEnd extends Application {
+
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFrontEnd.class.getResource("/sceneBuilder.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        scene.getStylesheets().add(MainFrontEnd.class.getResource("/css.css").toExternalForm());
+
+        stage.setTitle("Application JavaFX");
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     private final static String LoggingLabel = "FrontEnd";
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
@@ -25,15 +41,18 @@ public class MainFrontEnd {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         logger.debug("Load Network config file : {}", networkConfig.toString());
 
-        final StudentService studentService = new StudentService(networkConfig);
-        studentService.insertStudents();
-        Students students = studentService.selectStudents();
+        final StageService studentService = new StageService(networkConfig);
+//        studentService.insertStudents();
+        Stagess students = studentService.selectStages();
         final AsciiTable asciiTable = new AsciiTable();
-        for (final Student student : students.getStudents()) {
+        for (final Stagee student : students.getStages()) {
             asciiTable.addRule();
-            asciiTable.addRow(student.getFirstname(), student.getName(), student.getGroup());
+            asciiTable.addRow(student.getTitre(), student.getDescription(), student.getDomaine(),student.getDuree());
         }
         asciiTable.addRule();
         logger.debug("\n{}\n", asciiTable.render());
+
+        launch(args);
     }
+
 }

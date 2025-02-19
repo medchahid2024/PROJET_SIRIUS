@@ -2,8 +2,10 @@ package edu.ezip.ing1.pds.business.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.ezip.ing1.pds.business.dto.Student;
-import edu.ezip.ing1.pds.business.dto.Students;
+//import edu.ezip.ing1.pds.business.dto.Student;
+//import edu.ezip.ing1.pds.business.dto.Students;
+import edu.ezip.ing1.pds.business.dto.Stagee;
+import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.slf4j.Logger;
@@ -11,10 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class XMartCityService {
 
@@ -22,8 +21,12 @@ public class XMartCityService {
     private final Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     private enum Queries {
-        SELECT_ALL_STUDENTS("SELECT t.name, t.firstname, t.groupname FROM students t"),
-        INSERT_STUDENT("INSERT into students (name, firstname, groupname) values (?, ?, ?)");
+//        SELECT_ALL_STUDENTS("SELECT t.name, t.firstname, t.groupname, t.id FROM students t"),
+    SELECT_STAGE("SELECT titre, description, domaine,duree  FROM offres_stages") ,
+        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
+
+
+
         private final String query;
 
         private Queries(final String query) {
@@ -49,11 +52,14 @@ public class XMartCityService {
 
         final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
         switch(queryEnum) {
-            case SELECT_ALL_STUDENTS:
-                response = SelectAllStudents(request, connection);
+//            case SELECT_ALL_STUDENTS:
+//                response = SelectAllStudents(request, connection);
+//                break;
+            case INSERT_STAGE:
+                response = InsertStage(request, connection);
                 break;
-            case INSERT_STUDENT:
-                response = InsertStudent(request, connection);
+            case SELECT_STAGE:
+               response=SelectAllstages(request, connection);
                 break;
             default:
                 break;
@@ -62,12 +68,29 @@ public class XMartCityService {
         return response;
     }
 
-    private Response InsertStudent(final Request request, final Connection connection) throws SQLException, IOException {
-        return null;
-    }
+    private Response InsertStage(final Request request, final Connection connection) throws SQLException, IOException {
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Stagee stage = objectMapper.readValue(request.getRequestBody(), Stagee.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_STAGE.query);
+        stmt.setString(1, stage.getTitre());
+        stmt.setString(2, stage.getDescription());
+        stmt.setString(3, stage.getDomaine());
+        stmt.setString(4, stage.getDuree());
+        stmt.executeUpdate();
+
+        final Statement stmt2 = connection.createStatement();
+        final ResultSet res = stmt2.executeQuery("SELECT LAST_INSERT_ID()");
+        res.next();
+
+        stage.setId(res.getInt(1));
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(stage));
+}
 
 
-    private Response SelectAllStudents(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+//    private Response SelectAllStudents(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
 //        final ObjectMapper objectMapper = new ObjectMapper();
 //        final Statement stmt = connection.createStatement();
 //        final ResultSet res = stmt.executeQuery(Queries.SELECT_ALL_STUDENTS.query);
@@ -80,7 +103,25 @@ public class XMartCityService {
 //            students.add(student);
 //        }
 //        return new Response(request.getRequestId(), objectMapper.writeValueAsString(students));
-        return null;
+//
+//    }
+    private Response SelectAllstages(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_STAGE.query);
+        Stagess stagess = new Stagess();
+
+        while (res.next()) {
+           Stagee stagee = new Stagee();
+            stagee.setTitre(res.getString(1));
+            stagee.setDescription(res.getString(2));
+            stagee.setDomaine(res.getString(3));
+            stagee.setDuree(res.getString(4));
+            stagess.add(stagee);
+        }
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
+
     }
 
 }

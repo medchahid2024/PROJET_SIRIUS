@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controlFront">
+   <children>
+      <BorderPane layoutX="200.0" layoutY="159.2" prefHeight="222.0" prefWidth="325.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="243.0">
+         <bottom>
+            <Label prefHeight="46.0" prefWidth="325.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-text-fill: white;" text="                       Evenement" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <ImageView fitHeight="181.0" fitWidth="325.0" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@photo/gettyimages-2122148349-612x612.jpg" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane layoutX="180.0" layoutY="7.0" prefHeight="55.0" prefWidth="218.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="166.6">
+         <center>
+            <Label prefHeight="42.0" prefWidth="216.0" style="-fx-font-weight: bold; -fx-font-size: 15px;" text="Université Paris - Est  Créteil" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <BorderPane layoutX="477.0" layoutY="159.0" prefHeight="290.0" prefWidth="242.0" AnchorPane.leftAnchor="476.8" AnchorPane.rightAnchor="0.8000000000000114">
+         <bottom>
+
+         </bottom>
+         <bottom>
+            <Label fx:id="clique" onMouseClicked="#clique" prefHeight="29.0" prefWidth="242.0" style="-fx-text-fill: #3781f2; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-color: #dadcdf;" text="                                    Accéder  +" textFill="#dadcdf" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <ImageView fx:id="offre_stage" fitHeight="262.0" fitWidth="242.0" onMouseClicked="#offre_stage" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@photo/images.jpeg" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane layoutX="484.0" layoutY="449.0" prefHeight="195.0" prefWidth="242.0" style="-fx-background-color: #f73b8a;" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="1.0">
+         <top>
+            <Label prefHeight="30.0" prefWidth="180.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 25px;" text="   UPEC map" textFill="#e7dee2" BorderPane.alignment="CENTER" />
+         </top>
+         <bottom>
+            <Label prefHeight="107.0" prefWidth="172.0" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Retouver toutes les adresses de l'UPEC et de nos partenaires " wrapText="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="40.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
+         <center>
+         </center>
+      </BorderPane>
+      <Pane layoutY="565.0" prefHeight="106.0" prefWidth="212.0" style="-fx-background-color: #ec3b67;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="508.0">
+         <children>
+
+            
+            <Label layoutX="43.0" layoutY="14.0" prefHeight="18.0" prefWidth="117.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20px;" text="Nous suivre" textFill="#ec3b67" />
+         </children>
+      </Pane>
+
+   </children>
+</AnchorPane>

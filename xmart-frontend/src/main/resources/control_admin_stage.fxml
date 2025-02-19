@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlAdminStage">
+   <children>
+      <Label layoutX="157.0" layoutY="33.0" prefHeight="18.0" prefWidth="404.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Welcome to your account" />
+   </children>
+</AnchorPane>

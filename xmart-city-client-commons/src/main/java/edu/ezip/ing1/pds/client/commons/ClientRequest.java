@@ -2,7 +2,7 @@ package edu.ezip.ing1.pds.client.commons;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.commons.LoggingUtils;
-import edu.ezip.ing1.pds.business.dto.Students;
+//import edu.ezip.ing1.pds.business.dto.Students;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 import org.slf4j.Logger;
@@ -78,7 +78,6 @@ public abstract class ClientRequest<N,S> implements Runnable {
             final ObjectMapper mapper = new ObjectMapper();
             final Response response = mapper.readValue(inputData, Response.class);
             logger.debug("Response = {}", response.toString());
-
             result = readResult(response.responseBody);
 
         } catch (IOException e) {

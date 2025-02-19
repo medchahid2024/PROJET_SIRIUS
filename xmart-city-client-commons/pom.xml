@@ -54,6 +54,10 @@
             <artifactId>snakeyaml</artifactId>
             <version>1.21</version>
         </dependency>
-
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.0.9</version>
+        </dependency>
     </dependencies>
 </project>
