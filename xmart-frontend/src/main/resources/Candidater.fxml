@@ -21,9 +21,9 @@
       <TextField layoutX="212.0" layoutY="255.0" />
       <TextField layoutX="212.0" layoutY="202.0" />
       <TextField layoutX="212.0" layoutY="146.0" />
-      <Label fx:id="lab" layoutX="463.0" layoutY="324.0" prefHeight="18.0" prefWidth="86.0" text="Label" />
+      <Label fx:id="lab" layoutX="463.0" layoutY="324.0" prefHeight="18.0" prefWidth="86.0" text="label" visible="false" />
       <Button layoutX="178.0" layoutY="522.0" mnemonicParsing="false" onAction="#valider" prefHeight="38.0" prefWidth="182.0" text="Valider" />
-      <Label fx:id="lett" layoutX="513.0" layoutY="380.0" prefHeight="18.0" prefWidth="86.0" text="Label" />
-      <Label fx:id="autre" layoutX="506.0" layoutY="430.0" prefHeight="18.0" prefWidth="86.0" text="Label" />
+      <Label fx:id="lett" layoutX="513.0" layoutY="380.0" prefHeight="18.0" prefWidth="86.0" visible="false" />
+      <Label fx:id="autre" layoutX="506.0" layoutY="430.0" prefHeight="18.0" prefWidth="86.0" text="Label" visible="false" />
    </children>
 </AnchorPane>
