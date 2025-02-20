@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ezip.commons.LoggingUtils;
 //import edu.ezip.ing1.pds.business.dto.Student;
 //import edu.ezip.ing1.pds.business.dto.Students;
+import edu.ezip.ing1.pds.business.dto.Candidature;
+import edu.ezip.ing1.pds.business.dto.Candidatures;
 import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
@@ -12,6 +14,7 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
 //import edu.ezip.ing1.pds.requests.InsertStudentsClientRequest;
+import edu.ezip.ing1.pds.requests.InsertAllCandidaturesClientRequest;
 import edu.ezip.ing1.pds.requests.InsertAllStagesClientRequest;
 import edu.ezip.ing1.pds.requests.SelectAllStagesClientRequest;
 //import edu.ezip.ing1.pds.requests.SelectAllStudentsClientRequest;
@@ -29,7 +32,7 @@ public class StageService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 //    private final static String studentsToBeInserted = "stages-to-be-inserted.yaml";
 
-   final String insertRequestOrder = "INSERT_STAGE";
+   final String insertRequestOrder = "INSERT_CANDIDATURE";
     final String selectRequestOrder = "SELECT_STAGE";
    private final static String stagesToBeInserted = "students-to-be-inserted.yaml";
 
@@ -39,15 +42,15 @@ public class StageService {
         this.networkConfig = networkConfig;
     }
 
-    public void insertStages() throws InterruptedException, IOException {
+    public void insertCandidatures() throws InterruptedException, IOException {
         final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
-        final Stagess guys = ConfigLoader.loadConfig(Stagess.class, stagesToBeInserted);
+        final Candidatures guys = ConfigLoader.loadConfig(Candidatures.class, stagesToBeInserted);
 
         int birthdate = 0;
-        for(final Stagee guy : guys.getStages()) {
+        for(final Candidature guy : guys.getCandidatures()) {
             final ObjectMapper objectMapper = new ObjectMapper();
             final String jsonifiedGuy = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(guy);
-            logger.trace("Stage with its JSON face : {}", jsonifiedGuy);
+            logger.trace("Candidature with its JSON face : {}", jsonifiedGuy);
             final String requestId = UUID.randomUUID().toString();
             final Request request = new Request();
             request.setRequestId(requestId);
@@ -56,7 +59,7 @@ public class StageService {
             objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
             final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
 
-            final InsertAllStagesClientRequest clientRequest = new InsertAllStagesClientRequest(
+            final InsertAllCandidaturesClientRequest clientRequest = new InsertAllCandidaturesClientRequest(
                     networkConfig,
                     birthdate++, request, guy, requestBytes);
             clientRequests.push(clientRequest);
@@ -65,10 +68,10 @@ public class StageService {
         while (!clientRequests.isEmpty()) {
             final ClientRequest clientRequest = clientRequests.pop();
             clientRequest.join();
-            final Stagee guy = (Stagee) clientRequest.getInfo();
+            final Candidature guy = (Candidature) clientRequest.getInfo();
             logger.debug("Thread {} complete : {} {} {} --> {}",
                     clientRequest.getThreadName(),
-                    guy.getTitre(), guy.getDescription(), guy.getDomaine(),guy.getDuree(),
+                    guy.getCv(), guy.getNom(), guy.getPrenom(),guy.getCv(),guy.getLettre(),guy.getAutres(),
                     clientRequest.getResult());
         }
     }

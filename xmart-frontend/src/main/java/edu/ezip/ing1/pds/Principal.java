@@ -9,12 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import java.io.IOException;
 
 
-public class controlFront {
+public class Principal {
   @FXML
   public Label label1;
 

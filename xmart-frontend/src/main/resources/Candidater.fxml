@@ -5,22 +5,25 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="580.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Candidater">
+<AnchorPane prefHeight="628.0" prefWidth="693.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Candidater">
    <children>
-      <Label layoutX="69.0" layoutY="148.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Votre nom" />
-      <Label layoutX="69.0" layoutY="208.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Votre prenom" />
-      <Label layoutX="68.0" layoutY="264.0" prefHeight="18.0" prefWidth="57.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Email" />
-      <Label layoutX="67.0" layoutY="317.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Adresse postal" />
-      <Label layoutX="106.0" layoutY="382.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Votre CV" />
-      <Label layoutX="106.0" layoutY="439.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Votre lettre de motivation" />
-      <Button fx:id="cv" layoutX="307.0" layoutY="378.0" mnemonicParsing="false" onAction="#cv" prefHeight="26.0" prefWidth="100.0" text="Joindre mon cv" />
-      <Button fx:id="motivation" layoutX="307.0" layoutY="435.0" mnemonicParsing="false" onAction="#motivation" text="Joindre ma lettre de motivation" />
-      <Label layoutX="106.0" layoutY="487.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Autre document" />
-      <Button fx:id="autres" layoutX="307.0" layoutY="483.0" mnemonicParsing="false" onAction="#autres" text="Autres" />
-      <TextField layoutX="207.0" layoutY="144.0" />
-      <TextField layoutX="207.0" layoutY="313.0" />
-      <TextField layoutX="207.0" layoutY="260.0" />
-      <TextField layoutX="207.0" layoutY="204.0" />
+      <Label layoutX="74.0" layoutY="90.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre nom" />
+      <Label layoutX="74.0" layoutY="150.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre prenom" />
+      <Label layoutX="73.0" layoutY="206.0" prefHeight="18.0" prefWidth="57.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Email" />
+      <Label layoutX="72.0" layoutY="259.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Adresse postal" />
+      <Label layoutX="118.0" layoutY="322.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre CV" />
+      <Label layoutX="111.0" layoutY="381.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre lettre de motivation" />
+      <Button fx:id="CV" layoutX="312.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#CV" prefHeight="26.0" prefWidth="100.0" text="Joindre mon cv" />
+      <Button fx:id="motivation" layoutX="312.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#lettre" text="Joindre ma lettre de motivation" />
+      <Label layoutX="111.0" layoutY="429.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Autre document" />
+      <Button fx:id="autres" layoutX="312.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#autres" text="Autres" />
+      <TextField layoutX="212.0" layoutY="86.0" />
+      <TextField layoutX="212.0" layoutY="255.0" />
+      <TextField layoutX="212.0" layoutY="202.0" />
+      <TextField layoutX="212.0" layoutY="146.0" />
+      <Label fx:id="lab" layoutX="463.0" layoutY="324.0" prefHeight="18.0" prefWidth="86.0" text="Label" />
+      <Button layoutX="178.0" layoutY="522.0" mnemonicParsing="false" onAction="#valider" prefHeight="38.0" prefWidth="182.0" text="Valider" />
+      <Label fx:id="lett" layoutX="513.0" layoutY="380.0" prefHeight="18.0" prefWidth="86.0" text="Label" />
+      <Label fx:id="autre" layoutX="506.0" layoutY="430.0" prefHeight="18.0" prefWidth="86.0" text="Label" />
    </children>
 </AnchorPane>

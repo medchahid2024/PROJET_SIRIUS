@@ -10,7 +10,7 @@
 
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.controlFront">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Principal">
    <children>
       <BorderPane layoutX="200.0" layoutY="159.2" prefHeight="222.0" prefWidth="325.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="243.0">
          <bottom>

@@ -21,11 +21,11 @@ import java.util.Deque;
 public class MainFrontEnd extends Application {
 
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainFrontEnd.class.getResource("/sceneBuilder.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFrontEnd.class.getResource("/connexion.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(MainFrontEnd.class.getResource("/css.css").toExternalForm());
 
-        stage.setTitle("Application JavaFX");
+        stage.setTitle("Welcome to your account");
 
         stage.setScene(scene);
         stage.show();
@@ -42,7 +42,8 @@ public class MainFrontEnd extends Application {
         logger.debug("Load Network config file : {}", networkConfig.toString());
 
         final StageService studentService = new StageService(networkConfig);
-//        studentService.insertStudents();
+
+
         Stagess students = studentService.selectStages();
         final AsciiTable asciiTable = new AsciiTable();
         for (final Stagee student : students.getStages()) {
