@@ -4,7 +4,8 @@ import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
-import edu.ezip.ing1.pds.services.StageService;
+
+import edu.ezip.ing1.pds.services.stageService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ public class ControlStage {
 
     private void loadStageData() throws IOException, InterruptedException {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
-        final StageService stageService = new StageService(networkConfig);
+        final stageService stageService = new stageService(networkConfig);
 
         Stagess stagess = stageService.selectStages();
 

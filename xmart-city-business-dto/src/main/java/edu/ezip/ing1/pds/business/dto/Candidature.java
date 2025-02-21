@@ -8,6 +8,8 @@ import java.sql.SQLException;
 public class Candidature {
     private String nom;
     private String prenom;
+    private String email;
+    private String adresse;
     private String cv;
     private String lettre;
     private String autres;
@@ -16,12 +18,14 @@ public class Candidature {
     public Candidature() {
     }
 
-    public Candidature(String nom, String prenom, String cv, String lettre, String autres) {
+    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres) {
         this.nom = nom;
         this.prenom = prenom;
         this.cv = cv;
         this.lettre = lettre;
         this.autres = autres;
+        this.email=email;
+        this.adresse=adresse;
     }
 
     public String getNom() { return nom; }
@@ -30,9 +34,21 @@ public class Candidature {
     public String getLettre() { return lettre; }
     public String getAutres() { return autres; }
     public int getId() { return id; }
+    public String getEmail() {return email;
+    }
+    public String getAdresse() {return adresse; }
 
     public void setNom(String nom) { this.nom = nom; }
     public void setPrenom(String prenom) { this.prenom = prenom; }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setCv(String cv) { this.cv = cv; }
     public void setLettre(String lettre) { this.lettre = lettre; }
     public void setAutres(String autres) { this.autres = autres; }
@@ -60,4 +76,6 @@ public class Candidature {
         }
         return preparedStatement;
     }
+
+
 }

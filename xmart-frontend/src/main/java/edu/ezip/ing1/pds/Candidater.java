@@ -1,17 +1,20 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.business.dto.Candidature;
+import edu.ezip.ing1.pds.services.InsertCandidature;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.sql.SQLException;
 
-public class Candidater  implements Initializable {
+public class Candidater  {
 
     public Button motivation;
     public Button CV;
@@ -19,8 +22,18 @@ public class Candidater  implements Initializable {
     public Label lab;
     public Label lett;
     public Label autre;
+
+    public TextField adresse;
+    public TextField nom;
+    public TextField email;
+    public TextField prenom;
+    public Button valider;
     FileChooser fileChooser = new FileChooser();
 
+
+
+    public Candidater() throws InterruptedException {
+    }
 
     public void autres(MouseEvent actionEvent) {
         File file = fileChooser.showOpenDialog(null);
@@ -50,10 +63,38 @@ public class Candidater  implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
 
-    public void valider(ActionEvent actionEvent) {
+
+
+    public void valider(ActionEvent actionEvent) throws InterruptedException, IOException, SQLException {
+
+
+        String nom1 = nom.getText();
+        String prenom1 = prenom.getText();
+        String email1 = email.getText();
+        String adresse1 = adresse.getText();
+        String lab1 = lab.getText();
+        String lett1 = lett.getText();
+        String autre1 = autre.getText();
+
+
+
+        if (nom1.equals("") || prenom1.equals("") || email1.equals("") || adresse1.equals("") || lab1.equals("Aucun fichier sélectionné") || lett1.equals("Aucun fichier sélectionné")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs");
+            alert.showAndWait();
+        } else {
+
+            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1);
+            InsertCandidature.sendValue("INSERT_CANDIDATURE", c);
+            Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
+            aler.setTitle("Validé");
+            aler.setHeaderText(null);
+            aler.setContentText("Nous avons bien reçu votre candidature");
+            aler.showAndWait();
+        }
+
     }
 }

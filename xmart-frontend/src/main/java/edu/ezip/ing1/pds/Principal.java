@@ -44,6 +44,15 @@ public class Principal {
     clique(mouseEvent);
     }
 
+    public void evenement(MouseEvent mouseEvent) {
+      new Fenetre();
+    }
+
+    public void commerce(MouseEvent mouseEvent) {
+    Fenetre1 f=new Fenetre1();
+    f.setVisible(true);
+    }
+
     public static class ControlAdminStage {
     }
 }
