@@ -28,6 +28,8 @@
                         </goals>
                     </execution>
                 </executions>
+
+
                 <configuration>
                     <archive>
                         <manifest>
@@ -37,6 +39,18 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>edu.ezip.ing1.pds.backend.MainBackendServer</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 

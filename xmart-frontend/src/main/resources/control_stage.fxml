@@ -10,8 +10,8 @@
 
 <AnchorPane prefHeight="636.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.ControlStage">
    <children>
-      <TextField layoutX="232.0" layoutY="40.0" promptText=" Mots clés" />
-      <Button layoutX="397.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="rechercher" />
+      <TextField fx:id="mot" layoutX="232.0" layoutY="40.0" promptText=" Mots clés" />
+      <Button layoutX="397.0" layoutY="40.0" mnemonicParsing="false" onAction="#rechercher" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="rechercher" />
       <ScrollPane layoutX="66.4" layoutY="103.0" prefHeight="490.0" prefWidth="481.0" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="53.0">
          <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="479.0" style="-fx-background-color: white;">

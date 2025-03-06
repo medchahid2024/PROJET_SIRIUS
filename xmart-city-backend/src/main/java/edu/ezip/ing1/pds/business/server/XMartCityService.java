@@ -23,9 +23,9 @@ public class XMartCityService {
 
     SELECT_STAGE("SELECT titre, description, domaine,duree  FROM offres_stages") ,
 //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
-INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier)VALUES  (?,?,?, ?, ?, ?, ?) ");
-//    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email =? AND mot_de_passe =?");
-
+INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier)VALUES  (?,?,?, ?, ?, ?, ?) "),
+//    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
+   SELECT_OFFRE ("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?");
 
         private final String query;
 
@@ -50,7 +50,7 @@ INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre
             throws InvocationTargetException, IllegalAccessException, SQLException, IOException {
         Response response = null;
 
-        final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder());
+        final Queries queryEnum = Enum.valueOf(Queries.class, request.getRequestOrder().trim());
         switch(queryEnum) {
 
             case INSERT_CANDIDATURE:
@@ -61,7 +61,11 @@ INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre
                 break;
 //            case SELECT_CONN:
 //                             response=SelectAllconn(request, connection);
-//                break;
+//               break;
+            case SELECT_OFFRE:
+                response=SelectAlloffres(request, connection);
+
+                break;
             default:
                 break;
         }
@@ -102,6 +106,7 @@ private Response InsertCandidature(final Request request, final Connection conne
     stmt.setString(5, candidature.getCv());
     stmt.setString(6, candidature.getLettre());
     stmt.setString(7, candidature.getAutres());
+
     stmt.executeUpdate();
 
 
@@ -127,6 +132,37 @@ private Response InsertCandidature(final Request request, final Connection conne
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
 
     }
+    private Response SelectAlloffres(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        // Récupération de la valeur recherchée
+        String rechercher = objectMapper.readValue(request.getRequestBody(), String.class);
+
+        // Préparation de la requête avec paramètre
+        try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_OFFRE.query)) {
+            stmt.setString(1,"%"+rechercher.trim()+"%");
+
+            try (ResultSet res = stmt.executeQuery()) {
+                Stagess stagess = new Stagess();
+
+                while (res.next()) {
+                    Stagee stagee = new Stagee();
+                    stagee.setTitre(res.getString(1));
+                    stagee.setDescription(res.getString(2));
+                    stagee.setDomaine(res.getString(3));
+                    stagee.setDuree(res.getString(4));
+                    stagess.add(stagee);
+                    System.out.println("DEBUG - Requête envoyée : " + rechercher);
+
+
+                }
+
+                return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
+            }
+        }
+    }
+
+
 //    private Response SelectAllconn(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
 //        final ObjectMapper objectMapper = new ObjectMapper();
 //        final Statement stmt = connection.createStatement();

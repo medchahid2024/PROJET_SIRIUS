@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +23,8 @@ import java.util.List;
 public class ControlStage {
 
     public Button postuler;
+    @FXML
+    public TextField mot;
 
     @FXML
     private Label titre;
@@ -98,4 +101,32 @@ public class ControlStage {
         stage.setTitle("Candidature");
         stage.show();
     }
+
+    public void rechercher(ActionEvent actionEvent) throws InterruptedException, IOException {
+        String rechercher = mot.getText().trim();
+
+        if (!rechercher.isEmpty()) {
+            try {
+                final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+                final stageService stageService = new stageService(networkConfig);
+
+                Stagess stagess = stageService.selectOffres(rechercher); // Passer le mot-clé
+
+                if (stagess != null && !stagess.getStages().isEmpty()) {
+                    stageList = new ArrayList<>(stagess.getStages());
+                    currentIndex = 0;
+                    afficherStage(currentIndex); // Afficher le premier résultat trouvé
+                } else {
+                    titre.setText("Aucune offre trouvée pour : " + rechercher);
+                    domaine.setText("-");
+                    description.setText("-");
+                    duree.setText("-");
+                }
+            } catch (Exception e) {
+                System.err.println("Erreur lors de la recherche : " + e.getMessage());
+                titre.setText("Erreur lors de la recherche");
+            }
+        }
+    }
+
 }

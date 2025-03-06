@@ -10,6 +10,9 @@ public class Request {
     public String requestId;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String searchKeyword;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String requestOrder;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,7 +25,7 @@ public class Request {
 
     @JsonSetter("request_body")
     public void setRequestBody(JsonNode requestBody) {
-        this.requestBody = requestBody.toString();
+        this.requestBody = String.valueOf(requestBody);
     }
 
     public void setRequestContent(final String requestBody) {
@@ -45,6 +48,15 @@ public class Request {
     @JsonRawValue
     public String getRequestBody() {
         return requestBody;
+    }
+    @JsonProperty("search_keyword")
+    public void setSearchKeyword(String searchKeyword) {
+        this.searchKeyword = searchKeyword;
+    }
+
+    @JsonProperty("search_keyword")
+    public String getSearchKeyword() {
+        return searchKeyword;
     }
 
     @Override

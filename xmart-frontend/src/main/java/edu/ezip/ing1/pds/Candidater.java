@@ -79,7 +79,8 @@ public class Candidater  {
 
 
 
-        if (nom1.equals("") || prenom1.equals("") || email1.equals("") || adresse1.equals("") || lab1.equals("Aucun fichier sélectionné") || lett1.equals("Aucun fichier sélectionné")) {
+
+        if (nom1.equals("") || prenom1.equals("") || email1.equals("") || adresse1.equals("") || lab1.equals("Aucun fichier sélectionné") || lett1.equals("Aucun fichier sélectionné")|| lab1.equals("") || lett1.equals("")|| autre1.equals("Aucun fichier sélectionné")|| autre1.equals("") ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
