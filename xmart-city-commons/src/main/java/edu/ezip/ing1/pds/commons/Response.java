@@ -9,7 +9,7 @@ public class Response {
 
     public String responseBody;
 
-    public void Response() {
+    public  Response() {
 
     }
     public Response(String requestId, String responseBody) {
