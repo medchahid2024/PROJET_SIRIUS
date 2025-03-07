@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -17,5 +18,9 @@ public class CreateAcount {
         stage.show();
         Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         currentStage.close();
+    }
+
+    public void kk(ActionEvent actionEvent) {
+        
     }
 }
