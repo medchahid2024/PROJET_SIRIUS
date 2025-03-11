@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -93,12 +94,18 @@ public class ControlStage {
     }
 
     public void postuler(ActionEvent actionEvent) throws IOException {
+        Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
+        int idOffre = stageSelectionne.getId();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 
         Scene offre = new Scene(fxmlLoader.load(), 700, 700);
         stage.setScene(offre);
         stage.setTitle("Candidature");
+        Candidater candidatureController = fxmlLoader.getController();
+        candidatureController.setId(idOffre);
+
         stage.show();
     }
 
