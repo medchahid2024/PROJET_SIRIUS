@@ -19,7 +19,7 @@ public class Candidature {
     public Candidature() {
     }
 
-    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres ) {
+    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres,int id ) {
         this.nom = nom;
         this.prenom = prenom;
         this.cv = cv;
@@ -27,6 +27,7 @@ public class Candidature {
         this.autres = autres;
         this.email=email;
         this.adresse=adresse;
+        this.id = id;
 
     }
 

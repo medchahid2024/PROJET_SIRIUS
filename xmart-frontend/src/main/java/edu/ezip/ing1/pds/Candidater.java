@@ -29,6 +29,7 @@ public class Candidater  {
     public TextField prenom;
     public Button valider;
     FileChooser fileChooser = new FileChooser();
+    int id;
 
 
 
@@ -88,7 +89,7 @@ public class Candidater  {
             alert.showAndWait();
         } else {
 
-            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1);
+            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1 ,id);
             InsertCandidature.sendValue("INSERT_CANDIDATURE", c);
             Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
             aler.setTitle("Validé");
