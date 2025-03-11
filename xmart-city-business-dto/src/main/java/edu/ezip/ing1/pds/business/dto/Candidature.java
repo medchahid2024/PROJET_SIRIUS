@@ -13,6 +13,7 @@ public class Candidature {
     private String cv;
     private String lettre;
     private String autres;
+    private int id;
     //private int id;
 
     public Candidature() {
@@ -34,7 +35,7 @@ public class Candidature {
     public String getCv() { return cv; }
     public String getLettre() { return lettre; }
     public String getAutres() { return autres; }
-   // public int getId() { return id; }
+   public int getId() { return id; }
     public String getEmail() {return email;
     }
     public String getAdresse() {return adresse; }
@@ -54,7 +55,7 @@ public class Candidature {
     public void setCv(String cv) { this.cv = cv; }
     public void setLettre(String lettre) { this.lettre = lettre; }
     public void setAutres(String autres) { this.autres = autres; }
-   // public void setId(int id) { this.id = id; }
+   public void setId(int id) { this.id = id; }
 
     public final Candidature build(final ResultSet resultSet)
             throws SQLException, NoSuchFieldException, IllegalAccessException {

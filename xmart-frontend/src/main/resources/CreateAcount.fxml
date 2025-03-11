@@ -27,6 +27,5 @@
       <TextField fx:id="email4" layoutX="194.0" layoutY="270.0" prefHeight="26.0" prefWidth="186.0" />
       <Button fx:id="seConnecter" layoutX="205.0" layoutY="480.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="S'inscrire" />
       <Label layoutX="455.0" layoutY="516.0" onMouseClicked="#connexion" prefHeight="18.0" prefWidth="104.0" style="-fx-text-fill: blue;" text="j'ai déja un compte" />
-      <Button layoutX="481.0" layoutY="155.0" mnemonicParsing="false" onAction="#kk" text="Button" />
    </children>
 </AnchorPane>
