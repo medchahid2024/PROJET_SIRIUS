@@ -23,4 +23,7 @@ public class CreateAcount {
     public void kk(ActionEvent actionEvent) {
         
     }
+
+    public void oooo(ActionEvent actionEvent) {
+    }
 }

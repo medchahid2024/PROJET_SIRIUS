@@ -1,6 +1,6 @@
 databaseName: "reseausocial"
-host: "127.0.0.1"
+host: "172.31.252.77"
 port: 3306
-username : "root"
-password: ""
+username : "bdd"
+password: "Cha.2001.hid"
 poolSize: 1

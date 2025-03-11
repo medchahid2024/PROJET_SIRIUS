@@ -41,17 +41,17 @@ public class MainFrontEnd extends Application {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         logger.debug("Load Network config file : {}", networkConfig.toString());
 
-        final stageService studentService = new stageService(networkConfig);
-
-
-        Stagess students = studentService.selectStages();
-        final AsciiTable asciiTable = new AsciiTable();
-        for (final Stagee student : students.getStages()) {
-            asciiTable.addRule();
-            asciiTable.addRow(student.getTitre(), student.getDescription(), student.getDomaine(),student.getDuree());
-        }
-        asciiTable.addRule();
-        logger.debug("\n{}\n", asciiTable.render());
+//        final stageService studentService = new stageService(networkConfig);
+//
+//
+//        Stagess students = studentService.selectStages();
+//        final AsciiTable asciiTable = new AsciiTable();
+//        for (final Stagee student : students.getStages()) {
+//            asciiTable.addRule();
+//            asciiTable.addRow(student.getTitre(), student.getDescription(), student.getDomaine(),student.getDuree());
+//        }
+//        asciiTable.addRule();
+//        logger.debug("\n{}\n", asciiTable.render());
 
         launch(args);
     }
