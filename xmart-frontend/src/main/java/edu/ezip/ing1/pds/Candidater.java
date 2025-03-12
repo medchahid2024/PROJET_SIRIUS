@@ -79,6 +79,12 @@ public class Candidater  {
         String autre1 = autre.getText();
 
 
+        // Vérification que tous les champs sont remplis correctement
+        if (nom1 == null || nom1.isEmpty() || prenom1 == null || prenom1.isEmpty() || email1 == null || email1.isEmpty()
+                || adresse1 == null || adresse1.isEmpty() || lab1 == null || lab1.isEmpty() || lab1.equals("Aucun fichier sélectionné")
+                || lett1 == null || lett1.isEmpty() || lett1.equals("Aucun fichier sélectionné")
+                || autre1 == null || autre1.isEmpty() || autre1.equals("Aucun fichier sélectionné")) {
+
 
 
         if (nom1.equals("") || prenom1.equals("") || email1.equals("") || adresse1.equals("") || lab1.equals("Aucun fichier sélectionné") || lett1.equals("Aucun fichier sélectionné")|| lab1.equals("") || lett1.equals("")|| autre1.equals("Aucun fichier sélectionné")|| autre1.equals("") ) {
@@ -89,8 +95,13 @@ public class Candidater  {
             alert.showAndWait();
         } else {
 
-            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1 ,id);
+            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1 , this.id );
+//
             InsertCandidature.sendValue("INSERT_CANDIDATURE", c);
+
+
+            Candidature cfCandidature = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1 ,id);
+            InsertCandidature.sendValue("INSERT_CANDIDATURE", cfCandidature);
             Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
             aler.setTitle("Validé");
             aler.setHeaderText(null);
@@ -99,4 +110,14 @@ public class Candidater  {
         }
 
     }
+
+
 }
+
+    public void setId(int idOffre) {
+        this.id = id;
+        System.out.println("ID de l'offre sélectionnée : " + id);
+
+    }
+    }
+

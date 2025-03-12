@@ -19,7 +19,11 @@ public class Candidature {
     public Candidature() {
     }
 
+<<<<<<< HEAD
     public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres,int id ) {
+=======
+    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres , int id) {
+>>>>>>> 96ad9ea (utilisation de clé etranger pour la table candidature(id_offre) pour envoyer la candidature à l'entreprise convenable)
         this.nom = nom;
         this.prenom = prenom;
         this.cv = cv;
@@ -31,6 +35,11 @@ public class Candidature {
 
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 96ad9ea (utilisation de clé etranger pour la table candidature(id_offre) pour envoyer la candidature à l'entreprise convenable)
     public String getNom() { return nom; }
     public String getPrenom() { return prenom; }
     public String getCv() { return cv; }
@@ -56,11 +65,11 @@ public class Candidature {
     public void setCv(String cv) { this.cv = cv; }
     public void setLettre(String lettre) { this.lettre = lettre; }
     public void setAutres(String autres) { this.autres = autres; }
-   public void setId(int id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
 
     public final Candidature build(final ResultSet resultSet)
             throws SQLException, NoSuchFieldException, IllegalAccessException {
-        setFieldsFromResultSet(resultSet, "nom", "prenom", "cv", "lettre", "autres");
+        setFieldsFromResultSet(resultSet, "nom", "prenom", "cv", "lettre", "autres" );
         return this;
     }
 

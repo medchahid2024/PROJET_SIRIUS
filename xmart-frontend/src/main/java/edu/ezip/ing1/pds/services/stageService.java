@@ -42,17 +42,18 @@ public class stageService {
     }
 
 
-    public Candidatures insertCandidatures() throws InterruptedException, IOException {
-
-        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
+    public void insertCandidatures(Candidature candidature) throws InterruptedException, IOException {
+        final Deque<ClientRequest> clientRequests = new ArrayDeque<>();
         final ObjectMapper objectMapper = new ObjectMapper();
 
-
-        int birthdate = 0;
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
         request.setRequestId(requestId);
         request.setRequestOrder(insertRequestOrder);
+
+        // Convertir l'objet `Candidature` en JSON pour l'envoyer dans la requête
+        final String candidatureJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(candidature);
+        request.setRequestContent(candidatureJson);
 
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte[] requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
@@ -61,20 +62,22 @@ public class stageService {
                 networkConfig, 0, request, null, requestBytes);
         clientRequests.push(clientRequest);
 
-
-
-
         while (!clientRequests.isEmpty()) {
             final ClientRequest client = clientRequests.pop();
             client.join();
-            final Candidature guy = (Candidature) clientRequest.getInfo();
-            logger.debug("Thread {} complete : {} {} {} --> {}",
-                    clientRequest.getThreadName(),
-                    guy.getCv(), guy.getNom(), guy.getPrenom(),guy.getEmail(),guy.getAdresse(),guy.getLettre(),guy.getAutres(),
-                    clientRequest.getResult());
+
+            Candidature response = (Candidature) clientRequest.getInfo();
+            if (response != null) {
+                logger.debug("Thread {} complete : Nom: {}, Prénom: {}, Email: {}, Adresse: {}, CV: {}, Lettre: {}, Autres: {}, ID: {}",
+                        clientRequest.getThreadName(),
+                        response.getNom(), response.getPrenom(), response.getEmail(), response.getAdresse(),
+                        response.getCv(), response.getLettre(), response.getAutres());
+            } else {
+                logger.error("Erreur : Impossible de récupérer la candidature insérée.");
+            }
         }
-        return null;
     }
+
 
     public Stagess selectStages() throws InterruptedException, IOException {
         int birthdate = 0;
