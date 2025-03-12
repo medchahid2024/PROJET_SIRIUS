@@ -106,12 +106,11 @@ private Response InsertCandidature(final Request request, final Connection conne
     stmt.setString(5, candidature.getCv());
     stmt.setString(6, candidature.getLettre());
     stmt.setString(7, candidature.getAutres());
-<<<<<<< HEAD
+
     stmt.setInt(8, candidature.getId());
 
-=======
+
    stmt.setInt(8,candidature.getId());
->>>>>>> 96ad9ea (utilisation de clé etranger pour la table candidature(id_offre) pour envoyer la candidature à l'entreprise convenable)
 
     stmt.executeUpdate();
 
