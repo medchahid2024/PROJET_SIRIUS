@@ -18,7 +18,7 @@ public class Candidature {
     public Candidature() {
     }
 
-    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres ) {
+    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres,int id ) {
         this.nom = nom;
         this.prenom = prenom;
         this.cv = cv;
@@ -30,8 +30,7 @@ public class Candidature {
 
     }
 
-    public Candidature(String nom1, String prenom1, String email1, String adresse1, String lab1, String lett1, String autre1, int id) {
-    }
+
 
     public String getNom() { return nom; }
     public String getPrenom() { return prenom; }
