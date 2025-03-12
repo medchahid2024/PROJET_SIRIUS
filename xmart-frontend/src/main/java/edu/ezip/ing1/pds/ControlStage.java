@@ -1,15 +1,17 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+
 import edu.ezip.ing1.pds.services.stageService;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,10 +23,10 @@ import java.util.List;
 
 public class ControlStage {
 
+    public Button postuler;
     @FXML
-    private Button postuler;
-    @FXML
-    private TextField mot;
+    public TextField mot;
+
     @FXML
     private Label titre;
     @FXML
@@ -47,7 +49,6 @@ public class ControlStage {
             loadStageData();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            showAlert("Erreur", "Impossible de charger les offres de stage.");
         }
     }
 
@@ -57,29 +58,23 @@ public class ControlStage {
 
         Stagess stagess = stageService.selectStages();
 
-        if (stagess != null && !stagess.getStages().isEmpty()) {
+        if (stagess != null) {
             stageList = new ArrayList<>(stagess.getStages());
             currentIndex = 0;
             afficherStage(currentIndex);
-        } else {
-            showAlert("Information", "Aucune offre de stage disponible.");
         }
     }
 
     private void afficherStage(int index) {
-        if (stageList.isEmpty()) {
-            titre.setText("Aucune offre disponible");
-            domaine.setText("-");
-            description.setText("-");
-            duree.setText("-");
-            return;
-        }
+
 
         Stagee stage = stageList.get(index);
+
         titre.setText(stage.getTitre());
         domaine.setText(stage.getDomaine());
         description.setText(stage.getDescription());
         duree.setText(stage.getDuree());
+
     }
 
     @FXML
@@ -98,48 +93,23 @@ public class ControlStage {
         }
     }
 
-    public int getIdOffreSelectionnee() {
-        if (!stageList.isEmpty()) {
-            return stageList.get(currentIndex).getId();
-        } else {
-            showAlert("Erreur", "Aucune offre sélectionnée.");
-            return -1;
-        }
-    }
-
-    @FXML
-    public void postuler(ActionEvent actionEvent) throws IOException {
-
-        if (stageList.isEmpty()) {
-            showAlert("Erreur", "Aucune offre disponible pour postuler.");
-            return;
-        }
-
-        int idOffre = getIdOffreSelectionnee();
-        if (idOffre == -1) return;
-
-
+    public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
+        Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
+        int idOffre = stageSelectionne.getId();
+        Candidater candidater= new Candidater();
+        candidater.setId(idOffre);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 
         Scene offre = new Scene(fxmlLoader.load(), 700, 700);
         stage.setScene(offre);
         stage.setTitle("Candidature");
-
-
-        // Récupération du contrôleur après le chargement
-        Candidater candidaterController = fxmlLoader.getController();
-        if (candidaterController != null) {
-            candidaterController.setId(idOffre);
-        } else {
-            showAlert("Erreur", "Impossible d'ouvrir la fenêtre de candidature.");
-        }
-
+        Candidater candidatureController = fxmlLoader.getController();
+        candidatureController.setId(idOffre);
 
         stage.show();
     }
 
-    @FXML
     public void rechercher(ActionEvent actionEvent) throws InterruptedException, IOException {
         String rechercher = mot.getText().trim();
 
@@ -148,31 +118,23 @@ public class ControlStage {
                 final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
                 final stageService stageService = new stageService(networkConfig);
 
-                Stagess stagess = stageService.selectOffres(rechercher);
+                Stagess stagess = stageService.selectOffres(rechercher); // Passer le mot-clé
 
                 if (stagess != null && !stagess.getStages().isEmpty()) {
                     stageList = new ArrayList<>(stagess.getStages());
                     currentIndex = 0;
-                    afficherStage(currentIndex);
+                    afficherStage(currentIndex); // Afficher le premier résultat trouvé
                 } else {
-                    showAlert("Information", "Aucune offre trouvée pour : " + rechercher);
-                    titre.setText("Aucune offre trouvée");
+                    titre.setText("Aucune offre trouvée pour : " + rechercher);
                     domaine.setText("-");
                     description.setText("-");
                     duree.setText("-");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                showAlert("Erreur", "Une erreur est survenue lors de la recherche.");
+                System.err.println("Erreur lors de la recherche : " + e.getMessage());
+                titre.setText("Erreur lors de la recherche");
             }
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }
