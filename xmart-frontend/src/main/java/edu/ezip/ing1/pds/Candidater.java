@@ -87,7 +87,7 @@ public class Candidater  {
             alert.setContentText("Veuillez remplir tous les champs correctement.");
             alert.showAndWait();
         } else {
-            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, id);
+            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id);
             System.out.println("🔍 DEBUG - l'offre sélectionnée : " + id);
             System.out.println("🔍 DEBUG - nom sélectionnée : " + nom1);
             System.out.println("🔍 DEBUG - prenom de l'offre sélectionnée : " + prenom1);

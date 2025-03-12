@@ -93,10 +93,11 @@ public class ControlStage {
         }
     }
 
-    public void postuler(ActionEvent actionEvent) throws IOException {
+    public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
         Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
         int idOffre = stageSelectionne.getId();
-
+  Candidater candidater= new Candidater();
+    candidater.setId(idOffre);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 

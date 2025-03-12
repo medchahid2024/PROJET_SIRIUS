@@ -21,7 +21,7 @@ public class XMartCityService {
 
     private enum Queries {
 
-    SELECT_STAGE("SELECT id_offre,titre, description, domaine,duree  FROM offres_stages") ,
+    SELECT_STAGE("SELECT * FROM offres_stages") ,
 //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
 INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
 //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
