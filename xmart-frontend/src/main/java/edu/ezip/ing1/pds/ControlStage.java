@@ -70,10 +70,10 @@ public class ControlStage {
 
         Stagee stage = stageList.get(index);
 
-            titre.setText(stage.getTitre());
-            domaine.setText(stage.getDomaine());
-            description.setText(stage.getDescription());
-            duree.setText(stage.getDuree());
+        titre.setText(stage.getTitre());
+        domaine.setText(stage.getDomaine());
+        description.setText(stage.getDescription());
+        duree.setText(stage.getDuree());
 
     }
 
@@ -96,8 +96,13 @@ public class ControlStage {
     public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
         Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
         int idOffre = stageSelectionne.getId();
+<<<<<<< HEAD
   Candidater candidater= new Candidater();
     candidater.setId(idOffre);
+=======
+        Candidater candidater= new Candidater();
+        candidater.setId(idOffre);
+>>>>>>> origin/main
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 

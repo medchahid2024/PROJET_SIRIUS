@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 class Fenetre extends JFrame implements ActionListener {
 
     public Fenetre() {
-        setTitle("Calendrier");
+        setTitle("Calendrier 123");
         setSize(1280, 720);
         setLocationRelativeTo(null);
 
