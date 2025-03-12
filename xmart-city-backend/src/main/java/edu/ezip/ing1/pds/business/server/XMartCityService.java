@@ -23,7 +23,11 @@ public class XMartCityService {
 
     SELECT_STAGE("SELECT * FROM offres_stages") ,
 //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
+<<<<<<< HEAD
+INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
+=======
 INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
+>>>>>>> origin/main
 //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
    SELECT_OFFRE ("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?");
 
@@ -99,6 +103,7 @@ private Response InsertCandidature(final Request request, final Connection conne
     final Candidature candidature = objectMapper.readValue(request.getRequestBody(), Candidature.class);
 
     final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_CANDIDATURE.query);
+
     stmt.setString(1, candidature.getNom());
     stmt.setString(2, candidature.getPrenom());
     stmt.setString(3, candidature.getEmail());
@@ -106,8 +111,12 @@ private Response InsertCandidature(final Request request, final Connection conne
     stmt.setString(5, candidature.getCv());
     stmt.setString(6, candidature.getLettre());
     stmt.setString(7, candidature.getAutres());
+<<<<<<< HEAD
+    stmt.setInt(8,candidature.getId());
+=======
     stmt.setInt(8, candidature.getId());
 
+>>>>>>> origin/main
 
     stmt.executeUpdate();
 
@@ -124,10 +133,11 @@ private Response InsertCandidature(final Request request, final Connection conne
 
         while (res.next()) {
            Stagee stagee = new Stagee();
-            stagee.setTitre(res.getString(1));
-            stagee.setDescription(res.getString(2));
-            stagee.setDomaine(res.getString(3));
-            stagee.setDuree(res.getString(4));
+           stagee.setId(res.getInt(1));
+            stagee.setTitre(res.getString(2));
+            stagee.setDescription(res.getString(3));
+            stagee.setDomaine(res.getString(4));
+            stagee.setDuree(res.getString(5));
             stagess.add(stagee);
         }
 
