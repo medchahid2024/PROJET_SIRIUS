@@ -95,9 +95,7 @@ public class Candidater  {
             alert.showAndWait();
         } else {
 
-            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1 , this.id );
-//
-            InsertCandidature.sendValue("INSERT_CANDIDATURE", c);
+
 
 
             Candidature cfCandidature = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1 ,id);

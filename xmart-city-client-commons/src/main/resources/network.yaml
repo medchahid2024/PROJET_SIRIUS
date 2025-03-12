@@ -1,8 +1,8 @@
-<<<<<<< HEAD
-#ipaddress : 127.0.0.1
-ipaddress : 172.31.252.202
-=======
+
+
+
+
 ipaddress : 127.0.0.1
 #ipaddress : 172.31.252.202
->>>>>>> 96ad9ea (utilisation de clé etranger pour la table candidature(id_offre) pour envoyer la candidature à l'entreprise convenable)
+
 tcpport : 45065
