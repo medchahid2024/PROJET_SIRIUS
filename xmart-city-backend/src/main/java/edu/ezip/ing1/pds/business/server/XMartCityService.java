@@ -23,11 +23,9 @@ public class XMartCityService {
 
     SELECT_STAGE("SELECT * FROM offres_stages") ,
 //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
-<<<<<<< HEAD
 INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
-=======
-INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
->>>>>>> origin/main
+
+
 //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
    SELECT_OFFRE ("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?");
 
@@ -111,12 +109,9 @@ private Response InsertCandidature(final Request request, final Connection conne
     stmt.setString(5, candidature.getCv());
     stmt.setString(6, candidature.getLettre());
     stmt.setString(7, candidature.getAutres());
-<<<<<<< HEAD
     stmt.setInt(8,candidature.getId());
-=======
     stmt.setInt(8, candidature.getId());
 
->>>>>>> origin/main
 
     stmt.executeUpdate();
 

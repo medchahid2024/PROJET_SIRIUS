@@ -14,19 +14,12 @@ public class Candidature {
     private String lettre;
     private String autres;
     private int id;
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/main
 
     public Candidature() {
     }
 
-<<<<<<< HEAD
     public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres,int id ) {
-=======
-    public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres ,int id ) {
->>>>>>> origin/main
         this.nom = nom;
         this.prenom = prenom;
         this.cv = cv;
@@ -35,10 +28,8 @@ public class Candidature {
         this.email=email;
         this.adresse=adresse;
         this.id = id;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
+
     }
 
 
