@@ -98,8 +98,8 @@ public class ControlStage {
         int idOffre = stageSelectionne.getId();
   Candidater candidater= new Candidater();
     candidater.setId(idOffre);
-        Candidater candidater= new Candidater();
-        candidater.setId(idOffre);
+        Candidater candidate= new Candidater();
+        candidate.setId(idOffre);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 

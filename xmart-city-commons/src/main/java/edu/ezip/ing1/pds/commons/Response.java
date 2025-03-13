@@ -9,11 +9,8 @@ public class Response {
 
     public String responseBody;
 
-<<<<<<< HEAD
-    public Response() {
-=======
+
     public  Response() {
->>>>>>> origin/main
 
     }
     public Response(String requestId, String responseBody) {
