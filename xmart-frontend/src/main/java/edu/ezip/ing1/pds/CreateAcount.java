@@ -51,8 +51,24 @@ public class CreateAcount {
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
             alert.setContentText("Veuillez remplir tous les champs correctement.");
-            alert.showAndWait();
-        } else {
+            alert.showAndWait();}
+          else   if (!MotDePasse.equals(Conf_mdp)){
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setTitle("Erreur");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Les mots de passes ne sont pas similaires.");
+                alert1.showAndWait();
+
+            }
+           else if (!Email.contains("@")){
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Erreur");
+            alert2.setHeaderText(null);
+            alert2.setContentText("le format de l'adresse de mail est incorrect.");
+            alert2.showAndWait();
+
+        }
+         else {
             Etudiant etudiant = new Etudiant(nom,Prenom,matricule,Email,MotDePasse,Conf_mdp);
 
             System.out.println( nom);
