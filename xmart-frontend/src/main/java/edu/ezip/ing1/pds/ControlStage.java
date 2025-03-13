@@ -97,7 +97,7 @@ public class ControlStage {
     public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
         Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
         int idOffre = stageSelectionne.getId();
-  Candidater candidater= new Candidater();
+   Candidater candidater= new Candidater();
     candidater.setId(idOffre);
         Candidater candidate= new Candidater();
         candidate.setId(idOffre);
@@ -140,4 +140,14 @@ public class ControlStage {
         }
     }
 
+    public void Ajouter(ActionEvent actionEvent) {
+    }
+
+    public void Supprimer(ActionEvent actionEvent) {
+
+    }
+
+    public void Modifier(ActionEvent actionEvent) {
+
+    }
 }

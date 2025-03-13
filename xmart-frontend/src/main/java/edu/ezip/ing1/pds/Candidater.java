@@ -90,12 +90,12 @@ public class Candidater  {
             Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id);
 
 
-            System.out.println("🔍 DEBUG - l'offre sélectionnée : " + id);
-            System.out.println("🔍 DEBUG - nom sélectionnée : " + nom1);
-            System.out.println("🔍 DEBUG - prenom de l'offre sélectionnée : " + prenom1);
-            System.out.println("🔍 DEBUG - adresse de l'offre sélectionnée : " + adresse1);
-            System.out.println("🔍 DEBUG - cv de l'offre sélectionnée : " + lab1);
-            System.out.println("🔍 DEBUG - lettre de l'offre sélectionnée : " + lett1);
+            System.out.println(" l'offre sélectionnée : " + id);
+            System.out.println(" nom sélectionnée : " + nom1);
+            System.out.println(" prenom de l'offre sélectionnée : " + prenom1);
+            System.out.println("  adresse de l'offre sélectionnée : " + adresse1);
+            System.out.println(" cv de l'offre sélectionnée : " + lab1);
+            System.out.println(" lettre de l'offre sélectionnée : " + lett1);
             InsertCandidature.sendValue("INSERT_CANDIDATURE", c);
 
             Alert aler = new Alert(Alert.AlertType.CONFIRMATION);

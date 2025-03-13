@@ -21,15 +21,18 @@ public class XMartCityService {
 
     private enum Queries {
 
-        SELECT_STAGE("SELECT * FROM offres_stages"),
-        //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
-        INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
 
+
+        INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
         INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe)VALUES  (?,?,?,?, ?, ?) "),
 
-
+        SELECT_ETUDIANT("SELECT * FROM etudiant WHERE accepte IS NULL"),
+        SELECT_STAGE("SELECT * FROM offres_stages"),
+        SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?"),
         //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
-        SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?");
+        //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
+
+        DELETE_OFFRE("DELETE FROM offres_stages WHERE id_offre = ?");
 
         private final String query;
 
@@ -66,8 +69,15 @@ public class XMartCityService {
             case INSERT_ETUDIANT:
                              response=InsertEtudiant(request, connection);
                break;
+            case SELECT_ETUDIANT:
+                             response=SelectEtudiant(request, connection);
+                break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
+
+                break;
+            case DELETE_OFFRE:
+                response=deleteCandidature(request, connection);
 
                 break;
             default:
@@ -120,6 +130,23 @@ private Response InsertCandidature(final Request request, final Connection conne
 
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidature));
 }
+    private Response deleteCandidature(final Request request, final Connection connection) throws SQLException, IOException {
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final int candidatureId = objectMapper.readValue(request.getRequestBody(), Integer.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.DELETE_OFFRE.query);
+        stmt.setInt(1, candidatureId);
+
+        int rowsAffected = stmt.executeUpdate();
+
+        if (rowsAffected == 0) {
+            return new Response(request.getRequestId(), "Aucune candidature supprimée");
+        }
+
+        return new Response(request.getRequestId(), "Candidature supprimée avec succès");
+    }
+
     private Response InsertEtudiant(final Request request, final Connection connection) throws SQLException, IOException {
 
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -158,6 +185,26 @@ private Response InsertCandidature(final Request request, final Connection conne
         }
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
+
+    }
+    private Response SelectEtudiant(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_ETUDIANT.query);
+        Etudiants etudiants = new Etudiants();
+
+        while (res.next()) {
+           Etudiant etudiant = new Etudiant();
+            etudiant.setNom(res.getString(1));
+            etudiant.setPrenom(res.getString(2));
+            etudiant.setMatricule(res.getString(3));
+            etudiant.setEmail(res.getString(4));
+
+
+            etudiants.add(etudiant);
+        }
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
 
     }
     private Response SelectAlloffres(final Request request, final Connection connection) throws SQLException, IOException {

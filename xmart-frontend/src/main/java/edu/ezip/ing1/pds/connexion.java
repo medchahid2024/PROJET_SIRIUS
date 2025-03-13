@@ -21,6 +21,14 @@ public class connexion {
     public void seConnecter(ActionEvent actionEvent) throws IOException {
         if (email.getText().equals("admin")&&motdepasse.getText().equals("admin")) {
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.show();
+        }
+       else if (email.getText().equals("etudiant")&&motdepasse.getText().equals("etudiant")) {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/principal.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(loader.load());
