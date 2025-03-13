@@ -1,15 +1,30 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.business.dto.Candidature;
+import edu.ezip.ing1.pds.business.dto.Etudiant;
+import edu.ezip.ing1.pds.services.InsertCandidature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class CreateAcount {
+    public TextField cnf_mot_de_passe;
+    public TextField mot_de_passe;
+    public TextField Nom;
+    public TextField prenom;
+    public TextField email;
+    public Button seConnecter;
+    public TextField Matricule;
+
     public void connexion(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/connexion.fxml"));
         Stage stage = new Stage();
@@ -20,10 +35,42 @@ public class CreateAcount {
         currentStage.close();
     }
 
-    public void kk(ActionEvent actionEvent) {
-        
-    }
 
-    public void oooo(ActionEvent actionEvent) {
+    public void seConnecter(ActionEvent actionEvent) throws SQLException, IOException, InterruptedException {
+        String matricule = Matricule.getText();
+        String nom = Nom.getText();
+        String Prenom= prenom.getText();
+        String Email = email.getText();
+        String MotDePasse = mot_de_passe.getText();
+        String Conf_mdp = cnf_mot_de_passe.getText();
+
+        if (matricule == null || matricule.isEmpty() || Prenom == null || Prenom.isEmpty() || nom == null || nom.isEmpty()
+                || Email == null || Email.isEmpty() || MotDePasse == null || MotDePasse.isEmpty() ||Conf_mdp == null || Conf_mdp.isEmpty() ){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs correctement.");
+            alert.showAndWait();
+        } else {
+            Etudiant etudiant = new Etudiant(nom,Prenom,matricule,Email,MotDePasse,Conf_mdp);
+
+            System.out.println( nom);
+            System.out.println( Prenom);
+            System.out.println( Email);
+            System.out.println( MotDePasse);
+            System.out.println( Conf_mdp);
+
+            InsertCandidature.sendValue("INSERT_ETUDIANT", etudiant);
+
+            Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
+            aler.setTitle("Validé");
+            aler.setHeaderText(null);
+            aler.setContentText("Nous avons bien reçu votre demande");
+            aler.showAndWait();
+        }
+
+
+
     }
 }

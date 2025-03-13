@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="577.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.CreateAcount">
+<AnchorPane prefHeight="649.0" prefWidth="604.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.CreateAcount">
    <children>
       <ImageView fitHeight="72.0" fitWidth="132.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -15,17 +15,19 @@
          </image>
       </ImageView>
       <Label layoutX="203.0" layoutY="79.0" prefHeight="42.0" prefWidth="265.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Créer un compte" />
-      <Label layoutX="51.0" layoutY="154.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Nom" />
-      <Label layoutX="51.0" layoutY="334.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Mot de passe" />
-      <Label layoutX="51.0" layoutY="270.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Email" />
-      <Label layoutX="51.0" layoutY="213.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Prénom" />
-      <Label layoutX="51.0" layoutY="394.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Mot de passe" />
-      <TextField fx:id="email" layoutX="194.0" layoutY="394.0" prefHeight="26.0" prefWidth="186.0" />
-      <TextField fx:id="email1" layoutX="194.0" layoutY="334.0" prefHeight="26.0" prefWidth="186.0" />
-      <TextField fx:id="email2" layoutX="194.0" layoutY="154.0" prefHeight="26.0" prefWidth="186.0" />
-      <TextField fx:id="email3" layoutX="194.0" layoutY="213.0" prefHeight="26.0" prefWidth="186.0" />
-      <TextField fx:id="email4" layoutX="194.0" layoutY="270.0" prefHeight="26.0" prefWidth="186.0" />
-      <Button fx:id="seConnecter" layoutX="205.0" layoutY="480.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="S'inscrire" />
-      <Label layoutX="455.0" layoutY="516.0" onMouseClicked="#connexion" prefHeight="18.0" prefWidth="104.0" style="-fx-text-fill: blue;" text="j'ai déja un compte" />
+      <Label layoutX="48.0" layoutY="230.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Nom" />
+      <Label layoutX="48.0" layoutY="410.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Mot de passe" />
+      <Label layoutX="48.0" layoutY="346.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Email" />
+      <Label layoutX="48.0" layoutY="289.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Prénom" />
+      <Label layoutX="48.0" layoutY="470.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Confirmer le mot de passe" />
+      <TextField fx:id="cnf_mot_de_passe" layoutX="265.0" layoutY="470.0" prefHeight="26.0" prefWidth="186.0" />
+      <TextField fx:id="mot_de_passe" layoutX="265.0" layoutY="410.0" prefHeight="26.0" prefWidth="186.0" />
+      <TextField fx:id="Nom" layoutX="265.0" layoutY="230.0" prefHeight="26.0" prefWidth="186.0" />
+      <TextField fx:id="prenom" layoutX="265.0" layoutY="289.0" prefHeight="26.0" prefWidth="186.0" />
+      <TextField fx:id="email" layoutX="265.0" layoutY="346.0" prefHeight="26.0" prefWidth="186.0" />
+      <Button fx:id="seConnecter" layoutX="202.0" layoutY="556.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="S'inscrire" />
+      <Label layoutX="452.0" layoutY="592.0" onMouseClicked="#connexion" prefHeight="18.0" prefWidth="104.0" style="-fx-text-fill: blue;" text="j'ai déja un compte" />
+      <Label layoutX="48.0" layoutY="166.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Matricule" />
+      <TextField fx:id="Matricule" layoutX="265.0" layoutY="166.0" prefHeight="26.0" prefWidth="186.0" />
    </children>
 </AnchorPane>

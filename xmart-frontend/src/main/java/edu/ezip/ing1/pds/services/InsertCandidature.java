@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import edu.ezip.ing1.pds.requests.InsertAllCandidaturesClientRequest;
+import edu.ezip.ing1.pds.requests.InsertAllEtudiantsClientRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,5 +45,9 @@ public class InsertCandidature {
                 networkConfig,
                 birthdate++, request, null, requestBytes);
         insert.join();
+        final InsertAllEtudiantsClientRequest etudiantsClientRequest = new InsertAllEtudiantsClientRequest (
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        etudiantsClientRequest.join();
     }
 }

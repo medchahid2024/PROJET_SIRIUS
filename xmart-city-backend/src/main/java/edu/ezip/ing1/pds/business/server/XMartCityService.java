@@ -21,13 +21,15 @@ public class XMartCityService {
 
     private enum Queries {
 
-    SELECT_STAGE("SELECT * FROM offres_stages") ,
-//        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
-INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
+        SELECT_STAGE("SELECT * FROM offres_stages"),
+        //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)");
+        INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
+
+        INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe)VALUES  (?,?,?,?, ?, ?) "),
 
 
-//    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
-   SELECT_OFFRE ("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?");
+        //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
+        SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?");
 
         private final String query;
 
@@ -61,9 +63,9 @@ INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre
             case SELECT_STAGE:
                response=SelectAllstages(request, connection);
                 break;
-//            case SELECT_CONN:
-//                             response=SelectAllconn(request, connection);
-//               break;
+            case INSERT_ETUDIANT:
+                             response=InsertEtudiant(request, connection);
+               break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
 
@@ -118,7 +120,26 @@ private Response InsertCandidature(final Request request, final Connection conne
 
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidature));
 }
+    private Response InsertEtudiant(final Request request, final Connection connection) throws SQLException, IOException {
 
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Etudiant etudiant = objectMapper.readValue(request.getRequestBody(), Etudiant.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_ETUDIANT.query);
+
+        stmt.setString(1, etudiant.getMatricule());
+        stmt.setString(2, etudiant.getNom());
+        stmt.setString(3, etudiant.getPrenom());
+        stmt.setString(4, etudiant.getEmail());
+        stmt.setString(5, etudiant.getMot_de_passe());
+        stmt.setString(6, etudiant.getCnf_mot_de_passe());
+
+
+        stmt.executeUpdate();
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiant));
+    }
 
     private Response SelectAllstages(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
