@@ -32,7 +32,7 @@ public class Principal {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
       Stage stage = new Stage();
 
-      Scene offre = new Scene(fxmlLoader.load(), 700, 700);
+      Scene offre = new Scene(fxmlLoader.load());
       stage.setScene(offre);
       stage.setTitle("offres de stages");
       stage.show();

@@ -26,6 +26,7 @@ public class ControlStage {
     public Button postuler;
     @FXML
     public TextField mot;
+    public Label nombre;
 
     @FXML
     private Label titre;
@@ -69,7 +70,7 @@ public class ControlStage {
 
 
         Stagee stage = stageList.get(index);
-
+        nombre.setText(String.valueOf(stageList.size()));
         titre.setText(stage.getTitre());
         domaine.setText(stage.getDomaine());
         description.setText(stage.getDescription());

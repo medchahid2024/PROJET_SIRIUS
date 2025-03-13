@@ -8,11 +8,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="636.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.ControlStage">
+<AnchorPane prefHeight="790.0" prefWidth="627.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.ControlStage">
    <children>
       <TextField fx:id="mot" layoutX="232.0" layoutY="40.0" promptText=" Mots clés" />
       <Button layoutX="397.0" layoutY="40.0" mnemonicParsing="false" onAction="#rechercher" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="rechercher" />
-      <ScrollPane layoutX="66.4" layoutY="103.0" prefHeight="490.0" prefWidth="481.0" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="53.0">
+      <ScrollPane layoutX="88.0" layoutY="195.0" prefHeight="490.0" prefWidth="481.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="31.200000000000045">
          <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="479.0" style="-fx-background-color: white;">
                <children>
@@ -20,17 +20,19 @@
                   <Label fx:id="description" layoutX="21.0" layoutY="127.0" prefHeight="302.0" prefWidth="398.0" text="description" />
                   <Label fx:id="duree" layoutX="67.0" layoutY="105.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="duree" />
                   <Label fx:id="domaine" layoutX="44.0" layoutY="70.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="domaine" />
-                  <Button fx:id="postuler" layoutX="159.0" layoutY="435.0" mnemonicParsing="false" onAction="#postuler" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Postuler" />
+                  <Button fx:id="postuler" layoutX="196.0" layoutY="443.0" mnemonicParsing="false" onAction="#postuler" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Postuler" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button layoutX="307.0" layoutY="593.0" mnemonicParsing="false" onAction="#suivant" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
-      <Button layoutX="208.0" layoutY="594.0" mnemonicParsing="false" onAction="#precedent" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
+      <Button layoutX="307.0" layoutY="698.0" mnemonicParsing="false" onAction="#suivant" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
+      <Button layoutX="206.0" layoutY="698.0" mnemonicParsing="false" onAction="#precedent" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
       <ImageView fitHeight="57.0" fitWidth="122.0" layoutX="10.0" layoutY="10.0">
          <image>
             <Image url="@photo/myUp.jpg" />
          </image>
       </ImageView>
+      <Label layoutX="57.0" layoutY="135.0" text="Nombre total des offres " />
+      <Label fx:id="nombre" layoutX="218.0" layoutY="135.0" prefHeight="18.0" prefWidth="98.0" text="nombre" />
    </children>
 </AnchorPane>
