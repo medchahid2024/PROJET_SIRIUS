@@ -9,10 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -24,6 +27,10 @@ public class CreateAcount {
     public TextField email;
     public Button seConnecter;
     public TextField Matricule;
+    public Label photo;
+    public Button fichier;
+    FileChooser fileChooser = new FileChooser();
+
 
     public void connexion(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/connexion.fxml"));
@@ -37,6 +44,7 @@ public class CreateAcount {
 
 
     public void seConnecter(ActionEvent actionEvent) throws SQLException, IOException, InterruptedException {
+        String Photo= photo.getText();
         String matricule = Matricule.getText();
         String nom = Nom.getText();
         String Prenom= prenom.getText();
@@ -69,7 +77,7 @@ public class CreateAcount {
 
         }
          else {
-            Etudiant etudiant = new Etudiant(nom,Prenom,matricule,Email,MotDePasse,Conf_mdp);
+            Etudiant etudiant = new Etudiant(nom,Prenom,matricule,Email,MotDePasse,Conf_mdp,Photo);
 
             System.out.println( nom);
             System.out.println( Prenom);
@@ -87,6 +95,16 @@ public class CreateAcount {
         }
 
 
+
+    }
+
+    public void fichier(MouseEvent mouseEvent) {
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            photo.setText(file.getName());
+        } else {
+            photo.setText("Aucun fichier sélectionné");
+        }
 
     }
 }

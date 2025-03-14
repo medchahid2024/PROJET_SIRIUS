@@ -32,7 +32,7 @@ public class XMartCityService {
 
 
 
-        SELECT_ETUDIANT("SELECT * FROM etudiant WHERE accepte IS NULL"),
+        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages"),
         SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?"),
 
@@ -241,6 +241,7 @@ private Response InsertCandidature(final Request request, final Connection conne
             etudiant.setPrenom(res.getString(2));
             etudiant.setMatricule(res.getString(3));
             etudiant.setEmail(res.getString(4));
+            etudiant.setPhoto(res.getString(5));
 
 
             etudiants.add(etudiant);

@@ -8,6 +8,8 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.stageService;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class DemandeConnexion {
     public Label matricule;
     public Label prenom;
     private final static String networkConfigFile = "network.yaml";
+    public ImageView photo;
     private List<Etudiant> stageList = new ArrayList<>();
     private int currentIndex = 0;
 
@@ -52,6 +55,13 @@ public class DemandeConnexion {
         prenom.setText(etudiant.getPrenom());
         matricule.setText(etudiant.getMatricule());
         email.setText(etudiant.getEmail());
+        photo.setImage(new Image("file:" +"C:\\Users\\OMEN\\Desktop\\prototype-ing1\\xmart-frontend\\src\\main\\resources\\photo"+"/"+ etudiant.getPhoto()));
+        System.out.println("Nom: " + etudiant.getNom());
+        System.out.println("Prénom: " + etudiant.getPrenom());
+        System.out.println("Matricule: " + etudiant.getMatricule());
+        System.out.println("Email: " + etudiant.getEmail());
+        System.out.println("Photo: " + etudiant.getPhoto());
+
 
     }
 

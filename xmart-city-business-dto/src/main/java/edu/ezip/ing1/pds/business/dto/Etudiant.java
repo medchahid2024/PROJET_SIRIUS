@@ -12,17 +12,19 @@ public class Etudiant {
     private String email;
     private String mot_de_passe;
     private String cnf_mot_de_passe;
+    private String photo;
 
     public Etudiant() {
     }
 
-    public Etudiant(String nom, String prenom, String matricule, String email, String mot_de_passe, String cnf_mot_de_passe) {
+    public Etudiant(String nom, String prenom, String matricule, String email, String mot_de_passe, String cnf_mot_de_passe,String photo) {
         this.nom = nom;
         this.prenom = prenom;
         this.matricule = matricule;
         this.email = email;
         this.mot_de_passe = mot_de_passe;
         this.cnf_mot_de_passe = cnf_mot_de_passe;
+        this.photo = photo;
     }
 
     public String getNom() {
@@ -48,6 +50,7 @@ public class Etudiant {
     public String getCnf_mot_de_passe() {
         return cnf_mot_de_passe;
     }
+    public String getPhoto() {return photo;}
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -72,10 +75,11 @@ public class Etudiant {
     public void setCnf_mot_de_passe(String cnf_mot_de_passe) {
         this.cnf_mot_de_passe = cnf_mot_de_passe;
     }
+    public void setPhoto(String photo) {this.photo = photo;}
 
     public final Etudiant build(final ResultSet resultSet)
             throws SQLException, NoSuchFieldException, IllegalAccessException {
-        setFieldsFromResultSet(resultSet, "nom", "prenom", "matricule", "email", "mot_de_passe", "cnf_mot_de_passe");
+        setFieldsFromResultSet(resultSet, "nom", "prenom", "matricule", "email", "mot_de_passe", "cnf_mot_de_passe","photo");
         return this;
     }
 
