@@ -109,32 +109,36 @@ public class stageService {
         }
     }
     public Stagess selectOffres(String recherche) throws InterruptedException, IOException {
-        final Deque<ClientRequest> clientRequests = new ArrayDeque<>();
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
         request.setRequestId(requestId);
         request.setRequestOrder(selectRequest);
-
         request.setRequestContent(recherche);
 
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte[] requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
-        LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
 
+        // Log uniquement si le niveau de log est TRACE
+        if (logger.isTraceEnabled()) {
+            LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
+        }
+
+        // Création de la requête client
         final SelectAllStagesClientRequest clientRequest = new SelectAllStagesClientRequest(
                 networkConfig,
                 0, request, null, requestBytes);
-        clientRequests.push(clientRequest);
 
-        if (!clientRequests.isEmpty()) {
-            final ClientRequest joinedClientRequest = clientRequests.pop();
-            joinedClientRequest.join();
-            logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
+        // Traitement de la requête
+        clientRequest.join(); // Directement on attend l'exécution de la requête
+        logger.debug("Thread {} complete.", clientRequest.getThreadName());
 
-            return (Stagess) joinedClientRequest.getResult();
+        // Vérification du résultat et gestion des erreurs de type
+        Object result = clientRequest.getResult();
+        if (result instanceof Stagess) {
+            return (Stagess) result;
         } else {
-            logger.error("No offer found");
+            logger.error("Le résultat obtenu n'est pas un Stagess.");
             return null;
         }
     }

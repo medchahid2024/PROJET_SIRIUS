@@ -99,7 +99,7 @@ public class Mesdemandes {
         int idOffre = stageSelectionne.getId();
         String tit = stageSelectionne.getTitre();
         System.out.println(idOffre);
-        Alert aler = new Alert(Alert.AlertType.WARNING);
+        Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
         aler.setTitle("WARNING");
         aler.setHeaderText(null);
         aler.setContentText("Vous voulez vraiment supprimer cette offre "+tit);
