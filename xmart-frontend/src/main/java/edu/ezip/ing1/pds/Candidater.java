@@ -78,14 +78,21 @@ public class Candidater  {
         // Vérification que tous les champs sont remplis correctement
         if (nom1 == null || nom1.isEmpty() || prenom1 == null || prenom1.isEmpty() || email1 == null || email1.isEmpty()
                 || adresse1 == null || adresse1.isEmpty() || lab1 == null || lab1.isEmpty() || lab1.equals("Aucun fichier sélectionné")
-                || lett1 == null || lett1.isEmpty() || lett1.equals("Aucun fichier sélectionné")
-                || autre1 == null || autre1.isEmpty() || autre1.equals("Aucun fichier sélectionné")) {
+                || lett1 == null || lett1.isEmpty() || lett1.equals("Aucun fichier sélectionné")) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
             alert.setContentText("Veuillez remplir tous les champs correctement.");
-            alert.showAndWait();
+            alert.showAndWait();}
+            else if (!lab1.contains(".pdf") && !lett1.contains(".pdf") && !autre1.contains(".pdf") ) {
+                Alert alert3 = new Alert(Alert.AlertType.ERROR);
+                alert3.setTitle("Erreur");
+                alert3.setHeaderText(null);
+                alert3.setContentText("Le fichier  doit être un .pdf.");
+                alert3.showAndWait();
+
+
         } else {
             Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id);
 

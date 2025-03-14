@@ -76,6 +76,14 @@ public class CreateAcount {
             alert2.showAndWait();
 
         }
+           else if (!Photo.contains(".png") || !Photo.contains(".jpg") ){
+            Alert alert3 = new Alert(Alert.AlertType.ERROR);
+            alert3.setTitle("Erreur");
+            alert3.setHeaderText(null);
+            alert3.setContentText("Le fichier image doit être un .png ou .jpg.");
+            alert3.showAndWait();
+
+        }
          else {
             Etudiant etudiant = new Etudiant(nom,Prenom,matricule,Email,MotDePasse,Conf_mdp,Photo);
 
