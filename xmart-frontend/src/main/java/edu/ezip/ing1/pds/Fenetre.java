@@ -33,13 +33,9 @@ class Fenetre extends JFrame implements ActionListener {
     private List<Evenement> evenementList = new ArrayList<>();
     private int currentIndex = 0;
 
-    public void initialize() {
-        try {
-            loadEvenementData();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
 
     private void loadEvenementData() throws IOException, InterruptedException {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
@@ -74,7 +70,10 @@ class Fenetre extends JFrame implements ActionListener {
 
     }
 
-    public Fenetre() {
+
+    public Fenetre() throws IOException, InterruptedException {
+        loadEvenementData();
+
         setTitle("Calendrier 123");
         setSize(1280, 720);
         setLocationRelativeTo(null);

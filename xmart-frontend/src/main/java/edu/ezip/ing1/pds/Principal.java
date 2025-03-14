@@ -44,7 +44,7 @@ public class Principal {
     clique(mouseEvent);
     }
 
-    public void evenement(MouseEvent mouseEvent) {
+    public void evenement(MouseEvent mouseEvent) throws IOException, InterruptedException {
       new Fenetre();
     }
 
