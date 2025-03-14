@@ -7,6 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ezip.ing1.pds.business.dto.*;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
+import edu.ezip.ing1.pds.business.dto.Evenement;
+import edu.ezip.ing1.pds.business.dto.Evenements;
+import edu.ezip.ing1.pds.business.dto.Stagee;
+import edu.ezip.ing1.pds.business.dto.Stagess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +35,8 @@ public class XMartCityService {
         SELECT_ETUDIANT("SELECT * FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages"),
         SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?"),
+
+        SELECT_EVENEMENT("SELECT * FROM evenements"),
         //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
 
 
@@ -77,6 +83,8 @@ public class XMartCityService {
                 break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
+            case SELECT_EVENEMENT:
+                response=SelectAllevenements(request, connection);
 
                 break;
             case DELETE_OFFRE:
@@ -190,6 +198,37 @@ private Response InsertCandidature(final Request request, final Connection conne
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
 
     }
+
+    private Response SelectAllevenements(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        // Récupération de la valeur recherchée
+        String rechercher = objectMapper.readValue(request.getRequestBody(), String.class);
+
+        // Préparation de la requête avec paramètre
+        try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_OFFRE.query)) {
+            stmt.setString(1,"%"+rechercher.trim()+"%");
+
+            try (ResultSet res = stmt.executeQuery()) {
+                Evenements evenements = new Evenements();
+
+                while (res.next()) {
+                    Evenement evenement = new Evenement();
+                    evenement.setTitre(res.getString(1));
+                    evenement.setDescription(res.getString(2));
+                    evenement.setDomaine(res.getString(3));
+                    evenement.setHeure(res.getString(4));
+                    evenements.add(evenement);
+                    System.out.println("DEBUG - Requête envoyée : " + rechercher);
+
+
+                }
+
+                return new Response(request.getRequestId(), objectMapper.writeValueAsString(evenements));
+            }
+        }
+    }
+
     private Response SelectEtudiant(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
         final Statement stmt = connection.createStatement();
