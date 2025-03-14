@@ -84,6 +84,8 @@ public class CreateAcount {
             System.out.println( Email);
             System.out.println( MotDePasse);
             System.out.println( Conf_mdp);
+            System.out.println( Photo);
+
 
             InsertCandidature.sendValue("INSERT_ETUDIANT", etudiant);
 

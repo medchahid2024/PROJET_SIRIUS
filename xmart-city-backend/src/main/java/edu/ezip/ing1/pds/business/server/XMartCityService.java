@@ -28,8 +28,11 @@ public class XMartCityService {
 
         //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)"),
         INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
-        INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe)VALUES  (?,?,?,?, ?, ?) "),
+        INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe,photo)VALUES  (?,?,?,?,?, ?, ?) "),
 
+
+
+        UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
 
 
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo FROM etudiant WHERE accepte IS NULL"),
@@ -171,6 +174,11 @@ private Response InsertCandidature(final Request request, final Connection conne
         stmt.setString(4, etudiant.getEmail());
         stmt.setString(5, etudiant.getMot_de_passe());
         stmt.setString(6, etudiant.getCnf_mot_de_passe());
+
+        stmt.setString(7, etudiant.getPhoto());
+
+
+
 
 
         stmt.executeUpdate();
