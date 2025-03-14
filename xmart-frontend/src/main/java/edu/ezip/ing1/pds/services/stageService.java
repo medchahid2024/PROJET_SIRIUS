@@ -6,6 +6,7 @@ import edu.ezip.commons.LoggingUtils;
 
 import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Candidatures;
+import edu.ezip.ing1.pds.business.dto.Etudiants;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
@@ -15,6 +16,7 @@ import edu.ezip.ing1.pds.commons.Request;
 //import edu.ezip.ing1.pds.requests.InsertAllCandidaturesClientRequest;
 import edu.ezip.ing1.pds.requests.SelectAllStagesClientRequest;
 //import edu.ezip.ing1.pds.requests.SelectAllStudentsClientRequest;
+import edu.ezip.ing1.pds.requests.SelectEtudiantClientRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
@@ -29,9 +31,9 @@ public class stageService {
     private final static Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
 
-   final String insertRequestOrder = "INSERT_CANDIDATURE";
     final String selectRequestOrder = "SELECT_STAGE";
     final String selectRequest = "SELECT_OFFRE";
+    final String selectetudiant = "SELECT_ETUDIANT";
 
 
 
@@ -42,44 +44,6 @@ public class stageService {
     public stageService(NetworkConfig networkConfig) throws InterruptedException {
         this.networkConfig = networkConfig;
     }
-
-
-//    public void insertCandidatures(Candidature candidature) throws InterruptedException, IOException {
-//        final Deque<ClientRequest> clientRequests = new ArrayDeque<>();
-//        final ObjectMapper objectMapper = new ObjectMapper();
-//
-//        final String requestId = UUID.randomUUID().toString();
-//        final Request request = new Request();
-//        request.setRequestId(requestId);
-//        request.setRequestOrder(insertRequestOrder);
-//
-//        // Convertir l'objet `Candidature` en JSON pour l'envoyer dans la requête
-//        final String candidatureJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(candidature);
-//        request.setRequestContent(candidatureJson);
-//
-//        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
-//        final byte[] requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
-//
-//        final InsertAllCandidaturesClientRequest clientRequest = new InsertAllCandidaturesClientRequest(
-//                networkConfig, 0, request, null, requestBytes);
-//        clientRequests.push(clientRequest);
-//
-//        while (!clientRequests.isEmpty()) {
-//            final ClientRequest client = clientRequests.pop();
-//            client.join();
-//
-//            Candidature response = (Candidature) clientRequest.getInfo();
-//            if (response != null) {
-//                logger.debug("Thread {} complete : Nom: {}, Prénom: {}, Email: {}, Adresse: {}, CV: {}, Lettre: {}, Autres: {}, ID: {}",
-//                        clientRequest.getThreadName(),
-//                        response.getNom(), response.getPrenom(), response.getEmail(), response.getAdresse(),
-//                        response.getCv(), response.getLettre(), response.getAutres());
-//            } else {
-//                logger.error("Erreur : Impossible de récupérer la candidature insérée.");
-//            }
-//        }
-//    }
-
 
     public Stagess selectStages() throws InterruptedException, IOException {
         int birthdate = 0;
@@ -142,7 +106,33 @@ public class stageService {
             return null;
         }
     }
+    public Etudiants selectEtudiant() throws InterruptedException, IOException {
+        int birthdate = 0;
+        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(selectetudiant);
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
+        final SelectEtudiantClientRequest clientRequest = new SelectEtudiantClientRequest(
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        clientRequests.push(clientRequest);
 
+        if(!clientRequests.isEmpty()) {
+            final ClientRequest joinedClientRequest = clientRequests.pop();
+            joinedClientRequest.join();
+            logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
+            return (Etudiants) joinedClientRequest.getResult();
+        }
+        else {
+            logger.error("No student found");
+            return null;
+        }
+    }
 
 }
 

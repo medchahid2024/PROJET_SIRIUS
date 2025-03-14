@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Mesdemandes {
+public class Offres_stages_admin {
 
     @FXML
     public TextField mot;
