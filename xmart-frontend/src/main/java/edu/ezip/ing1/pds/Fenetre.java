@@ -6,7 +6,73 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+import main.java.edu.ezip.ing1.pds.business.dto.Evenement;
+import main.java.edu.ezip.ing1.pds.business.dto.Evenements;
+import edu.ezip.ing1.pds.client.commons.ConfigLoader;
+import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+
+import main.java.edu.ezip.ing1.pds.services.EvenementService;
+// import javafx.application.Platform;
+// import javafx.event.ActionEvent;
+// import javafx.fxml.FXML;
+// import javafx.fxml.FXMLLoader;
+//import javafx.scene.Scene;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.Label;
+//import javafx.scene.control.TextField;
+//import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
 class Fenetre extends JFrame implements ActionListener {
+
+    private final static String networkConfigFile = "network.yaml";
+    private List<Evenement> evenementList = new ArrayList<>();
+    private int currentIndex = 0;
+
+    public void initialize() {
+        try {
+            loadEvenementData();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadEvenementData() throws IOException, InterruptedException {
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        final main.java.edu.ezip.ing1.pds.services.EvenementService evenementService = new EvenementService(networkConfig);
+
+        Evenements evenements = evenementService.selectEvenements();
+
+        if (evenements != null) {
+            evenementList = new ArrayList<>(evenements.getEvenements());
+            currentIndex = 0;
+            afficherEvenement(currentIndex);
+        }
+    }
+
+    private void afficherEvenement(int index) {
+
+        if (evenementList.isEmpty()) {
+            System.out.println("La liste des événements est vide.");
+        }
+        
+        if (index >= evenementList.size()) {
+            System.out.println("Index hors limites.");
+        }
+
+
+        Evenement evenement = evenementList.get(index);
+        System.out.println( "Nombre :" + (String.valueOf(evenementList.size())) );
+        System.out.println("Titre : " + (evenement.getTitre()) );
+        System.out.println("Domaine : " + (evenement.getDomaine()) );
+        System.out.println("Description : " + (evenement.getDescription()) );
+        System.out.println("Heure : " + (evenement.getHeure()) );
+
+    }
 
     public Fenetre() {
         setTitle("Calendrier 123");
@@ -72,6 +138,7 @@ class Fenetre extends JFrame implements ActionListener {
 
             if (source.getText().equals("<html>Tournoi Échecs<br>18h - 20h</html>")) {
 
+                afficherEvenement(1);
                 rep = (String) JOptionPane.showInputDialog(
                         null,
                         "Quel est votre nom ?",
@@ -82,7 +149,7 @@ class Fenetre extends JFrame implements ActionListener {
             }
 
             else if (source.getText().equals("<html>Picnic<br>12h - 14h</html>")) {
-
+                afficherEvenement(2);
                 rep = (String) JOptionPane.showInputDialog(
                         null,
                         "Quel est votre nom ?",
@@ -93,7 +160,7 @@ class Fenetre extends JFrame implements ActionListener {
             }
 
             else if (source.getText().equals("<html>Conference<br>18h - 20h</html>")) {
-
+                afficherEvenement(3);
                 rep = (String) JOptionPane.showInputDialog(
                         null,
                         "Quel est votre nom ?",
