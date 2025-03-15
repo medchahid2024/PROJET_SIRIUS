@@ -86,6 +86,7 @@ public class DemandeConnexion {
         Etudiant etudiant = stageList.get(currentIndex);
          matr=etudiant.getId();
         Update.update("UPDATE_ETUDIANT",matr);
+        System.out.println("Nom: " + matr);
     }
 }
 

@@ -35,7 +35,7 @@ public class XMartCityService {
         UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
 
 
-        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo FROM etudiant WHERE accepte IS NULL"),
+        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages"),
         SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?"),
 
@@ -136,7 +136,7 @@ private Response InsertCandidature(final Request request, final Connection conne
     stmt.setString(6, candidature.getLettre());
     stmt.setString(7, candidature.getAutres());
     stmt.setInt(8,candidature.getId());
-    stmt.setInt(8, candidature.getId());
+
 
 
     stmt.executeUpdate();
@@ -168,9 +168,10 @@ private Response InsertCandidature(final Request request, final Connection conne
 
         final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_ETUDIANT.query);
 
-        stmt.setString(1, etudiant.getMatricule());
-        stmt.setString(2, etudiant.getNom());
-        stmt.setString(3, etudiant.getPrenom());
+
+        stmt.setString(1, etudiant.getNom());
+        stmt.setString(2, etudiant.getPrenom());
+        stmt.setString(3, etudiant.getMatricule());
         stmt.setString(4, etudiant.getEmail());
         stmt.setString(5, etudiant.getMot_de_passe());
         stmt.setString(6, etudiant.getCnf_mot_de_passe());
@@ -250,6 +251,7 @@ private Response InsertCandidature(final Request request, final Connection conne
             etudiant.setMatricule(res.getString(3));
             etudiant.setEmail(res.getString(4));
             etudiant.setPhoto(res.getString(5));
+            etudiant.setId(res.getInt(6));
 
 
             etudiants.add(etudiant);
