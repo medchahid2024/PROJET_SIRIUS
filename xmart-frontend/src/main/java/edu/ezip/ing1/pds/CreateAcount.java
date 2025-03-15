@@ -30,6 +30,7 @@ public class CreateAcount {
     public Label photo;
     public Button fichier;
     FileChooser fileChooser = new FileChooser();
+    int id;
 
 
     public void connexion(MouseEvent mouseEvent) throws IOException {
@@ -51,6 +52,7 @@ public class CreateAcount {
         String Email = email.getText();
         String MotDePasse = mot_de_passe.getText();
         String Conf_mdp = cnf_mot_de_passe.getText();
+
 
         if (matricule == null || matricule.isEmpty() || Prenom == null || Prenom.isEmpty() || nom == null || nom.isEmpty()
                 || Email == null || Email.isEmpty() || MotDePasse == null || MotDePasse.isEmpty() ||Conf_mdp == null || Conf_mdp.isEmpty() ){
@@ -76,7 +78,7 @@ public class CreateAcount {
             alert2.showAndWait();
 
         }
-           else if (!Photo.contains(".png") || !Photo.contains(".jpg") ){
+           else if(!(Photo.endsWith(".png") || Photo.endsWith(".jpg")) ){
             Alert alert3 = new Alert(Alert.AlertType.ERROR);
             alert3.setTitle("Erreur");
             alert3.setHeaderText(null);
@@ -85,6 +87,7 @@ public class CreateAcount {
 
         }
          else {
+
             Etudiant etudiant = new Etudiant(nom,Prenom,matricule,Email,MotDePasse,Conf_mdp,Photo);
 
             System.out.println( nom);

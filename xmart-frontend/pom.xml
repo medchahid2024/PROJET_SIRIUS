@@ -161,6 +161,12 @@
             <artifactId>fontawesomefx</artifactId>
             <version>8.9</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Thanks for using https://jar-download.com -->
 

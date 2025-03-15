@@ -94,6 +94,10 @@ public class XMartCityService {
                 response=deleteCandidature(request, connection);
 
                 break;
+            case UPDATE_ETUDIANT:
+                response=updateEtudiant(request, connection);
+
+                break;
             default:
                 break;
         }
@@ -101,26 +105,22 @@ public class XMartCityService {
         return response;
     }
 
-//    private Response InsertStage(final Request request, final Connection connection) throws SQLException, IOException {
-//
-//        final ObjectMapper objectMapper = new ObjectMapper();
-//        final Stagee stage = objectMapper.readValue(request.getRequestBody(), Stagee.class);
-//
-//        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_STAGE.query);
-//        stmt.setString(1, stage.getTitre());
-//        stmt.setString(2, stage.getDescription());
-//        stmt.setString(3, stage.getDomaine());
-//        stmt.setString(4, stage.getDuree());
-//        stmt.executeUpdate();
-//
-//        final Statement stmt2 = connection.createStatement();
-//        final ResultSet res = stmt2.executeQuery("SELECT LAST_INSERT_ID()");
-//        res.next();
-//
-//        stage.setId(res.getInt(1));
-//
-//        return new Response(request.getRequestId(), objectMapper.writeValueAsString(stage));
-////}
+    private Response updateEtudiant(Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final int etudiantId = objectMapper.readValue(request.getRequestBody(), Integer.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.UPDATE_ETUDIANT.query);
+        stmt.setInt(1, etudiantId);
+
+        int rowsAffected = stmt.executeUpdate();
+
+        if (rowsAffected == 0) {
+            return new Response(request.getRequestId(), "Aucun etudiant modifié");
+        }
+        return new Response(request.getRequestId(), "etudiant modifié avec succès");
+    }
+
+
 private Response InsertCandidature(final Request request, final Connection connection) throws SQLException, IOException {
 
     final ObjectMapper objectMapper = new ObjectMapper();

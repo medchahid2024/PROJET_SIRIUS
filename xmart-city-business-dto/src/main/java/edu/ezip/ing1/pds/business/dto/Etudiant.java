@@ -13,10 +13,20 @@ public class Etudiant {
     private String mot_de_passe;
     private String cnf_mot_de_passe;
     private String photo;
+    private int id;
 
     public Etudiant() {
     }
-
+    public Etudiant(String nom, String prenom, String matricule, String email, String mot_de_passe, String cnf_mot_de_passe,String photo, int id) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.matricule = matricule;
+        this.email = email;
+        this.mot_de_passe = mot_de_passe;
+        this.cnf_mot_de_passe = cnf_mot_de_passe;
+        this.photo = photo;
+        this.id = id;
+    }
     public Etudiant(String nom, String prenom, String matricule, String email, String mot_de_passe, String cnf_mot_de_passe,String photo) {
         this.nom = nom;
         this.prenom = prenom;
@@ -25,6 +35,11 @@ public class Etudiant {
         this.mot_de_passe = mot_de_passe;
         this.cnf_mot_de_passe = cnf_mot_de_passe;
         this.photo = photo;
+
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNom() {
@@ -51,6 +66,10 @@ public class Etudiant {
         return cnf_mot_de_passe;
     }
     public String getPhoto() {return photo;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;

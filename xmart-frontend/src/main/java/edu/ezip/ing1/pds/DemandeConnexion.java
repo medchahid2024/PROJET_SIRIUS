@@ -6,6 +6,7 @@ import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+import edu.ezip.ing1.pds.services.Update;
 import edu.ezip.ing1.pds.services.stageService;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class DemandeConnexion {
     public ImageView photo;
     private List<Etudiant> stageList = new ArrayList<>();
     private int currentIndex = 0;
+    int matr;
 
     public void initialize() {
         try {
@@ -78,4 +81,11 @@ public class DemandeConnexion {
             afficherStage(currentIndex);
         }
     }
+
+    public void accepter(MouseEvent mouseEvent) throws SQLException, IOException, InterruptedException {
+        Etudiant etudiant = stageList.get(currentIndex);
+         matr=etudiant.getId();
+        Update.update("UPDATE_ETUDIANT",matr);
+    }
 }
+
