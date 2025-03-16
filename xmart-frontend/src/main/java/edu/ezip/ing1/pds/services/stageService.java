@@ -36,7 +36,6 @@ public class stageService {
     final String selectRequestOrder = "SELECT_STAGE";
     final String selectRequest = "SELECT_OFFRE";
     final String selectetudiant = "SELECT_ETUDIANT";
-    final String selectCountCandidature = "SELECT_CANDIDATURE";
     private final static String networkConfigFile = "network.yaml";
 
 

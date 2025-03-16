@@ -98,7 +98,7 @@ public class CreateAcount {
             System.out.println( Photo);
 
 
-            InsertCandidature.sendValue("INSERT_ETUDIANT", etudiant);
+            InsertCandidature.sendValeur("INSERT_ETUDIANT", etudiant);
 
             Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
             aler.setTitle("Validé");
