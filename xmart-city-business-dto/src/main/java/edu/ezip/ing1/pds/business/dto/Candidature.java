@@ -18,6 +18,9 @@ public class Candidature {
 
     public Candidature() {
     }
+    public Candidature(int id) {
+        this.id = id;
+    }
 
     public Candidature(String nom, String prenom,String email,String adresse, String cv, String lettre, String autres,int id ) {
         this.nom = nom;

@@ -35,9 +35,11 @@ public class XMartCityService {
         UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
 
 
+
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages"),
         SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?"),
+        SELECT_CANDIDATURE("SELECT COUNT(id_offre) FROM candidature WHERE id_offre= ? "),
 
         SELECT_EVENEMENT("SELECT * FROM evenements"),
         //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
@@ -88,6 +90,10 @@ public class XMartCityService {
                 response=SelectAlloffres(request, connection);
             case SELECT_EVENEMENT:
                 response=SelectAllevenements(request, connection);
+
+                break;
+            case SELECT_CANDIDATURE:
+                response=SelectCandidature(request, connection);
 
                 break;
             case DELETE_OFFRE:
@@ -238,6 +244,36 @@ private Response InsertCandidature(final Request request, final Connection conne
         }
     }
 
+    private Response SelectCandidature(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        int idOffre;
+
+            idOffre = Integer.parseInt(request.getRequestBody());  // S'assurer que requestBody contient un ID valide
+
+
+
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CANDIDATURE.query);
+        stmt.setInt(1, idOffre);  // Affecte l'ID de l'offre à la requête SQL
+
+        ResultSet res = stmt.executeQuery();
+
+  Candidatures candidatures = new Candidatures();
+        while (res.next()) {
+            Candidature candidature = new Candidature();
+            candidature.setId(res.getInt(1));
+            candidatures.add(candidature);
+        }
+
+        // Fermeture des ressources
+        res.close();
+        stmt.close();
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidatures));
+    }
+
+
     private Response SelectEtudiant(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
         final Statement stmt = connection.createStatement();
@@ -245,7 +281,7 @@ private Response InsertCandidature(final Request request, final Connection conne
         Etudiants etudiants = new Etudiants();
 
         while (res.next()) {
-           Etudiant etudiant = new Etudiant();
+            Etudiant etudiant = new Etudiant();
             etudiant.setNom(res.getString(1));
             etudiant.setPrenom(res.getString(2));
             etudiant.setMatricule(res.getString(3));

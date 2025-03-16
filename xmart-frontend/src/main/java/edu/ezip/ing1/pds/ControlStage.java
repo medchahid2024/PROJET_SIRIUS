@@ -1,6 +1,7 @@
 package edu.ezip.ing1.pds;
 
 import edu.ezip.ing1.pds.business.dto.Candidature;
+import edu.ezip.ing1.pds.business.dto.Candidatures;
 import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -27,6 +28,7 @@ public class ControlStage {
     @FXML
     public TextField mot;
     public Label nombre;
+    public Label Nombrecandidatures;
 
     @FXML
     private Label titre;
@@ -41,9 +43,21 @@ public class ControlStage {
     @FXML
     private Button btnPrecedent;
 
+
+
     private final static String networkConfigFile = "network.yaml";
     private List<Stagee> stageList = new ArrayList<>();
+   private List<Candidature> listeCount = new ArrayList<>();
+
     private int currentIndex = 0;
+
+    final stageService stageService ;
+
+    public ControlStage() throws InterruptedException {
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        this.stageService = new stageService(networkConfig);
+    }
+
 
     public void initialize() {
         try {
@@ -54,22 +68,32 @@ public class ControlStage {
     }
 
     private void loadStageData() throws IOException, InterruptedException {
-        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
-        final stageService stageService = new stageService(networkConfig);
 
         Stagess stagess = stageService.selectStages();
+
 
         if (stagess != null) {
             stageList = new ArrayList<>(stagess.getStages());
             currentIndex = 0;
             afficherStage(currentIndex);
         }
+
     }
 
-    private void afficherStage(int index) {
+
+    private void afficherStage(int index) throws IOException, InterruptedException {
 
 
         Stagee stage = stageList.get(index);
+
+
+       int idStage = stage.getId();
+        Candidatures countCandidatures = stageService.selectCountCandidature(idStage);
+
+        Nombrecandidatures.setText(String.valueOf(countCandidatures));
+
+
+
         nombre.setText(String.valueOf(stageList.size()));
         titre.setText(stage.getTitre());
         domaine.setText(stage.getDomaine());
@@ -79,7 +103,7 @@ public class ControlStage {
     }
 
     @FXML
-    public void suivant() {
+    public void suivant() throws IOException, InterruptedException {
         if (currentIndex < stageList.size() - 1) {
             currentIndex++;
             afficherStage(currentIndex);
@@ -87,7 +111,7 @@ public class ControlStage {
     }
 
     @FXML
-    public void precedent() {
+    public void precedent() throws IOException, InterruptedException {
         if (currentIndex > 0) {
             currentIndex--;
             afficherStage(currentIndex);
@@ -140,14 +164,5 @@ public class ControlStage {
         }
     }
 
-    public void Ajouter(ActionEvent actionEvent) {
-    }
 
-    public void Supprimer(ActionEvent actionEvent) {
-
-    }
-
-    public void Modifier(ActionEvent actionEvent) {
-
-    }
 }

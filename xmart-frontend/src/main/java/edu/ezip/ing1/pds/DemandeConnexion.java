@@ -1,9 +1,6 @@
 package edu.ezip.ing1.pds;
 
-import edu.ezip.ing1.pds.business.dto.Etudiant;
-import edu.ezip.ing1.pds.business.dto.Etudiants;
-import edu.ezip.ing1.pds.business.dto.Stagee;
-import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.business.dto.*;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.Update;
@@ -26,6 +23,7 @@ public class DemandeConnexion {
     private final static String networkConfigFile = "network.yaml";
     public ImageView photo;
     private List<Etudiant> stageList = new ArrayList<>();
+
     private int currentIndex = 0;
     int matr;
 
@@ -53,6 +51,7 @@ public class DemandeConnexion {
 
 
         Etudiant etudiant = stageList.get(index);
+
 
         nom.setText(etudiant.getNom());
         prenom.setText(etudiant.getPrenom());

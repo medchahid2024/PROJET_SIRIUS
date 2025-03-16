@@ -16,6 +16,7 @@ import edu.ezip.ing1.pds.commons.Request;
 //import edu.ezip.ing1.pds.requests.InsertAllCandidaturesClientRequest;
 import edu.ezip.ing1.pds.requests.SelectAllStagesClientRequest;
 //import edu.ezip.ing1.pds.requests.SelectAllStudentsClientRequest;
+import edu.ezip.ing1.pds.requests.SelectCountCandidatureClientRequest;
 import edu.ezip.ing1.pds.requests.SelectEtudiantClientRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,9 @@ public class stageService {
     final String selectRequestOrder = "SELECT_STAGE";
     final String selectRequest = "SELECT_OFFRE";
     final String selectetudiant = "SELECT_ETUDIANT";
+    final String selectCountCandidature = "SELECT_CANDIDATURE";
+
+
 
 
 
@@ -127,6 +131,34 @@ public class stageService {
             joinedClientRequest.join();
             logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
             return (Etudiants) joinedClientRequest.getResult();
+        }
+        else {
+            logger.error("No student found");
+            return null;
+        }
+    }
+    public Candidatures selectCountCandidature( int id) throws InterruptedException, IOException {
+        int birthdate = 0;
+        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(selectCountCandidature);
+        request.setRequestContent(String.valueOf(id));
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
+        final SelectCountCandidatureClientRequest clientRequest = new SelectCountCandidatureClientRequest(
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        clientRequests.push(clientRequest);
+
+        if(!clientRequests.isEmpty()) {
+            final ClientRequest joinedClientRequest = clientRequests.pop();
+            joinedClientRequest.join();
+            logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
+            return (Candidatures) joinedClientRequest.getResult();
         }
         else {
             logger.error("No student found");
