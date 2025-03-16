@@ -11,7 +11,8 @@ public class Candidatures {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("stages")
     private Set<Candidature> Candidatures = new LinkedHashSet<Candidature>();
-    private List<Candidature> candidaturesList;
+
+    int count;
 
     public  Candidatures(){
 
@@ -22,6 +23,9 @@ public class Candidatures {
 
     public void setCandidatures(Set<Candidature> Candidatures) {
         this.Candidatures = Candidatures;
+    }
+    public int getCount (){
+        return count;
     }
 
 

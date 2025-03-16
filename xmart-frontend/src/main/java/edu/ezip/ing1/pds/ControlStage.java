@@ -87,13 +87,25 @@ public class ControlStage {
         Stagee stage = stageList.get(index);
 
 
-       int idStage = stage.getId();
-        Candidatures countCandidatures = stageService.selectCountCandidature(idStage);
-
-        Nombrecandidatures.setText(String.valueOf(countCandidatures));
+        int idStage = stage.getId();
+        Candidatures candidatures = stageService.selectCountCandidature("SELECT_CANDIDATURE", idStage);
 
 
+            // Récupérer l'ID de la première candidature
+            int idCandidature = candidatures.getCandidatures().iterator().next().getId();
 
+            // Afficher l'ID dans le label
+
+
+
+        System.out.println(idStage);
+        System.out.println(idStage);
+        System.out.println(idStage);
+        System.out.println(idStage);
+
+
+
+        Nombrecandidatures.setText(String.valueOf(idCandidature));
         nombre.setText(String.valueOf(stageList.size()));
         titre.setText(stage.getTitre());
         domaine.setText(stage.getDomaine());

@@ -9,6 +9,7 @@ import edu.ezip.ing1.pds.business.dto.Candidatures;
 import edu.ezip.ing1.pds.business.dto.Etudiants;
 import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
+import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
 //import edu.ezip.ing1.pds.requests.InsertStudentsClientRequest;
@@ -36,7 +37,7 @@ public class stageService {
     final String selectRequest = "SELECT_OFFRE";
     final String selectetudiant = "SELECT_ETUDIANT";
     final String selectCountCandidature = "SELECT_CANDIDATURE";
-
+    private final static String networkConfigFile = "network.yaml";
 
 
 
@@ -50,6 +51,7 @@ public class stageService {
     }
 
     public Stagess selectStages() throws InterruptedException, IOException {
+        final NetworkConfig networkConfig =  ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         int birthdate = 0;
         final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -137,15 +139,15 @@ public class stageService {
             return null;
         }
     }
-    public Candidatures selectCountCandidature( int id) throws InterruptedException, IOException {
+    public Candidatures selectCountCandidature(String requestOrder, Object object) throws InterruptedException, IOException {
         int birthdate = 0;
         final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
         request.setRequestId(requestId);
-        request.setRequestOrder(selectCountCandidature);
-        request.setRequestContent(String.valueOf(id));
+        request.setRequestOrder(requestOrder);
+        request.setRequestContent(String.valueOf((int) object));
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
