@@ -11,6 +11,8 @@ import edu.ezip.ing1.pds.business.dto.Evenement;
 import edu.ezip.ing1.pds.business.dto.Evenements;
 import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.business.dto.Participation;
+import edu.ezip.ing1.pds.business.dto.Participations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +44,7 @@ public class XMartCityService {
         SELECT_CANDIDATURE("SELECT COUNT(id_offre) FROM candidature WHERE id_offre= ? "),
 
         SELECT_EVENEMENT("SELECT * FROM evenements"),
+        INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
         //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
 
 
@@ -76,6 +79,9 @@ public class XMartCityService {
 
             case INSERT_CANDIDATURE:
                 response = InsertCandidature(request, connection);
+                break;
+            case INSERT_PARTICIPATION:
+                response = InsertParticipation(request, connection);
                 break;
             case SELECT_STAGE:
                response=SelectAllstages(request, connection);
@@ -150,6 +156,26 @@ private Response InsertCandidature(final Request request, final Connection conne
 
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidature));
 }
+
+private Response InsertParticipation(final Request request, final Connection connection) throws SQLException, IOException {
+
+    final ObjectMapper objectMapper = new ObjectMapper();
+    final Participation participation = objectMapper.readValue(request.getRequestBody(), Participation.class);
+
+    final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_PARTICIPATION.query);
+
+    stmt.setString(1, participation.getNom());
+    stmt.setString(2, participation.getPrenom());
+    stmt.setString(3, participation.getEmail());
+    stmt.setInt(4,participation.getId());
+
+
+
+    stmt.executeUpdate();
+
+
+    return new Response(request.getRequestId(), objectMapper.writeValueAsString(participation));
+}
     private Response deleteCandidature(final Request request, final Connection connection) throws SQLException, IOException {
 
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -214,36 +240,26 @@ private Response InsertCandidature(final Request request, final Connection conne
 
     }
 
-    private Response SelectAllevenements(final Request request, final Connection connection) throws SQLException, IOException {
+    private Response SelectAllevenements(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_EVENEMENT.query);
+        Evenements evenements = new Evenements();
 
-        // Récupération de la valeur recherchée
-        String rechercher = objectMapper.readValue(request.getRequestBody(), String.class);
-
-        // Préparation de la requête avec paramètre
-        try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_OFFRE.query)) {
-            stmt.setString(1,"%"+rechercher.trim()+"%");
-
-            try (ResultSet res = stmt.executeQuery()) {
-                Evenements evenements = new Evenements();
-
-                while (res.next()) {
-                    Evenement evenement = new Evenement();
-                    evenement.setTitre(res.getString(1));
-                    evenement.setDescription(res.getString(2));
-                    evenement.setDomaine(res.getString(3));
-                    evenement.setHeure(res.getString(4));
-                    evenements.add(evenement);
-                    System.out.println("DEBUG - Requête envoyée : " + rechercher);
-
-
-                }
-
-                return new Response(request.getRequestId(), objectMapper.writeValueAsString(evenements));
-            }
+        while (res.next()) {
+           Evenement evenement = new Evenement();
+           evenement.setId(res.getInt(1));
+            evenement.setTitre(res.getString(2));
+            evenement.setDescription(res.getString(3));
+            evenement.setDomaine(res.getString(4));
+            evenement.setHeure(res.getString(5));
+            evenements.add(evenement);
         }
-    }
 
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(evenements));
+
+    }
+    
     private Response SelectCandidature(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
 

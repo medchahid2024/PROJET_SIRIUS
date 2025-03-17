@@ -5,9 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Evenement;
 import edu.ezip.ing1.pds.business.dto.Evenements;
+import edu.ezip.ing1.pds.business.dto.Participation;
+import edu.ezip.ing1.pds.business.dto.Participations;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 
@@ -21,13 +23,16 @@ import edu.ezip.ing1.pds.services.EvenementService;
 //import javafx.scene.control.Label;
 //import javafx.scene.control.TextField;
 //import javafx.stage.Stage;
+import edu.ezip.ing1.pds.services.InsertCandidature;
+import edu.ezip.ing1.pds.services.InsertParticipation;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-class Fenetre extends JFrame implements ActionListener {
+class Fenetre extends JFrame implements ActionListener{
 
     private final static String networkConfigFile = "network.yaml";
     private List<Evenement> evenementList = new ArrayList<>();
@@ -46,27 +51,35 @@ class Fenetre extends JFrame implements ActionListener {
         if (evenements != null) {
             evenementList = new ArrayList<>(evenements.getEvenements());
             currentIndex = 0;
-            afficherEvenement(currentIndex);
+            
         }
     }
 
+    private void participer() throws SQLException, IOException, InterruptedException {
+        Participation parti = new Participation("nom1", "prenom1", "email1", 1);
+        InsertParticipation.sendValue("INSERT_PARTICIPATION", parti);
+           
+    }
     private void afficherEvenement(int index) {
 
         if (evenementList.isEmpty()) {
             System.out.println("La liste des événements est vide.");
+            return;
         }
         
         if (index >= evenementList.size()) {
             System.out.println("Index hors limites.");
+            return;
         }
 
 
         Evenement evenement = evenementList.get(index);
-        System.out.println( "Nombre :" + (String.valueOf(evenementList.size())) );
+        System.out.println( "Nombre d'évenements:" + (String.valueOf(evenementList.size())) );
         System.out.println("Titre : " + (evenement.getTitre()) );
         System.out.println("Domaine : " + (evenement.getDomaine()) );
         System.out.println("Description : " + (evenement.getDescription()) );
         System.out.println("Heure : " + (evenement.getHeure()) );
+        System.out.println("Id = " + (evenement.getId()));
 
     }
 
@@ -137,7 +150,25 @@ class Fenetre extends JFrame implements ActionListener {
 
             if (source.getText().equals("<html>Tournoi Échecs<br>18h - 20h</html>")) {
 
+                afficherEvenement(0);
                 afficherEvenement(1);
+                afficherEvenement(2);
+                afficherEvenement(3);
+                afficherEvenement(4);
+
+            
+            
+                try {
+                    participer();
+                } catch (IOException | SQLException | InterruptedException e2) {
+                    e2.printStackTrace(); // Affiche l'erreur dans la console
+                    JOptionPane.showMessageDialog(null, "Erreur lors de la participation : " + e2.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+            
+
+
                 rep = (String) JOptionPane.showInputDialog(
                         null,
                         "Quel est votre nom ?",
