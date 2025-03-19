@@ -11,17 +11,19 @@ public class Stagee {
        private String domaine;
        private String duree;
     private int id;
+    String niveau;
 
 public Stagee(){
 
 }
 
 
-    public Stagee(String titre, String description, String domaine, String duree) {
+    public Stagee(String titre, String description, String domaine, String duree ,String niveau) {
         this.titre=titre;
         this.description=description;
         this.domaine=domaine;
         this.duree=duree;
+        this.niveau=niveau;
 
     }
     public String getTitre() {
@@ -34,6 +36,7 @@ public Stagee(){
     public String getDuree() {
         return duree;
     }
+    public  String getNiveau() {return niveau;}
 
 
     public String getDomaine() {
@@ -59,6 +62,7 @@ public Stagee(){
     public void setId(int id) {
         this.id = id;
     }
+    public void setNiveau(String niveau) {this.niveau = niveau;}
 
 
     public void setTitre(String titre) {

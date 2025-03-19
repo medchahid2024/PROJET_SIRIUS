@@ -8,7 +8,10 @@ import edu.ezip.ing1.pds.services.Delete;
 import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -91,7 +94,15 @@ public class Offres_stages_admin {
 
 
 
-    public void Ajouter(ActionEvent actionEvent) {
+    public void Ajouter(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/InsertOffre.fxml"));
+        Stage stage = new Stage();
+
+        Scene offre = new Scene(fxmlLoader.load());
+        stage.setScene(offre);
+        stage.setTitle("Ajouter");
+        stage.show();
+
     }
 
     public void Supprimer(ActionEvent actionEvent) throws SQLException, IOException, InterruptedException {
@@ -116,6 +127,7 @@ public class Offres_stages_admin {
     }
 
     public void Modifier(ActionEvent actionEvent) {
+
     }
 
 }
