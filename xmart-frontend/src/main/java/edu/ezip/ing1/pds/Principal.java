@@ -40,12 +40,25 @@ public class Principal {
 
   }
 
+  public void clique2(MouseEvent mouseEvent) throws IOException {
+
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
+    Stage stage = new Stage();
+
+    Scene calendar = new Scene(fxmlLoader.load());
+    stage.setScene(calendar);
+    stage.setTitle("Calendrier Collaboratif");
+    stage.show();
+
+
+}
+
     public void offre_stage(MouseEvent mouseEvent) throws IOException {
     clique(mouseEvent);
     }
 
     public void evenement(MouseEvent mouseEvent) throws IOException, InterruptedException {
-      new Fenetre();
+    clique2(mouseEvent);
     }
 
     public void commerce(MouseEvent mouseEvent) {

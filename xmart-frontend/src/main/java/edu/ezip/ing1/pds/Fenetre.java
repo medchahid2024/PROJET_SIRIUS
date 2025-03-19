@@ -56,7 +56,7 @@ class Fenetre extends JFrame implements ActionListener{
     }
 
     private void participer() throws SQLException, IOException, InterruptedException {
-        Participation parti = new Participation("nom1", "prenom1", "email1", 1);
+        Participation parti = new Participation("Arsalane", "prenom1", "email1", 1);
         InsertParticipation.sendValue("INSERT_PARTICIPATION", parti);
            
     }
