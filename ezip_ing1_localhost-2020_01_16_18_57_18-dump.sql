@@ -311,7 +311,7 @@ ALTER TABLE `ajouter`
   ADD KEY `id_favoris` (`id_favoris`);
 
 --
--- Index pour la table `annonces`
+-- Index pourr la table `annonces`
 --
 ALTER TABLE `annonces`
     ADD PRIMARY KEY (`id_annonce`),
