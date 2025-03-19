@@ -33,11 +33,11 @@ public class connexion {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         final stageService stageService = new stageService(networkConfig);
 
-        Etudiants etudiants = stageService.selectConnexion();
-        String em=etudiants.getEtudiants().iterator().next().getEmail();
-        String md =etudiants.getEtudiants().iterator().next().getMot_de_passe();
-        System.out.println(em);
-        System.out.println(md);
+      //  Etudiants etudiants = stageService.selectConnexion();
+      //  String em=etudiants.getEtudiants().iterator().next().getEmail();
+      //  String md =etudiants.getEtudiants().iterator().next().getMot_de_passe();
+      //  System.out.println(em);
+      //  System.out.println(md);
 
 //            stageList = new ArrayList<>(etudiants.getEtudiants());
 //        int index=0;
