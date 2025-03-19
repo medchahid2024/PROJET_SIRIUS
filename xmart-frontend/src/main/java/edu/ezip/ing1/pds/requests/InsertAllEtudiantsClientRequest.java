@@ -20,8 +20,8 @@ public class InsertAllEtudiantsClientRequest extends ClientRequest<Etudiant, Str
     @Override
     public String readResult(String body) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        final Map<String, Integer> etudiantIdMap = mapper.readValue(body, Map.class);
-        final String result  = etudiantIdMap.get("etudiant_id").toString();
+        final Map<String, String> etudiantIdMap = mapper.readValue(body, Map.class);
+        final String result  = etudiantIdMap.get("message");
         return result;
     }
 }

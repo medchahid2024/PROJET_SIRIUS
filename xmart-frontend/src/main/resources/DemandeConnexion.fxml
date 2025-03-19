@@ -14,9 +14,9 @@
          </image>
       </ImageView>
       <Label layoutX="70.0" layoutY="105.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Nom" />
-      <Label layoutX="70.0" layoutY="151.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="LaPrenom" />
+      <Label layoutX="70.0" layoutY="151.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Prenom" />
       <Label layoutX="70.0" layoutY="240.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="email" />
-      <Label layoutX="70.0" layoutY="194.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Matricule" />
+      <Label layoutX="70.0" layoutY="194.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Numero étudiant" />
       <Button layoutX="226.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#accepter" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;" text="Valider" />
       <Label fx:id="nom" layoutX="226.0" layoutY="105.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
       <Label fx:id="email" layoutX="228.0" layoutY="240.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />

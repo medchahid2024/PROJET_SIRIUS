@@ -47,7 +47,7 @@ public class ControlStage {
 
     private final static String networkConfigFile = "network.yaml";
     private List<Stagee> stageList = new ArrayList<>();
-   private List<Candidature> listeCount = new ArrayList<>();
+
 
     private int currentIndex = 0;
 
@@ -160,9 +160,21 @@ public class ControlStage {
                 Stagess stagess = stageService.selectOffres(rechercher); // Passer le mot-clé
 
                 if (stagess != null && !stagess.getStages().isEmpty()) {
+
                     stageList = new ArrayList<>(stagess.getStages());
                     currentIndex = 0;
-                    afficherStage(currentIndex); // Afficher le premier résultat trouvé
+                    Stagee stage = stageList.get(currentIndex);
+                    titre.setText(stage.getTitre());
+                    domaine.setText(stage.getDomaine());
+                    description.setText(stage.getDescription());
+                    duree.setText(stage.getDuree());
+
+                    System.out.println(stage.getTitre());
+                    System.out.println(stage.getDomaine());
+                    System.out.println(stage.getDescription());
+                    System.out.println(stage.getDuree());
+
+                    // Afficher le premier résultat trouvé
                 } else {
                     titre.setText("Aucune offre trouvée pour : " + rechercher);
                     domaine.setText("-");

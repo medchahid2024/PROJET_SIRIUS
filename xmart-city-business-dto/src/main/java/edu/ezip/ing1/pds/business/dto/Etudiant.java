@@ -14,6 +14,8 @@ public class Etudiant {
     private String cnf_mot_de_passe;
     private String photo;
     private int id;
+    private boolean accepte;
+
 
     public Etudiant() {
     }
@@ -36,6 +38,11 @@ public class Etudiant {
         this.cnf_mot_de_passe = cnf_mot_de_passe;
         this.photo = photo;
 
+    }
+    public Etudiant(String email, String mot_de_passe, boolean accepte) {
+        this.email = email;
+        this.mot_de_passe = mot_de_passe;
+        this.accepte = accepte;
     }
 
     public int getId() {
@@ -66,6 +73,9 @@ public class Etudiant {
         return cnf_mot_de_passe;
     }
     public String getPhoto() {return photo;}
+    public boolean isAccepte() {
+        return accepte;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -85,6 +95,9 @@ public class Etudiant {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public void setAccepte(boolean accepte) {
+        this.accepte = accepte;
     }
 
     public void setMot_de_passe(String mot_de_passe) {

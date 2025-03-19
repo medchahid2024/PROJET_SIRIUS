@@ -53,37 +53,64 @@ public class CreateAcount {
         String MotDePasse = mot_de_passe.getText();
         String Conf_mdp = cnf_mot_de_passe.getText();
 
-
-        if (matricule == null || matricule.isEmpty() || Prenom == null || Prenom.isEmpty() || nom == null || nom.isEmpty()
-                || Email == null || Email.isEmpty() || MotDePasse == null || MotDePasse.isEmpty() ||Conf_mdp == null || Conf_mdp.isEmpty() ){
+        if (matricule == null || matricule.isEmpty() ||
+                Prenom == null || Prenom.isEmpty() || nom == null || nom.isEmpty() ||
+                Email == null || Email.isEmpty() || MotDePasse == null || MotDePasse.isEmpty() ||
+                Conf_mdp == null || Conf_mdp.isEmpty() || Photo == null || Photo.isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
             alert.setContentText("Veuillez remplir tous les champs correctement.");
-            alert.showAndWait();}
-          else   if (!MotDePasse.equals(Conf_mdp)){
-                Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                alert1.setTitle("Erreur");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Les mots de passes ne sont pas similaires.");
-                alert1.showAndWait();
+            alert.showAndWait();
 
-            }
-           else if (!Email.contains("@")){
+        } else if (!MotDePasse.equals(Conf_mdp)) {
+
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Erreur");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Les mots de passe ne sont pas similaires.");
+            alert1.showAndWait();
+
+        } else if (!Email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) { // Vérification améliorée
+
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Erreur");
             alert2.setHeaderText(null);
-            alert2.setContentText("le format de l'adresse de mail est incorrect.");
+            alert2.setContentText("Le format de l'adresse email est incorrect.");
             alert2.showAndWait();
 
-        }
-           else if(!(Photo.endsWith(".png") || Photo.endsWith(".jpg")) ){
+        } else if (!(Photo.endsWith(".png") || Photo.endsWith(".jpg"))) {
+
             Alert alert3 = new Alert(Alert.AlertType.ERROR);
             alert3.setTitle("Erreur");
             alert3.setHeaderText(null);
             alert3.setContentText("Le fichier image doit être un .png ou .jpg.");
             alert3.showAndWait();
+
+        } else if (!MotDePasse.matches("^(?=.*[A-Z])(?=.*\\d).{8,}$")) { // 8 caractères, 1 majuscule, 1 chiffre
+
+            Alert alert4 = new Alert(Alert.AlertType.ERROR);
+            alert4.setTitle("Erreur");
+            alert4.setHeaderText(null);
+            alert4.setContentText("Le mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre.");
+            alert4.showAndWait();
+
+        } else if (!nom.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ-]+$")) { // Vérifie que le nom ne contient que des lettres
+
+            Alert alert5 = new Alert(Alert.AlertType.ERROR);
+            alert5.setTitle("Erreur");
+            alert5.setHeaderText(null);
+            alert5.setContentText("Le nom ne doit contenir que des lettres.");
+            alert5.showAndWait();
+
+        } else if (!Prenom.matches("^[a-zA-ZÀ-ÖØ-öø-ÿ-]+$")) { // Vérifie que le prénom ne contient que des lettres
+
+            Alert alert6 = new Alert(Alert.AlertType.ERROR);
+            alert6.setTitle("Erreur");
+            alert6.setHeaderText(null);
+            alert6.setContentText("Le prénom ne doit contenir que des lettres.");
+            alert6.showAndWait();
 
         }
          else {
@@ -103,7 +130,7 @@ public class CreateAcount {
             Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
             aler.setTitle("Validé");
             aler.setHeaderText(null);
-            aler.setContentText("Nous avons bien reçu votre demande");
+            aler.setContentText("Nous avons bien reçu votre demande , il sera traiter dans 24h");
             aler.showAndWait();
         }
 

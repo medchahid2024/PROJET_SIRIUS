@@ -3,8 +3,11 @@ package edu.ezip.ing1.pds;
 import edu.ezip.ing1.pds.business.dto.*;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+import edu.ezip.ing1.pds.services.Delete;
 import edu.ezip.ing1.pds.services.Update;
 import edu.ezip.ing1.pds.services.stageService;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DemandeConnexion {
     public Label nom;
@@ -82,10 +86,24 @@ public class DemandeConnexion {
     }
 
     public void accepter(MouseEvent mouseEvent) throws SQLException, IOException, InterruptedException {
-        Etudiant etudiant = stageList.get(currentIndex);
-         matr=etudiant.getId();
-        Update.update("UPDATE_ETUDIANT",matr);
-        System.out.println("Nom: " + matr);
+        Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
+        aler.setTitle("CANFIRMATION");
+        aler.setHeaderText(null);
+        aler.setContentText("Vous voulez vraiment aceepter cet etudiant ");
+        Optional<ButtonType> result = aler.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Etudiant etudiant = stageList.get(currentIndex);
+            matr=etudiant.getId();
+            Update.update("UPDATE_ETUDIANT",matr);
+            System.out.println("Nom: " + matr);
+
+        }
+        else {
+            // Si l'utilisateur clique sur "Annuler", on ne fait rien
+            System.out.println("operation annullée");
+        }
+
+
     }
 }
 

@@ -38,11 +38,11 @@ public class XMartCityService {
 
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages"),
-        SELECT_OFFRE("SELECT titre, description, domaine,duree FROM offres_stages WHERE titre LIKE ?"),
+        SELECT_OFFRE("SELECT titre,description,domaine,niveau_etude FROM offres_stages WHERE titre LIKE ?"),
         SELECT_CANDIDATURE("SELECT COUNT(id_offre) FROM candidature WHERE id_offre= ? "),
 
         SELECT_EVENEMENT("SELECT * FROM evenements"),
-        //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
+        SELECT_CONN("SELECT email , mot_de_passe  FROM etudiant WHERE  accepte =TRUE"),
 
 
 
@@ -88,6 +88,7 @@ public class XMartCityService {
                 break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
+                break;
             case SELECT_EVENEMENT:
                 response=SelectAllevenements(request, connection);
 
@@ -104,11 +105,48 @@ public class XMartCityService {
                 response=updateEtudiant(request, connection);
 
                 break;
+            case SELECT_CONN:
+                response=selectConn(request, connection);
+
+                break;
             default:
                 break;
         }
 
         return response;
+    }
+
+    public Response  selectConn (Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+    String email;
+//      String mdp;
+//        email = request.getSearchKeyword();
+//        mdp=request.getRequestBody();
+
+
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_CONN.query);
+
+
+
+
+//        stmt.setString(2, mdp);
+
+
+        Etudiants etudiants = new Etudiants();
+        while (res.next()) {
+            Etudiant etudiant = new Etudiant();
+            etudiant.setEmail(res.getString(1));
+            etudiant.setMot_de_passe(res.getString(2));
+            etudiants.add(etudiant);
+        }
+
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
+
+
     }
 
     private Response updateEtudiant(Request request, Connection connection) throws IOException, SQLException {
@@ -300,7 +338,7 @@ private Response InsertCandidature(final Request request, final Connection conne
         final ObjectMapper objectMapper = new ObjectMapper();
 
         // Récupération de la valeur recherchée
-        String rechercher = objectMapper.readValue(request.getRequestBody(), String.class);
+        String rechercher = String.valueOf(request.getSearchKeyword());
 
         // Préparation de la requête avec paramètre
         try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_OFFRE.query)) {
@@ -320,7 +358,8 @@ private Response InsertCandidature(final Request request, final Connection conne
 
 
                 }
-
+                res.close();
+                stmt.close();
                 return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
             }
         }

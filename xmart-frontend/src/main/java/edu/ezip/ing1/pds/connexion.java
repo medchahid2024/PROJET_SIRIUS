@@ -1,5 +1,10 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.business.dto.Etudiant;
+import edu.ezip.ing1.pds.business.dto.Etudiants;
+import edu.ezip.ing1.pds.client.commons.ConfigLoader;
+import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,13 +17,36 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class connexion {
     public PasswordField motdepasse;
     public Button seConnecter;
     public TextField email;
+    private List<Etudiant> stageList = new ArrayList<>();
+    private int currentIndex = 0;
+    private final static String networkConfigFile = "network.yaml";
 
-    public void seConnecter(ActionEvent actionEvent) throws IOException {
+
+    public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException {
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        final stageService stageService = new stageService(networkConfig);
+
+        Etudiants etudiants = stageService.selectConnexion();
+        String em=etudiants.getEtudiants().iterator().next().getEmail();
+        String md =etudiants.getEtudiants().iterator().next().getMot_de_passe();
+        System.out.println(em);
+        System.out.println(md);
+
+//            stageList = new ArrayList<>(etudiants.getEtudiants());
+//        int index=0;
+//        Etudiant etudiant = stageList.get(index);
+//        etudiant.getEmail();
+//        System.out.println(etudiant.getEmail());
+//        etudiant.getMot_de_passe();
+//        System.out.println(etudiant.getMot_de_passe());
+
         if (email.getText().equals("admin")&&motdepasse.getText().equals("admin")) {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin.fxml"));

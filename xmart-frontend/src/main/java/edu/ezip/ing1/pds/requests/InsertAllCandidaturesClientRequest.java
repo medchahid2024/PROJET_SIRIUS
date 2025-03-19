@@ -22,8 +22,8 @@ public class InsertAllCandidaturesClientRequest extends ClientRequest<Candidatur
     @Override
     public String readResult(String body) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        final Map<String, Integer> candidatureIdMap = mapper.readValue(body, Map.class);
-        final String result  = candidatureIdMap.get("candidature_id").toString();
+        final Map<String, String> candidatureIdMap = mapper.readValue(body, Map.class);
+        final String result  = candidatureIdMap.get("candidature_id");
         return result;
     }
 }

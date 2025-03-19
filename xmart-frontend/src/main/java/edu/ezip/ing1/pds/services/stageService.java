@@ -36,6 +36,9 @@ public class stageService {
     final String selectRequestOrder = "SELECT_STAGE";
     final String selectRequest = "SELECT_OFFRE";
     final String selectetudiant = "SELECT_ETUDIANT";
+    final String selectConnexion = "SELECT_CONN";
+
+
     private final static String networkConfigFile = "network.yaml";
 
 
@@ -83,7 +86,7 @@ public class stageService {
         final Request request = new Request();
         request.setRequestId(requestId);
         request.setRequestOrder(selectRequest);
-        request.setRequestContent(recherche);
+        request.setSearchKeyword(recherche);
 
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte[] requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
@@ -119,6 +122,33 @@ public class stageService {
         final Request request = new Request();
         request.setRequestId(requestId);
         request.setRequestOrder(selectetudiant);
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
+        final SelectEtudiantClientRequest clientRequest = new SelectEtudiantClientRequest(
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        clientRequests.push(clientRequest);
+
+        if(!clientRequests.isEmpty()) {
+            final ClientRequest joinedClientRequest = clientRequests.pop();
+            joinedClientRequest.join();
+            logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
+            return (Etudiants) joinedClientRequest.getResult();
+        }
+        else {
+            logger.error("No student found");
+            return null;
+        }
+    }
+    public Etudiants selectConnexion() throws InterruptedException, IOException {
+        int birthdate = 0;
+        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(selectConnexion);
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
