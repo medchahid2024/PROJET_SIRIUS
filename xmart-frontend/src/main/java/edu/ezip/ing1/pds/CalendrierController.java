@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
@@ -39,6 +40,15 @@ public class CalendrierController {
 
     @FXML
     private Button Bouton7;
+
+    @FXML
+    private Label Description;
+
+    @FXML
+    private Label Domaine;
+
+    @FXML
+    private Label Heure;
 
     @FXML
     private Label Heure1;
@@ -83,38 +93,114 @@ public class CalendrierController {
     private Label Label7;
 
     @FXML
+    private Label LabelSelec;
+
+    @FXML
+    private Label Titre;
+
+
+
+    @FXML
+    void B1Ent(MouseEvent event) {
+        LabelSelec.setVisible(false);
+        Titre.setText("Toto1");
+        Titre.setVisible(true);
+        Heure.setVisible(true);
+        Description.setVisible(true);
+        Domaine.setVisible(true);
+    }
+
+    @FXML
+    void B1Exi(MouseEvent event) {
+        Titre.setVisible(false);
+        Heure.setVisible(false);
+        Description.setVisible(false);
+        Domaine.setVisible(false);
+        LabelSelec.setVisible(true);
+    }
+
+    @FXML
     void B1Pressed(ActionEvent event) {
-        System.out.println("B1");
+
+    }
+
+    @FXML
+    void B2Ent(MouseEvent event) {
+        LabelSelec.setVisible(false);
+        Titre.setText("Toto2");
+        Titre.setVisible(true);
+        Heure.setVisible(true);
+        Description.setVisible(true);
+        Domaine.setVisible(true);
+    }
+
+    @FXML
+    void B2Exi(MouseEvent event) {
+        Titre.setVisible(false);
+        Heure.setVisible(false);
+        Description.setVisible(false);
+        Domaine.setVisible(false);
+        LabelSelec.setVisible(true);
     }
 
     @FXML
     void B2Pressed(ActionEvent event) {
-        System.out.println("B2");
+
+    }
+
+    @FXML
+    void B3Ent(MouseEvent event) {
+
+    }
+
+    @FXML
+    void B3Exi(MouseEvent event) {
+
     }
 
     @FXML
     void B3Pressed(ActionEvent event) {
-        System.out.println("B3");
+
+    }
+
+    @FXML
+    void B4Ent(MouseEvent event) {
+
+    }
+
+    @FXML
+    void B4Exi(MouseEvent event) {
+
     }
 
     @FXML
     void B4Pressed(ActionEvent event) {
-        System.out.println("B4");
+
+    }
+
+    @FXML
+    void B5Ent(MouseEvent event) {
+
+    }
+
+    @FXML
+    void B5Exi(MouseEvent event) {
+
     }
 
     @FXML
     void B5Pressed(ActionEvent event) {
-        System.out.println("B5");
+
     }
 
     @FXML
     void B6Pressed(ActionEvent event) {
-        System.out.println("B6");
+
     }
 
     @FXML
     void B7Pressed(ActionEvent event) {
-        System.out.println("B7");
+
     }
 
 }

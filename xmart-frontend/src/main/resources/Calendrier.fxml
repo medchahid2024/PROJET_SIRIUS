@@ -73,49 +73,49 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label fx:id="Label1" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton1" layoutX="1.0" mnemonicParsing="false" onAction="#B1Pressed" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton1" layoutX="1.0" mnemonicParsing="false" onAction="#B1Pressed" onMouseEntered="#B1Ent" onMouseExited="#B1Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure1" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="Label3" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton3" layoutX="-10.0" layoutY="-12.0" mnemonicParsing="false" onAction="#B3Pressed" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton3" layoutX="-10.0" layoutY="-12.0" mnemonicParsing="false" onAction="#B3Pressed" onMouseEntered="#B3Ent" onMouseExited="#B3Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure3" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="Label2" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton2" layoutX="-7.0" layoutY="-12.0" mnemonicParsing="false" onAction="#B2Pressed" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton2" layoutX="-7.0" layoutY="-12.0" mnemonicParsing="false" onAction="#B2Pressed" onMouseEntered="#B2Ent" onMouseExited="#B2Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure2" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="Label4" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton4" layoutX="-12.0" layoutY="-15.0" mnemonicParsing="false" onAction="#B4Pressed" opacity="0.0" prefHeight="64.0" prefWidth="86.0" text="Button" />
+                  <Button fx:id="Bouton4" layoutX="-12.0" layoutY="-15.0" mnemonicParsing="false" onAction="#B4Pressed" onMouseEntered="#B4Ent" onMouseExited="#B4Exi" opacity="0.0" prefHeight="64.0" prefWidth="86.0" text="Button" />
                   <Label fx:id="Heure4" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="Label5" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton5" layoutX="-14.0" layoutY="-8.0" mnemonicParsing="false" onAction="#B5Pressed" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton5" layoutX="-14.0" layoutY="-8.0" mnemonicParsing="false" onAction="#B5Pressed" onMouseEntered="#B5Ent" onMouseExited="#B5Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure5" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="Label6" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton6" layoutX="-13.0" layoutY="-17.0" mnemonicParsing="false" onAction="#B6Pressed" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton6" layoutX="-13.0" layoutY="-17.0" mnemonicParsing="false" onAction="#B6Pressed" onMouseEntered="#B5Ent" onMouseExited="#B5Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure6" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="Label7" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton7" layoutX="-16.0" layoutY="-10.0" mnemonicParsing="false" onAction="#B7Pressed" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton7" layoutX="-16.0" layoutY="-10.0" mnemonicParsing="false" onAction="#B7Pressed" onMouseEntered="#B5Ent" onMouseExited="#B5Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure7" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
@@ -131,5 +131,22 @@
             <Image url="@photo/myUp.jpg" />
          </image>
       </ImageView>
+      <Label fx:id="LabelSelec" layoutX="638.0" layoutY="129.0" prefHeight="162.0" prefWidth="156.0" text="Veuillez selectionner un évenement..." wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Titre" layoutX="658.0" layoutY="145.0" prefHeight="46.0" prefWidth="114.0" text="Titre" visible="false">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="Heure" layoutX="663.0" layoutY="182.0" text="16:00" visible="false">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="Description" layoutX="641.0" layoutY="234.0" prefHeight="215.0" prefWidth="146.0" text="DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription" visible="false" wrapText="true" />
+      <Label fx:id="Domaine" layoutX="663.0" layoutY="210.0" text="Domaine" visible="false" />
    </children>
 </AnchorPane>
