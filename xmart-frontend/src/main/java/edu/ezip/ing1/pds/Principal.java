@@ -1,5 +1,7 @@
 package edu.ezip.ing1.pds;
 
+import edu.ezip.ing1.pds.CalendrierController;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,7 +42,7 @@ public class Principal {
 
   }
 
-  public void clique2(MouseEvent mouseEvent) throws IOException {
+  public void DemarrageCalendrier(MouseEvent mouseEvent) throws IOException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
     Stage stage = new Stage();
@@ -48,7 +50,14 @@ public class Principal {
     Scene calendar = new Scene(fxmlLoader.load());
     stage.setScene(calendar);
     stage.setTitle("Calendrier Collaboratif");
+    // Récupérer le contrôleur de la vue Calendrier
+    CalendrierController calendrierController = fxmlLoader.getController();
+
+    // Appeler la méthode InitialisationCalendrier() sur l'instance du contrôleur
+    calendrierController.InitialisationCalendrier();
+    
     stage.show();
+   
 
 
 }
@@ -57,8 +66,8 @@ public class Principal {
     clique(mouseEvent);
     }
 
-    public void evenement(MouseEvent mouseEvent) throws IOException, InterruptedException {
-    clique2(mouseEvent);
+    public void evenement(MouseEvent mouseEvent) throws IOException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+    DemarrageCalendrier(mouseEvent);
     }
 
     public void commerce(MouseEvent mouseEvent) {
