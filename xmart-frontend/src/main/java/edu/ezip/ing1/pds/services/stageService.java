@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ezip.commons.LoggingUtils;
 
-import edu.ezip.ing1.pds.business.dto.Candidature;
-import edu.ezip.ing1.pds.business.dto.Candidatures;
-import edu.ezip.ing1.pds.business.dto.Etudiants;
-import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.business.dto.*;
 import edu.ezip.ing1.pds.client.commons.ClientRequest;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
@@ -149,6 +146,16 @@ public class stageService {
         final Request request = new Request();
         request.setRequestId(requestId);
         request.setRequestOrder(selectConnexion);
+        Etudiant etudiant = new Etudiant();
+        String email=etudiant.getEmail();
+        String mdp=etudiant.getMot_de_passe();
+
+
+        etudiant.setEmail(email);
+        etudiant.setMot_de_passe(mdp);
+        final String etu = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(etudiant);
+        request.setRequestContent(etu);
+
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
         LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);

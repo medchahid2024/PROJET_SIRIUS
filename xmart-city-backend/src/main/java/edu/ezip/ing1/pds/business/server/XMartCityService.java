@@ -34,9 +34,10 @@ public class XMartCityService {
 
 
         UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
+//        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,duree=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
 
 
-
+        SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages"),
         SELECT_OFFRE("SELECT titre,description,domaine,niveau_etude FROM offres_stages WHERE titre LIKE ?"),
@@ -44,10 +45,10 @@ public class XMartCityService {
 
         SELECT_EVENEMENT("SELECT * FROM evenements"),
 
-        SELECT_CONN("SELECT email , mot_de_passe  FROM etudiant WHERE  accepte =TRUE"),
 
         INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
-        //    SELECT_CONN("SELECT email , mot_de_passe FROM etudiant WHERE email = ? AND mot_de_passe =?")
+
+
 
 
 
@@ -132,33 +133,29 @@ public class XMartCityService {
         final ObjectMapper objectMapper = new ObjectMapper();
 
     String email;
-//      String mdp;
-//        email = request.getSearchKeyword();
-//        mdp=request.getRequestBody();
+    String mdp;
+    Etudiant etudiant= objectMapper.readValue(request.getRequestBody(), Etudiant.class);
+    email = etudiant.getEmail();
+    mdp= etudiant.getMot_de_passe();
+        final PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CONN.query);
+        stmt.setString(1, email);
+        stmt.setString(2, mdp);
 
-
-        final Statement stmt = connection.createStatement();
-        final ResultSet res = stmt.executeQuery(Queries.SELECT_CONN.query);
-
-
-
-
-//        stmt.setString(2, mdp);
-
+        ResultSet res = stmt.executeQuery();
 
         Etudiants etudiants = new Etudiants();
         while (res.next()) {
-            Etudiant etudiant = new Etudiant();
-            etudiant.setEmail(res.getString(1));
-            etudiant.setMot_de_passe(res.getString(2));
-            etudiants.add(etudiant);
+            Etudiant et = new Etudiant();
+
+            et.setEmail(res.getString(1));
+            et.setMot_de_passe(res.getString(2));
+            etudiants.add(et);
         }
 
-
+        res.close();
+        stmt.close();
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
-
-
     }
 
     private Response updateEtudiant(Request request, Connection connection) throws IOException, SQLException {

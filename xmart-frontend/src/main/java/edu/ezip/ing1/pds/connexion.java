@@ -30,22 +30,21 @@ public class connexion {
 
 
     public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException {
-        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
-        final stageService stageService = new stageService(networkConfig);
-
-      //  Etudiants etudiants = stageService.selectConnexion();
-      //  String em=etudiants.getEtudiants().iterator().next().getEmail();
-      //  String md =etudiants.getEtudiants().iterator().next().getMot_de_passe();
-      //  System.out.println(em);
-      //  System.out.println(md);
-
+//        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+//        final stageService stageService = new stageService(networkConfig);
+//
+//        Etudiants etudiants = stageService.selectConnexion();
+//        if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
 //            stageList = new ArrayList<>(etudiants.getEtudiants());
 //        int index=0;
 //        Etudiant etudiant = stageList.get(index);
-//        etudiant.getEmail();
-//        System.out.println(etudiant.getEmail());
-//        etudiant.getMot_de_passe();
-//        System.out.println(etudiant.getMot_de_passe());
+//        String em=etudiant.getEmail();
+//        String mdp= etudiant.getMot_de_passe();
+//        email.setText(em);
+//        motdepasse.setText(mdp);}
+//
+
+
 
         if (email.getText().equals("admin")&&motdepasse.getText().equals("admin")) {
 
