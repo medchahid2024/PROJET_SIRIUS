@@ -138,23 +138,15 @@ public class stageService {
             return null;
         }
     }
-    public Etudiants selectConnexion() throws InterruptedException, IOException {
+    public Etudiants selectConnexion (String requestOrder, Object object) throws InterruptedException, IOException {
         int birthdate = 0;
         final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
         final ObjectMapper objectMapper = new ObjectMapper();
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
         request.setRequestId(requestId);
-        request.setRequestOrder(selectConnexion);
-        Etudiant etudiant = new Etudiant();
-        String email=etudiant.getEmail();
-        String mdp=etudiant.getMot_de_passe();
-
-
-        etudiant.setEmail(email);
-        etudiant.setMot_de_passe(mdp);
-        final String etu = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(etudiant);
-        request.setRequestContent(etu);
+        request.setRequestOrder(requestOrder);
+       request.setRequestContent(objectMapper.writeValueAsString(object));
 
         objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
         final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);

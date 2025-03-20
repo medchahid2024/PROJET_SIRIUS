@@ -19,6 +19,10 @@ public class Etudiant {
 
     public Etudiant() {
     }
+    public Etudiant(String email, String mot_de_passe) {
+        this.email = email;
+        this.mot_de_passe = mot_de_passe;
+    }
     public Etudiant(String nom, String prenom, String matricule, String email, String mot_de_passe, String cnf_mot_de_passe,String photo, int id) {
         this.nom = nom;
         this.prenom = prenom;

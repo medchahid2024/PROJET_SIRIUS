@@ -30,23 +30,25 @@ public class connexion {
 
 
     public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException {
-//        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
-//        final stageService stageService = new stageService(networkConfig);
-//
-//        Etudiants etudiants = stageService.selectConnexion();
-//        if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
-//            stageList = new ArrayList<>(etudiants.getEtudiants());
-//        int index=0;
-//        Etudiant etudiant = stageList.get(index);
-//        String em=etudiant.getEmail();
-//        String mdp= etudiant.getMot_de_passe();
-//        email.setText(em);
-//        motdepasse.setText(mdp);}
-//
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        final stageService stageService = new stageService(networkConfig);
+
+        String em = email.getText();
+        String mdp = motdepasse.getText();
+        Etudiant etudiant = new Etudiant(em, mdp);
 
 
+        Etudiants etudiants = stageService.selectConnexion("SELECT_CONN", etudiant);
 
-        if (email.getText().equals("admin")&&motdepasse.getText().equals("admin")) {
+        if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/principal.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("l7waaaaa"); // Texte en vert
+        }
+       else if (email.getText().equals("admin") && motdepasse.getText().equals("admin")) {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin.fxml"));
             Stage stage = new Stage();
@@ -54,15 +56,7 @@ public class connexion {
             stage.setScene(scene);
             stage.show();
         }
-       else if (email.getText().equals("etudiant")&&motdepasse.getText().equals("etudiant")) {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/principal.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.show();
-        }
-        else if (email.getText().equals("")||motdepasse.getText().equals("")) {
+        else if (email.getText().equals("") || motdepasse.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -78,8 +72,12 @@ public class connexion {
             alert.setContentText("L'email ou le mot de passe est incorrect");
             alert.showAndWait();
         }
-    }
 
+
+
+
+
+    }
     public void CreateAcount(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAcount.fxml"));
         Stage stage = new Stage();
