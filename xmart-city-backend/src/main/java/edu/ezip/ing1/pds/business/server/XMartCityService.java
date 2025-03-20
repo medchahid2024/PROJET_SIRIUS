@@ -27,8 +27,7 @@ public class XMartCityService {
 
     private enum Queries {
 
-
-        //        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,duree) values (?, ?, ?,?)"),
+        INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,niveau_etude,duree,id_admin) values ( ?, ?,?,?,?, 1 )"),
         INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
         INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe,photo)VALUES  (?,?,?,?,?, ?, ?) "),
 
@@ -83,6 +82,9 @@ public class XMartCityService {
 
             case INSERT_CANDIDATURE:
                 response = InsertCandidature(request, connection);
+                break;
+            case INSERT_STAGE:
+                response = InsertStage(request, connection);
                 break;
             case INSERT_PARTICIPATION:
                 response = InsertParticipation(request, connection);
@@ -198,6 +200,28 @@ private Response InsertCandidature(final Request request, final Connection conne
 
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidature));
 }
+    private Response InsertStage(final Request request, final Connection connection) throws SQLException, IOException {
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Stagee stagee = objectMapper.readValue(request.getRequestBody(), Stagee.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_STAGE.query);
+
+        stmt.setString(1, stagee.getTitre());
+        stmt.setString(2, stagee.getDescription());
+        stmt.setString(3, stagee.getDomaine());
+        stmt.setString(4, stagee.getNiveau());
+        stmt.setString(5, stagee.getDuree());
+
+
+
+
+
+        stmt.executeUpdate();
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagee));
+    }
 
 private Response InsertParticipation(final Request request, final Connection connection) throws SQLException, IOException {
 

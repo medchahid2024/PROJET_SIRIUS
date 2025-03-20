@@ -20,8 +20,8 @@ public class InsertAllStagesClientRequest extends ClientRequest<Stagee, String> 
     @Override
     public String readResult(String body) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        final Map<String, Integer> stageIdMap = mapper.readValue(body, Map.class);
-        final String result  = stageIdMap.get("student_id").toString();
+        final Map<String, String> stageIdMap = mapper.readValue(body, Map.class);
+        final String result  = stageIdMap.get("student_id");
         return result;
     }
 }
