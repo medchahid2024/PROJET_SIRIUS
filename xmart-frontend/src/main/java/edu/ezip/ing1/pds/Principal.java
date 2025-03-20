@@ -1,6 +1,7 @@
 package edu.ezip.ing1.pds;
 
-import edu.ezip.ing1.pds.CalendrierController;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 
 public class Principal {
@@ -66,11 +65,11 @@ public class Principal {
     clique(mouseEvent);
     }
 
-    public void evenement(MouseEvent mouseEvent) throws IOException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+    public void evenement(MouseEvent mouseEvent) throws IOException, InvocationTargetException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
     DemarrageCalendrier(mouseEvent);
     }
 
-    public void commerce(MouseEvent mouseEvent) {
+    public void commerce(MouseEvent mouseEvent) throws InterruptedException, IOException {
     Fenetre1 f=new Fenetre1();
     f.setVisible(true);
     }

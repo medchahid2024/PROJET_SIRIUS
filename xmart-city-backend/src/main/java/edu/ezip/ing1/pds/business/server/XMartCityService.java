@@ -1,24 +1,32 @@
 package edu.ezip.ing1.pds.business.server;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-//import edu.ezip.ing1.pds.business.dto.Candidature;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import edu.ezip.ing1.pds.business.dto.*;
-import edu.ezip.ing1.pds.commons.Request;
-import edu.ezip.ing1.pds.commons.Response;
-import edu.ezip.ing1.pds.business.dto.Evenement;
-import edu.ezip.ing1.pds.business.dto.Evenements;
-import edu.ezip.ing1.pds.business.dto.Stagee;
-import edu.ezip.ing1.pds.business.dto.Stagess;
-import edu.ezip.ing1.pds.business.dto.Participation;
-import edu.ezip.ing1.pds.business.dto.Participations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import edu.ezip.ing1.pds.business.dto.Article;
+import edu.ezip.ing1.pds.business.dto.Articles;
+import edu.ezip.ing1.pds.business.dto.Candidature;
+import edu.ezip.ing1.pds.business.dto.Candidatures;
+import edu.ezip.ing1.pds.business.dto.Etudiant;
+import edu.ezip.ing1.pds.business.dto.Etudiants;
+import edu.ezip.ing1.pds.business.dto.Evenement;
+import edu.ezip.ing1.pds.business.dto.Evenements;
+import edu.ezip.ing1.pds.business.dto.Participation;
+import edu.ezip.ing1.pds.business.dto.Stagee;
+import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.commons.Request;
+import edu.ezip.ing1.pds.commons.Response;
 
 public class XMartCityService {
 
@@ -47,6 +55,9 @@ public class XMartCityService {
 
 
         INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
+
+        SELECT_ARTICLE("SELECT * FROM article"),
+        INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)"),
 
 
 
@@ -121,6 +132,15 @@ public class XMartCityService {
             case SELECT_CONN:
                 response=selectConn(request, connection);
 
+                break;
+
+                case INSERT_ARTICLE:
+                response = InsertArticle(request, connection);
+                break;
+
+            case SELECT_ARTICLE:
+                // CORRECTION: appel à la méthode cohérente
+                response = SelectAllarticles(request, connection);
                 break;
             default:
                 break;
@@ -405,6 +425,68 @@ private Response InsertParticipation(final Request request, final Connection con
             }
         }
     }
+
+    // --- Insert Article ---
+    private Response InsertArticle(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Article article = objectMapper.readValue(request.getRequestBody(), Article.class);
+
+        // Requête : INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)")
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_ARTICLE.query);
+        // CORRECTION: Respecter l'ordre des colonnes
+        stmt.setString(1, article.getNom());         // nom_etudiant
+        stmt.setString(2, article.getTitre());       // titre
+        stmt.setString(3, article.getDescription()); // description
+        stmt.setInt   (4, article.getId());  // id_etudiant
+        stmt.setInt   (5, article.getPrix());        // prix (si c'est vraiment un int)
+        stmt.setString(6, article.getTypeTransaction()); // type_transaction
+        stmt.setString(7, article.getVille());       // ville
+
+        stmt.executeUpdate();
+        stmt.close();
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(article));
+    }
+
+    // --- Sélection de tous les articles ---
+    private Response SelectAllarticles(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_ARTICLE.query);
+
+        Articles articles = new Articles();
+        while (res.next()) {
+            // Attention à l'ordre des colonnes dans "SELECT * FROM article"
+            Article article = new Article();
+            // Suppose que la table 'article' a les colonnes [id_article, nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville, ...]
+            // Adapte selon le vrai ordre
+            int idArticle        = res.getInt("id_article");
+            String nomEtudiant   = res.getString("nom_etudiant");
+            String titre         = res.getString("titre");
+            String description   = res.getString("description");
+            int idEtudiant       = res.getInt("id_etudiant");
+            int prix             = res.getInt("prix");
+            String typeTransaction   = res.getString("type_transaction");
+            String ville         = res.getString("ville");
+
+            article.setId(idArticle);
+            article.setNom(nomEtudiant);
+            article.setTitre(titre);
+            article.setDescription(description);
+            article.setId(idEtudiant);
+            article.setPrix(prix);
+            article.setTypeTransaction(typeTransaction);
+            article.setVille(ville);
+
+            articles.add(article);
+        }
+        res.close();
+        stmt.close();
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(articles));
+    }
+
 
 
 //    private Response SelectAllconn(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
