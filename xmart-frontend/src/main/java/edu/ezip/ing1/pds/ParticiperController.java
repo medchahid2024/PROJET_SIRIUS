@@ -27,7 +27,7 @@ public class ParticiperController {
     private int i;
 
     @FXML
-    void BoutonInscrire(ActionEvent event) throws IOException, SQLException, InterruptedException {
+    void BoutonInscrire (ActionEvent event) throws IOException, SQLException, InterruptedException {
 
         String nom = TFNom.getText();
         String prenom = TFPrenom.getText();
