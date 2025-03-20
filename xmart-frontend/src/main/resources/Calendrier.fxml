@@ -108,14 +108,14 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="Label6" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton6" layoutX="-13.0" layoutY="-17.0" mnemonicParsing="false" onAction="#B6Pressed" onMouseEntered="#B5Ent" onMouseExited="#B5Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton6" layoutX="-13.0" layoutY="-17.0" mnemonicParsing="false" onAction="#B6Pressed" onMouseEntered="#B6Ent" onMouseExited="#B6Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure6" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="Label7" layoutY="-1.0" maxWidth="-Infinity" prefHeight="18.0" prefWidth="53.0" text="Label1" />
-                  <Button fx:id="Bouton7" layoutX="-16.0" layoutY="-10.0" mnemonicParsing="false" onAction="#B7Pressed" onMouseEntered="#B5Ent" onMouseExited="#B5Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
+                  <Button fx:id="Bouton7" layoutX="-16.0" layoutY="-10.0" mnemonicParsing="false" onAction="#B7Pressed" onMouseEntered="#B7Ent" onMouseExited="#B7Exi" opacity="0.0" prefHeight="64.0" prefWidth="85.0" text="Button" />
                   <Label fx:id="Heure7" layoutX="1.0" layoutY="18.0" text="Heure1" />
                </children>
             </AnchorPane>
@@ -136,17 +136,20 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Titre" layoutX="658.0" layoutY="145.0" prefHeight="46.0" prefWidth="114.0" text="Titre" visible="false">
+      <Label fx:id="Titre" layoutX="645.0" layoutY="57.0" prefHeight="248.0" prefWidth="156.0" text="Colloque sur le Développement Durable" visible="false" wrapText="true">
          <font>
-            <Font size="30.0" />
+            <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="Heure" layoutX="663.0" layoutY="182.0" text="16:00" visible="false">
+      <Label fx:id="Heure" layoutX="646.0" layoutY="215.0" text="16:00 - 18:00" visible="false">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="Description" layoutX="641.0" layoutY="234.0" prefHeight="215.0" prefWidth="146.0" text="DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription" visible="false" wrapText="true" />
-      <Label fx:id="Domaine" layoutX="663.0" layoutY="210.0" text="Domaine" visible="false" />
+      <Label fx:id="Description" layoutX="641.0" layoutY="234.0" prefHeight="215.0" prefWidth="146.0" text="'Coaching pour optimiser ses candidatures et réussir ses entretiens.'" visible="false" wrapText="true" />
+      <Label fx:id="Domaine" layoutX="639.0" layoutY="244.0" prefHeight="50.0" prefWidth="146.0" text="Environnement &amp; Développement Durable" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>
