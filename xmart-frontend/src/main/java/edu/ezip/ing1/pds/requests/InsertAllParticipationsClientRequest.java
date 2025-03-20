@@ -22,8 +22,8 @@ public class InsertAllParticipationsClientRequest extends ClientRequest<Particip
     @Override
     public String readResult(String body) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        final Map<String, Integer> participationIdMap = mapper.readValue(body, Map.class);
-        final String result  = participationIdMap.get("participation_id").toString();
+        final Map<String, String> participationIdMap = mapper.readValue(body, Map.class);
+        final String result  = participationIdMap.get("participation_id");
         return result;
     }
 }
