@@ -80,7 +80,7 @@ public class CreateAcount {
             alert2.setContentText("Le format de l'adresse email est incorrect.");
             alert2.showAndWait();
 
-        } else if (!(Photo.endsWith(".png") || Photo.endsWith(".jpg"))) {
+        } else if (!(Photo.endsWith(".png") || Photo.endsWith(".jpg") || Photo.endsWith(".jpeg"))) {
 
             Alert alert3 = new Alert(Alert.AlertType.ERROR);
             alert3.setTitle("Erreur");
