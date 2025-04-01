@@ -4,6 +4,7 @@ import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Etudiant;
 import edu.ezip.ing1.pds.services.InsertCandidature;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,21 +21,30 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class CreateAcount {
+    @FXML
     public TextField cnf_mot_de_passe;
+    @FXML
     public TextField mot_de_passe;
+    @FXML
     public TextField Nom;
+    @FXML
     public TextField prenom;
+    @FXML
     public TextField email;
+    @FXML
     public Button seConnecter;
+    @FXML
     public TextField Matricule;
+    @FXML
     public Label photo;
+    @FXML
     public Button fichier;
     FileChooser fileChooser = new FileChooser();
     int id;
 
 
     public void connexion(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/connexion.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
         Stage stage = new Stage();
         Scene scene= new Scene(fxmlLoader.load());
         stage.setScene(scene);

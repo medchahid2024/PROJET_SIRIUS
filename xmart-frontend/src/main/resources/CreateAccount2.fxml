@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.CreateAcount">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/CreationCompte%20(1).png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Nom" layoutX="232.0" layoutY="331.0" prefHeight="26.0" prefWidth="208.0" />
+      <TextField fx:id="prenom" layoutX="232.0" layoutY="383.0" prefHeight="26.0" prefWidth="208.0" />
+      <TextField fx:id="email" layoutX="232.0" layoutY="435.0" prefHeight="26.0" prefWidth="208.0" />
+      <PasswordField fx:id="mot_de_passe" layoutX="232.0" layoutY="487.0" prefHeight="26.0" prefWidth="208.0" />
+      <PasswordField fx:id="cnf_mot_de_passe" layoutX="232.0" layoutY="539.0" prefHeight="26.0" prefWidth="208.0" />
+      <Button fx:id="fichier" layoutX="292.0" layoutY="594.0" mnemonicParsing="false" onMouseClicked="#fichier" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: white;" text="Parcourir ..." />
+      <Label layoutX="243.0" layoutY="681.0" onMouseClicked="#connexion" opacity="0.0" prefHeight="18.0" prefWidth="184.0" text="Label" />
+      <TextField fx:id="Matricule" layoutX="232.0" layoutY="280.0" prefHeight="26.0" prefWidth="208.0" />
+      <Button fx:id="seConnecter" layoutX="232.0" layoutY="645.0" mnemonicParsing="false" onAction="#seConnecter" opacity="0.0" prefHeight="26.0" prefWidth="208.0" text="Button" />
+      <Label fx:id="photo" layoutX="391.0" layoutY="598.0" prefHeight="18.0" prefWidth="54.0" />
+   </children>
+</AnchorPane>

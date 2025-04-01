@@ -41,12 +41,13 @@ public class connexion {
         Etudiants etudiants = stageService.selectConnexion("SELECT_CONN", etudiant);
 
         if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.show();
-            System.out.println("l7waaaaa"); // Texte en vert
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.close();
         }
        else if (email.getText().equals("admin") && motdepasse.getText().equals("admin")) {
 
@@ -78,13 +79,13 @@ public class connexion {
 
 
     }
-    public void CreateAcount(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAcount.fxml"));
+    public void CreateAcount(MouseEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccount2.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
-        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         currentStage.close();
     }
 }

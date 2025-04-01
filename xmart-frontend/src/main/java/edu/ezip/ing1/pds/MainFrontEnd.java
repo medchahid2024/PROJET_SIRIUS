@@ -21,7 +21,7 @@ import java.util.Deque;
 public class MainFrontEnd extends Application {
 
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainFrontEnd.class.getResource("/connexion.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFrontEnd.class.getResource("/Connexion2.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(MainFrontEnd.class.getResource("/css.css").toExternalForm());
 
