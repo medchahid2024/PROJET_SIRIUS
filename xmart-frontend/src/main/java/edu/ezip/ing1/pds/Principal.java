@@ -3,12 +3,15 @@ package edu.ezip.ing1.pds;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -27,6 +30,37 @@ public class Principal {
   public Label clique;
     public ImageView offre_stage;
   public AnchorPane parent;
+
+
+      @FXML
+    private Button BClose;
+
+    @FXML
+    private Button BOpen;
+
+    @FXML
+    private ImageView Image;
+
+    @FXML
+    void MEnt(MouseEvent event) {
+      TranslateTransition translate = new TranslateTransition();
+      translate.setNode(Image);
+      translate.setByX(238);
+      translate.play();
+      
+    }
+
+   
+    @FXML
+    void MExi(MouseEvent event) {
+      TranslateTransition translate = new TranslateTransition();
+      translate.setNode(Image);
+      translate.setByX(-238);
+      translate.play();
+    }
+
+ 
+
 
   public void clique(MouseEvent mouseEvent) throws IOException {
 

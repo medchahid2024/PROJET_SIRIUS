@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="672.0" style="-fx-background-color: &quot;0a53ed&quot;;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Principal2">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/PrincipalCLOSED.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="BOpen" mnemonicParsing="false" onMouseEntered="#BOpen" opacity="0.0" prefHeight="721.0" prefWidth="34.0" text="Button" />
+      <Button fx:id="BClose" layoutX="-65.0" layoutY="-1.0" mnemonicParsing="false" onMouseEntered="#BClose" opacity="0.0" prefHeight="722.0" prefWidth="32.0" text="Button" />
+      <Pane fx:id="Panneau" layoutX="-207.0" prefHeight="720.0" prefWidth="238.0">
+         <children>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@photo/Gauche.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="Deconnexion" layoutY="674.0" mnemonicParsing="false" onAction="#Deconnecter" opacity="0.0" prefHeight="26.0" prefWidth="206.0" text="Button" />
+         </children>
+      </Pane>
+      <Button fx:id="BStages" layoutX="266.0" layoutY="33.0" mnemonicParsing="false" onAction="#BStages" opacity="0.0" prefHeight="172.0" prefWidth="146.0" text="Button" />
+      <Button fx:id="BServices" layoutX="262.0" layoutY="266.0" mnemonicParsing="false" onAction="#BServices" opacity="0.0" prefHeight="172.0" prefWidth="154.0" text="Button" />
+      <Button fx:id="BEven" layoutX="233.0" layoutY="492.0" mnemonicParsing="false" onAction="#BEven" opacity="0.0" prefHeight="179.0" prefWidth="206.0" text="Button" />
+   </children>
+</AnchorPane>
