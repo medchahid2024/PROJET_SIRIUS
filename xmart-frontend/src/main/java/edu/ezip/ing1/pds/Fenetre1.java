@@ -31,6 +31,7 @@ import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.ArticleService;
 import edu.ezip.ing1.pds.services.InsertArticle;
 
+
 /**
  * Fenetre1 : Menu principal, un panneau pour acheter (liste d'articles) 
  * et un panneau pour vendre (publier un nouvel article).
@@ -300,6 +301,11 @@ public class Fenetre1 extends JFrame {
             Article article = new Article(tit3,tit,tit1,2,tit4,tit6,tit5);
             InsertArticle.sendValue("INSERT_ARTICLE", article);
 
+            JOptionPane.showMessageDialog(null, 
+            "Article publié avec succès!", 
+            "Validé", 
+            JOptionPane.INFORMATION_MESSAGE);
+
             System.out.println(tit);
             System.out.println(tit1);
             System.out.println(tit5);
@@ -338,7 +344,7 @@ panel.add(formPanel, BorderLayout.CENTER);
             Fenetre1 fen;
             try {
                 fen = new Fenetre1();
-                fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                fen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             fen.setVisible(true);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
