@@ -43,13 +43,12 @@ public class Principal2 {
 
     @FXML
     void BEven(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CalendrierController"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
       Stage stage = new Stage();
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
       stage.show();
-      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      currentStage.close();
+
     }
 
     @FXML
@@ -60,19 +59,14 @@ public class Principal2 {
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
       stage.show();
-      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      currentStage.close();
+
     }
 
     @FXML
-    void BServices(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fenetre.fxml"));
-      Stage stage = new Stage();
-      Scene scene = new Scene(loader.load());
-      stage.setScene(scene);
-      stage.show();
-      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      currentStage.close();
+    void BServices(ActionEvent event) throws IOException, InterruptedException {
+Fenetre1 f= new Fenetre1();
+f.setVisible(true);
+
     }
 
     private TranslateTransition translate = new TranslateTransition();
