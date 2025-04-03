@@ -43,7 +43,7 @@ public class Principal2 {
 
     @FXML
     void BEven(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
       Stage stage = new Stage();
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
@@ -54,7 +54,7 @@ public class Principal2 {
 
     @FXML
     void BStages(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
       Stage stage = new Stage();
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
@@ -91,7 +91,7 @@ public class Principal2 {
 
     @FXML
     void BClose(MouseEvent event) {
-        BClose.setLayoutX(-200);
+        BClose.setLayoutX(-500);
         BOpen.setLayoutX(0);
       
       translate.setNode(Panneau);
