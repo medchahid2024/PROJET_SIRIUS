@@ -169,6 +169,8 @@ public class XMartCityService {
 
             et.setEmail(res.getString(1));
             et.setMot_de_passe(res.getString(2));
+            et.setNom(res.getString(3));
+            et.setPrenom(res.getString(4));
             etudiants.add(et);
         }
 
