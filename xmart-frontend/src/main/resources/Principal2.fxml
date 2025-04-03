@@ -14,7 +14,6 @@
          </image>
       </ImageView>
       <Button fx:id="BOpen" mnemonicParsing="false" onMouseEntered="#BOpen" opacity="0.0" prefHeight="721.0" prefWidth="34.0" text="Button" />
-      <Button fx:id="BClose" layoutX="-65.0" layoutY="-1.0" mnemonicParsing="false" onMouseEntered="#BClose" opacity="0.0" prefHeight="722.0" prefWidth="32.0" text="Button" />
       <Pane fx:id="Panneau" layoutX="-207.0" prefHeight="720.0" prefWidth="238.0">
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true">
