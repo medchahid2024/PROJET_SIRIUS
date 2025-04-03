@@ -43,30 +43,35 @@ public class Principal2 {
 
     @FXML
     void BEven(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
       Stage stage = new Stage();
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
       stage.show();
-
+      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      currentStage.close();
     }
 
     @FXML
     void BStages(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/control_stage"));
-
-        Stage stage = new Stage();
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
+      Stage stage = new Stage();
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
       stage.show();
-
+      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      currentStage.close();
     }
 
     @FXML
-    void BServices(ActionEvent event) throws IOException, InterruptedException {
-Fenetre1 f= new Fenetre1();
-f.setVisible(true);
-
+    void BServices(ActionEvent event) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+      Stage stage = new Stage();
+      Scene scene = new Scene(loader.load());
+      stage.setScene(scene);
+      stage.show();
+      Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      currentStage.close();
     }
 
     private TranslateTransition translate = new TranslateTransition();
@@ -86,6 +91,7 @@ f.setVisible(true);
 
     @FXML
     void BClose(MouseEvent event) {
+        BClose.setLayoutX(-500);
         BOpen.setLayoutX(0);
       
       translate.setNode(Panneau);
