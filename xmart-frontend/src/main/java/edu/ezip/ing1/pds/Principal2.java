@@ -42,11 +42,16 @@ public class Principal2 {
     private Button BStages;
 
     @FXML
-    void BEven(ActionEvent event) throws IOException {
+    void BEven(ActionEvent event) throws IOException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, InterruptedException {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
       Stage stage = new Stage();
       Scene scene = new Scene(loader.load());
       stage.setScene(scene);
+       // Récupérer le contrôleur de la vue Calendrier
+    CalendrierController calendrierController = loader.getController();
+
+    // Appeler la méthode InitialisationCalendrier() sur l'instance du contrôleur
+    calendrierController.InitialisationCalendrier();
       stage.show();
       Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       currentStage.close();
