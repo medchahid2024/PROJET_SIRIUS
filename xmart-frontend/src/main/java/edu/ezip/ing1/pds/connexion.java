@@ -44,7 +44,10 @@ public class connexion {
         if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
             stageList = new ArrayList<>(etudiants.getEtudiants());
             etudiant=stageList.get(currentIndex);
-
+System.out.println(etudiant.getNom());
+System.out.println(etudiant.getPrenom());
+            System.out.println(etudiant.getNom());
+            System.out.println(etudiant.getPrenom());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
 
             Stage stage = new Stage();

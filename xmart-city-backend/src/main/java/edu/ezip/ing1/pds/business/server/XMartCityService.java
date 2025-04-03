@@ -167,10 +167,11 @@ public class XMartCityService {
         while (res.next()) {
             Etudiant et = new Etudiant();
 
-            et.setEmail(res.getString(1));
-            et.setMot_de_passe(res.getString(2));
-            et.setNom(res.getString(3));
-            et.setPrenom(res.getString(4));
+
+            et.setNom(res.getString("nom"));
+            et.setPrenom(res.getString("prenom"));
+            et.setEmail(res.getString("email"));
+            et.setMot_de_passe(res.getString("mot_de_passe"));
             etudiants.add(et);
         }
 

@@ -130,5 +130,7 @@ public class Principal2 {
     public void setEtudiant(Etudiant etudiant) {
         if (etudiant != null) {
             fullName.setText(etudiant.getNom() + " " + etudiant.getPrenom());
+
+
         }
 }}

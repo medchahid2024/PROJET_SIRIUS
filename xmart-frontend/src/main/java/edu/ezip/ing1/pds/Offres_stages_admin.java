@@ -126,7 +126,18 @@ public class Offres_stages_admin {
 
     }
 
-    public void Modifier(ActionEvent actionEvent) {
+    public void Modifier(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ModifyOffre.fxml"));
+        Stage stage1 = new Stage();
+
+        Scene offre1 = new Scene(fxmlLoader.load());
+        stage1.setScene(offre1);
+        stage1.setTitle("Modifier");
+        Modifyoffre controle = (Modifyoffre) fxmlLoader.getController();
+        Stagee s = stageList.get(currentIndex);
+        controle.setInformation(s);
+
+        stage1.show();
 
     }
 
