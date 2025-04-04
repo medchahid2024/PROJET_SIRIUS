@@ -47,7 +47,7 @@ public class XMartCityService {
 
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
-        SELECT_STAGE("SELECT * FROM offres_stages"),
+        SELECT_STAGE("SELECT * FROM offres_stages ORDER BY id_offre DESC"),
         SELECT_OFFRE("SELECT titre,description,domaine,niveau_etude FROM offres_stages WHERE titre LIKE ?"),
         SELECT_CANDIDATURE("SELECT COUNT(id_offre) FROM candidature WHERE id_offre= ? "),
 
@@ -318,7 +318,8 @@ private Response InsertParticipation(final Request request, final Connection con
             stagee.setTitre(res.getString(2));
             stagee.setDescription(res.getString(3));
             stagee.setDomaine(res.getString(4));
-            stagee.setDuree(res.getString(5));
+            stagee.setNiveau(res.getString(5));
+            stagee.setDuree(res.getString(6));
             stagess.add(stagee);
         }
 

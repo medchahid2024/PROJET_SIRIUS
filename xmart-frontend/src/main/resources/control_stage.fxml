@@ -21,6 +21,7 @@
                   <Label fx:id="duree" layoutX="67.0" layoutY="105.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="duree" />
                   <Label fx:id="domaine" layoutX="44.0" layoutY="70.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="domaine" />
                   <Button fx:id="postuler" layoutX="196.0" layoutY="443.0" mnemonicParsing="false" onAction="#postuler" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Postuler" />
+                  <Label fx:id="Niveau" layoutX="88.0" layoutY="150.0" prefHeight="18.0" prefWidth="46.0" style="-fx-font-weight: bold;" text="Niveau" />
                </children>
             </AnchorPane>
          </content>
