@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/Offres_StageBG.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="100.0" layoutY="86.0" prefHeight="547.0" prefWidth="472.0" style="-fx-background-color: &quot;7195e1&quot;;">
+         <children>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@photo/Stage_Pannel.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nombre" layoutX="249.0" layoutY="30.0" text="00" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="Nombrecandidatures" layoutX="432.0" layoutY="57.0" text="00" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="titre" layoutX="20.0" layoutY="95.0" text="Titre" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="domaine" layoutX="23.0" layoutY="132.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="Domaine" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="duree" layoutX="23.0" layoutY="145.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="Niveau" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="description" layoutX="24.0" layoutY="151.0" prefHeight="302.0" prefWidth="398.0" text="Description" textFill="WHITE" />
+         </children>
+      </Pane>
+      <ImageView layoutX="283.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/Postuler.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="postuler" layoutX="283.0" layoutY="599.0" mnemonicParsing="false" onAction="#postuler" opacity="0.0" prefHeight="16.0" prefWidth="106.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Postuler" />
+      <Button layoutX="407.0" layoutY="42.0" mnemonicParsing="false" onAction="#rechercher" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="rechercher" />
+   </children>
+</AnchorPane>
