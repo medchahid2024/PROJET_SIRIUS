@@ -61,7 +61,7 @@ public class DemandeConnexion {
         prenom.setText(etudiant.getPrenom());
         matricule.setText(etudiant.getMatricule());
         email.setText(etudiant.getEmail());
-        photo.setImage(new Image("file:" +"C:\\Users\\OMEN\\Desktop\\prototype-ing1\\xmart-frontend\\src\\main\\resources\\photo"+"/"+ etudiant.getPhoto()));
+        photo.setImage(new Image("/photo/"+ etudiant.getPhoto()));
         System.out.println("Nom: " + etudiant.getNom());
         System.out.println("Prénom: " + etudiant.getPrenom());
         System.out.println("Matricule: " + etudiant.getMatricule());

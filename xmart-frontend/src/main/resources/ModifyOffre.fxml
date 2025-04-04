@@ -18,7 +18,7 @@
       </ImageView>
       <Label layoutX="17.0" layoutY="139.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Titre" />
       <Label layoutX="17.0" layoutY="199.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Domaine" />
-      <Label layoutX="17.0" layoutY="254.0" prefHeight="22.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Niveau d'étude" />
+      <Label fx:id="Niveau" layoutX="17.0" layoutY="254.0" prefHeight="22.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Niveau d'étude" />
       <Label layoutX="17.0" layoutY="395.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Description" />
       <TextField fx:id="titre" layoutX="180.0" layoutY="137.0" />
       <TextField fx:id="niveau" layoutX="180.0" layoutY="252.0" />

@@ -22,6 +22,7 @@ public void setInformation(Stagee stage) {
     domaine.setText(stage.getDomaine());
     niveau.setText(stage.getNiveau());
     titre.setText(stage.getTitre());
+    niveau.setText(stage.getNiveau());
 
     }
 

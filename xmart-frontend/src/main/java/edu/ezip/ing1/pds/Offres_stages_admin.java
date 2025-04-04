@@ -24,6 +24,7 @@ public class Offres_stages_admin {
     @FXML
     public TextField mot;
     public Label nombre;
+    public Label Niveau;
 
     @FXML
     private Label titre;
@@ -73,6 +74,7 @@ public class Offres_stages_admin {
         domaine.setText(stage.getDomaine());
         description.setText(stage.getDescription());
         duree.setText(stage.getDuree());
+        Niveau.setText(stage.getNiveau());
 
     }
 

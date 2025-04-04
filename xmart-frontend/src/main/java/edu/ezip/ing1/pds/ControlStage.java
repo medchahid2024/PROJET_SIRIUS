@@ -29,6 +29,7 @@ public class ControlStage {
     public TextField mot;
     public Label nombre;
     public Label Nombrecandidatures;
+    public Label Niveau;
 
     @FXML
     private Label titre;
@@ -111,6 +112,7 @@ public class ControlStage {
         domaine.setText(stage.getDomaine());
         description.setText(stage.getDescription());
         duree.setText(stage.getDuree());
+        Niveau.setText(stage.getNiveau());
 
     }
 
@@ -168,6 +170,7 @@ public class ControlStage {
                     domaine.setText(stage.getDomaine());
                     description.setText(stage.getDescription());
                     duree.setText(stage.getDuree());
+                    
 
                     System.out.println(stage.getTitre());
                     System.out.println(stage.getDomaine());
