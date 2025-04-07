@@ -44,7 +44,7 @@ public class XMartCityService {
         UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,niveau_etude=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
 
-
+      SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
         SELECT_STAGE("SELECT * FROM offres_stages ORDER BY id_offre DESC"),
@@ -137,6 +137,10 @@ public class XMartCityService {
                 response=selectConn(request, connection);
 
                 break;
+            case SELECT_CONDITION_CONN:
+                response=selectConditionConn(request, connection);
+
+                break;
 
                 case INSERT_ARTICLE:
                 response = InsertArticle(request, connection);
@@ -184,6 +188,38 @@ public class XMartCityService {
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
     }
+
+    public Response  selectConditionConn (Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        String email;
+
+        Etudiant etudiant= objectMapper.readValue(request.getRequestBody(), Etudiant.class);
+        email = etudiant.getEmail();
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CONDITION_CONN.query);
+        stmt.setString(1, email);
+
+
+        ResultSet res = stmt.executeQuery();
+
+        Etudiants etudiants = new Etudiants();
+        while (res.next()) {
+            Etudiant et = new Etudiant();
+
+            et.setEmail(res.getString("email"));
+
+            etudiants.add(et);
+        }
+
+        res.close();
+        stmt.close();
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
+    }
+
+
+
     private Response updateOffre(Request request, Connection connection) throws IOException, SQLException {
         final ObjectMapper objectMapper = new ObjectMapper();
        Stagee stage = objectMapper.readValue(request.getRequestBody(), Stagee.class);

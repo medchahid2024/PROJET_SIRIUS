@@ -23,6 +23,11 @@ public class Etudiant {
         this.email = email;
         this.mot_de_passe = mot_de_passe;
     }
+
+    public Etudiant(String email) {
+        this.email = email;
+    }
+
     public Etudiant(String email, String mot_de_passe,String nom, String prenom) {
         this.email = email;
         this.mot_de_passe = mot_de_passe;
