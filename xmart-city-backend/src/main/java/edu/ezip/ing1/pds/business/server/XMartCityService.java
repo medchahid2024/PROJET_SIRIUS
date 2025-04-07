@@ -42,7 +42,7 @@ public class XMartCityService {
 
 
         UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
-//        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,duree=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
+       UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,niveau_etude=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
 
 
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
@@ -129,6 +129,10 @@ public class XMartCityService {
                 response=updateEtudiant(request, connection);
 
                 break;
+            case  UPDATE_OFFRE:
+                response=updateOffre(request, connection);
+                break;
+
             case SELECT_CONN:
                 response=selectConn(request, connection);
 
@@ -179,6 +183,29 @@ public class XMartCityService {
         stmt.close();
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
+    }
+    private Response updateOffre(Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+       Stagee stage = objectMapper.readValue(request.getRequestBody(), Stagee.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.UPDATE_OFFRE.query);
+
+
+
+        stmt.setString(1, stage.getTitre());
+        stmt.setString(2, stage.getDescription());
+        stmt.setString(3, stage.getDomaine());
+        stmt.setString(4, stage.getNiveau());
+        stmt.setString(5, stage.getDuree());
+        stmt.setInt(6, stage.getId());
+
+
+        stmt.executeUpdate();
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(stage));
+
+
     }
 
     private Response updateEtudiant(Request request, Connection connection) throws IOException, SQLException {
