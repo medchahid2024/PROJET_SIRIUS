@@ -34,37 +34,71 @@ public class XMartCityService {
     private final Logger logger = LoggerFactory.getLogger(LoggingLabel);
 
     private enum Queries {
-
+        // ---------------------------- PARTIE INSERTION----------------------------------------------------------------------------------
+                     //Insertion des offres par l'admin
         INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,niveau_etude,duree,id_admin) values ( ?, ?,?,?,?, 1 )"),
+
+                     // candidature pour une offre de stage en recuperant l'id de l'entreprise
         INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
+
+                     // demande de creation d'un compte d'un etudiant
         INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe,photo)VALUES  (?,?,?,?,?, ?, ?) "),
 
 
+        INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)"),
+        INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
 
+
+
+        //-----------------------------------------------------------------------------------------------------------------------------------
+
+
+        // ---------------------------- PARTIE Modification----------------------------------------------------------------------------------
+
+                     // Decision de l'admin (accepter une demande)
         UPDATE_ETUDIANT("UPDATE etudiant SET accepte = TRUE WHERE id_etudiant = ?"),
-//        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,duree=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
+
+                     //modification d'une demande par l'admin
+       UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,niveau_etude=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
+
+        //-----------------------------------------------------------------------------------------------------------------------------------
 
 
+        // ---------------------------- PARTIE AFFICHAGE----------------------------------------------------------------------------------
+
+                         //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
+       SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
+
+                           //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
+
+                            // viualiser les etudiant non acceptés par l'admin avant la decision
         SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
+
+                             // l'affichage des offres de stages par ordre decroissant
         SELECT_STAGE("SELECT * FROM offres_stages ORDER BY id_offre DESC"),
+
+                             // pour rechercher un stage par rapport au titre
         SELECT_OFFRE("SELECT titre,description,domaine,niveau_etude FROM offres_stages WHERE titre LIKE ?"),
+
+                             // affichage de nombre de candidatures pour chaque offre
         SELECT_CANDIDATURE("SELECT COUNT(id_offre) FROM candidature WHERE id_offre= ? "),
+
 
         SELECT_EVENEMENT("SELECT * FROM evenements"),
 
-
-        INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
-
         SELECT_ARTICLE("SELECT * FROM article"),
-        INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)"),
+        //-----------------------------------------------------------------------------------------------------------------------------------
 
 
 
+        // ---------------------------- PARTIE SUPPRESSION----------------------------------------------------------------------------------
 
-
-
+                       // supprimer une offre de stage
         DELETE_OFFRE("DELETE FROM offres_stages WHERE id_offre = ?");
+
+
+
 
         private final String query;
 
@@ -129,8 +163,16 @@ public class XMartCityService {
                 response=updateEtudiant(request, connection);
 
                 break;
+            case  UPDATE_OFFRE:
+                response=updateOffre(request, connection);
+                break;
+
             case SELECT_CONN:
                 response=selectConn(request, connection);
+
+                break;
+            case SELECT_CONDITION_CONN:
+                response=selectConditionConn(request, connection);
 
                 break;
 
@@ -179,6 +221,61 @@ public class XMartCityService {
         stmt.close();
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
+    }
+
+    public Response  selectConditionConn (Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        String email;
+
+        Etudiant etudiant= objectMapper.readValue(request.getRequestBody(), Etudiant.class);
+        email = etudiant.getEmail();
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CONDITION_CONN.query);
+        stmt.setString(1, email);
+
+
+        ResultSet res = stmt.executeQuery();
+
+        Etudiants etudiants = new Etudiants();
+        while (res.next()) {
+            Etudiant et = new Etudiant();
+
+            et.setEmail(res.getString("email"));
+
+            etudiants.add(et);
+        }
+
+        res.close();
+        stmt.close();
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
+    }
+
+
+
+    private Response updateOffre(Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+       Stagee stage = objectMapper.readValue(request.getRequestBody(), Stagee.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.UPDATE_OFFRE.query);
+
+
+
+        stmt.setString(1, stage.getTitre());
+        stmt.setString(2, stage.getDescription());
+        stmt.setString(3, stage.getDomaine());
+        stmt.setString(4, stage.getNiveau());
+        stmt.setString(5, stage.getDuree());
+        stmt.setInt(6, stage.getId());
+
+
+        stmt.executeUpdate();
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(stage));
+
+
     }
 
     private Response updateEtudiant(Request request, Connection connection) throws IOException, SQLException {

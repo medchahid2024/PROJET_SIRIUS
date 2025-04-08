@@ -2,7 +2,11 @@ package edu.ezip.ing1.pds;
 
 import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Etudiant;
+import edu.ezip.ing1.pds.business.dto.Etudiants;
+import edu.ezip.ing1.pds.client.commons.ConfigLoader;
+import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.InsertCandidature;
+import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +45,7 @@ public class CreateAcount {
     public Button fichier;
     FileChooser fileChooser = new FileChooser();
     int id;
+    private final static String networkConfigFile = "network.yaml";
 
 
     public void connexion(MouseEvent mouseEvent) throws IOException {
@@ -62,6 +67,14 @@ public class CreateAcount {
         String Email = email.getText();
         String MotDePasse = mot_de_passe.getText();
         String Conf_mdp = cnf_mot_de_passe.getText();
+
+
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        final stageService stageService = new stageService(networkConfig);
+        Etudiant etudiant1 = new Etudiant(Email);
+        Etudiants etudiants = stageService.selectConnexion("SELECT_CONDITION_CONN", etudiant1);
+
+
 
         if (matricule == null || matricule.isEmpty() ||
                 Prenom == null || Prenom.isEmpty() || nom == null || nom.isEmpty() ||
@@ -121,6 +134,14 @@ public class CreateAcount {
             alert6.setHeaderText(null);
             alert6.setContentText("Le prénom ne doit contenir que des lettres.");
             alert6.showAndWait();
+
+        }
+       else  if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
+            Alert alert7 = new Alert(Alert.AlertType.ERROR);
+            alert7.setTitle("Erreur");
+            alert7.setHeaderText(null);
+            alert7.setContentText("vous avez déja  un compte \n veuillez contacté la scolarité en cas d'oublie de vos identifiants");
+            alert7.showAndWait();
 
         }
          else {

@@ -16,6 +16,10 @@ public class Stagee {
 public Stagee(){
 
 }
+    public Stagee( int id){
+    this.id = id;
+
+    }
 
 
     public Stagee(String titre, String description, String domaine, String duree ,String niveau) {
@@ -24,6 +28,15 @@ public Stagee(){
         this.domaine=domaine;
         this.duree=duree;
         this.niveau=niveau;
+
+    }
+    public Stagee(int id,String titre, String description, String domaine, String duree ,String niveau) {
+        this.titre=titre;
+        this.description=description;
+        this.domaine=domaine;
+        this.duree=duree;
+        this.niveau=niveau;
+        this.id = id;
 
     }
     public String getTitre() {
