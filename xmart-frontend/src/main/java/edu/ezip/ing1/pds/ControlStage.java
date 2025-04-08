@@ -12,10 +12,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class ControlStage {
     public Label nombre;
     public Label Nombrecandidatures;
     public Label Niveau;
+    public Label Niveau1;
 
     @FXML
     private Label titre;
@@ -40,9 +43,37 @@ public class ControlStage {
     @FXML
     private Label duree;
     @FXML
+    private Label titre1;
+    @FXML
+    private Label domaine1;
+    @FXML
+    private Label description1;
+    @FXML
+    private Label duree1;
+    
+    @FXML
     private Button btnSuivant;
     @FXML
     private Button btnPrecedent;
+    @FXML
+    private Button BHome;
+
+    @FXML
+    private Pane PA;
+
+    @FXML
+    private Pane PB;
+
+    @FXML
+    void BHome(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 
 
 

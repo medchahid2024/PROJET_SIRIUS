@@ -67,7 +67,7 @@ public class Principal2 {
 
     @FXML
     void BStages(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Stages2.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
