@@ -9,6 +9,7 @@ import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -140,6 +141,8 @@ public class Offres_stages_admin {
         controle.setInformation(s);
 
         stage1.show();
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        currentStage.close();
 
     }
 

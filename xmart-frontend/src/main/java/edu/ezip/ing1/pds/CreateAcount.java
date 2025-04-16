@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,9 +20,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class CreateAcount {
     @FXML
@@ -162,7 +164,25 @@ public class CreateAcount {
             aler.setTitle("Validé");
             aler.setHeaderText(null);
             aler.setContentText("Nous avons bien reçu votre demande , il sera traiter dans 24h");
-            aler.showAndWait();
+            Optional<ButtonType> result = aler.showAndWait();
+            if (result.get() == ButtonType.OK) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/connexion.fxml"));
+                Stage fenetre = new Stage();
+                Scene scene = new Scene(fxmlLoader.load());
+                fenetre.setScene(scene);
+                fenetre.show();
+
+                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                currentStage.close();
+
+                System.out.println("Demande transmis");
+
+            }
+            else{
+                System.out.println("Demande refusée");
+            }
+
         }
 
 

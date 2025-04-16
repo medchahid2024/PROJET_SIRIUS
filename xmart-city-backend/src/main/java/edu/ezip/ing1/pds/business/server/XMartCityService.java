@@ -73,7 +73,7 @@ public class XMartCityService {
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
 
                             // viualiser les etudiant non acceptés par l'admin avant la decision
-        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL"),
+        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL ORDER BY id_etudiant DESC"),
 
                              // l'affichage des offres de stages par ordre decroissant
         SELECT_STAGE("SELECT * FROM offres_stages ORDER BY id_offre DESC"),
