@@ -18,10 +18,23 @@ public class Etudiant {
 
 
     public Etudiant() {
+
     }
+
     public Etudiant(String email, String mot_de_passe) {
         this.email = email;
         this.mot_de_passe = mot_de_passe;
+    }
+
+    public Etudiant(String nom, String prenom, int id) {
+       this.nom = nom;
+       this.prenom = prenom;
+       this.id = id;
+    }
+    public Etudiant(String nom, String prenom, String matricule) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.matricule = matricule;
     }
 
     public Etudiant(String email) {
@@ -91,6 +104,7 @@ public class Etudiant {
     public boolean isAccepte() {
         return accepte;
     }
+
 
     public void setId(int id) {
         this.id = id;

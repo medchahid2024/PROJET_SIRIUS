@@ -33,20 +33,19 @@ public class stageService {
     final String selectRequestOrder = "SELECT_STAGE";
     final String selectRequest = "SELECT_OFFRE";
     final String selectetudiant = "SELECT_ETUDIANT";
+    final String selectAlletudiant = "SELECT_ALL_STUDENTS";
+
 
 
     private final static String networkConfigFile = "network.yaml";
-
-
-
-
-
     private final NetworkConfig networkConfig;
 
 
     public stageService(NetworkConfig networkConfig) throws InterruptedException {
         this.networkConfig = networkConfig;
     }
+
+
 
     public Stagess selectStages() throws InterruptedException, IOException {
         final NetworkConfig networkConfig =  ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
@@ -110,6 +109,33 @@ public class stageService {
             return null;
         }
     }
+    public Etudiants selectAllEtudiant() throws InterruptedException, IOException {
+        int birthdate = 0;
+        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(selectAlletudiant);
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
+        final SelectEtudiantClientRequest clientRequest = new SelectEtudiantClientRequest(
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        clientRequests.push(clientRequest);
+
+        if(!clientRequests.isEmpty()) {
+            final ClientRequest joinedClientRequest = clientRequests.pop();
+            joinedClientRequest.join();
+            logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
+            return (Etudiants) joinedClientRequest.getResult();
+        }
+        else {
+            logger.error("No student found");
+            return null;
+        }
+    }
     public Etudiants selectEtudiant() throws InterruptedException, IOException {
         int birthdate = 0;
         final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
@@ -137,6 +163,8 @@ public class stageService {
             return null;
         }
     }
+
+
     public Etudiants selectConnexion (String requestOrder, Object object) throws InterruptedException, IOException {
         int birthdate = 0;
         final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();

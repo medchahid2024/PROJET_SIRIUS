@@ -69,6 +69,8 @@ public class XMartCityService {
                          //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
        SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
 
+        SELECT_ALL_STUDENTS ("SELECT nom,prenom,matricule FROM etudiant WHERE accepte=TRUE"),
+
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
 
@@ -143,6 +145,9 @@ public class XMartCityService {
                break;
             case SELECT_ETUDIANT:
                              response=SelectEtudiant(request, connection);
+                break;
+            case SELECT_ALL_STUDENTS:
+                response=SelectAllStudents(request, connection);
                 break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
@@ -488,6 +493,27 @@ private Response InsertParticipation(final Request request, final Connection con
             etudiant.setEmail(res.getString(4));
             etudiant.setPhoto(res.getString(5));
             etudiant.setId(res.getInt(6));
+
+
+            etudiants.add(etudiant);
+        }
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiants));
+
+    }
+
+    private Response SelectAllStudents(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_ALL_STUDENTS.query);
+        Etudiants etudiants = new Etudiants();
+
+        while (res.next()) {
+            Etudiant etudiant = new Etudiant();
+            etudiant.setNom(res.getString(1));
+            etudiant.setPrenom(res.getString(2));
+            etudiant.setMatricule(res.getString(3));
+
 
 
             etudiants.add(etudiant);
