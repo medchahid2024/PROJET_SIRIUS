@@ -8,23 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import edu.ezip.ing1.pds.business.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import edu.ezip.ing1.pds.business.dto.Article;
-import edu.ezip.ing1.pds.business.dto.Articles;
-import edu.ezip.ing1.pds.business.dto.Candidature;
-import edu.ezip.ing1.pds.business.dto.Candidatures;
-import edu.ezip.ing1.pds.business.dto.Etudiant;
-import edu.ezip.ing1.pds.business.dto.Etudiants;
-import edu.ezip.ing1.pds.business.dto.Evenement;
-import edu.ezip.ing1.pds.business.dto.Evenements;
-import edu.ezip.ing1.pds.business.dto.Participation;
-import edu.ezip.ing1.pds.business.dto.Stagee;
-import edu.ezip.ing1.pds.business.dto.Stagess;
 import edu.ezip.ing1.pds.commons.Request;
 import edu.ezip.ing1.pds.commons.Response;
 
@@ -47,6 +37,7 @@ public class XMartCityService {
 
         INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)"),
         INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
+        INSERT_DEPOSER("insert into deposer (id_etudiant,id_candidature) values (?,?)"),
 
 
 
@@ -170,6 +161,9 @@ public class XMartCityService {
                 break;
             case  UPDATE_OFFRE:
                 response=updateOffre(request, connection);
+                break;
+            case  INSERT_DEPOSER:
+                response=InsertDeposer(request, connection);
                 break;
 
             case SELECT_CONN:
@@ -322,6 +316,23 @@ private Response InsertCandidature(final Request request, final Connection conne
 
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidature));
 }
+
+    private Response InsertDeposer(final Request request, final Connection connection) throws SQLException, IOException {
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Deposer deposerDTO = objectMapper.readValue(request.getRequestBody(), Deposer.class);
+
+       final Etudiant etudiant = deposerDTO.getEtudiant();
+        final Candidature candidature = deposerDTO.getCandidature();
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_DEPOSER.query);
+        stmt.setInt(1, candidature.getId());
+        stmt.setInt(2, etudiant.getId());
+
+        stmt.executeUpdate();
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(deposerDTO));
+    }
     private Response InsertStage(final Request request, final Connection connection) throws SQLException, IOException {
 
         final ObjectMapper objectMapper = new ObjectMapper();

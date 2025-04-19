@@ -1,9 +1,6 @@
 package edu.ezip.ing1.pds;
 
-import edu.ezip.ing1.pds.business.dto.Candidature;
-import edu.ezip.ing1.pds.business.dto.Candidatures;
-import edu.ezip.ing1.pds.business.dto.Stagee;
-import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.business.dto.*;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 
@@ -44,6 +41,7 @@ public class ControlStage {
     @FXML
     private Button btnPrecedent;
 
+    private Etudiant etudiant;
 
 
     private final static String networkConfigFile = "network.yaml";
@@ -135,17 +133,17 @@ public class ControlStage {
     public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
         Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
         int idOffre = stageSelectionne.getId();
-   Candidater candidater= new Candidater();
-    candidater.setId(idOffre);
-        Candidater candidate= new Candidater();
-        candidate.setId(idOffre);
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 
         Scene offre = new Scene(fxmlLoader.load(), 700, 700);
         stage.setScene(offre);
         stage.setTitle("Candidature");
-        Candidater candidatureController = fxmlLoader.getController();
+       Candidater candidatureController = fxmlLoader.getController();
+        candidatureController.setId(idOffre);
+        candidatureController.setStudent(this.etudiant);
         candidatureController.setId(idOffre);
 
         stage.show();
@@ -190,6 +188,10 @@ public class ControlStage {
             }
         }
     }
-
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+        System.out.println(etudiant.getNom() );
+        System.out.println(etudiant.getPrenom());
+    }
 
 }

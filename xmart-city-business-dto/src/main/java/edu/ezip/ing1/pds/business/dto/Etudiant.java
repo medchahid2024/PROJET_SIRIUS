@@ -73,6 +73,10 @@ public class Etudiant {
         this.accepte = accepte;
     }
 
+    public Etudiant(int i) {
+        this.id = i;
+    }
+
     public int getId() {
         return id;
     }
