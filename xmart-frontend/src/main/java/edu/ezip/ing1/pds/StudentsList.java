@@ -25,12 +25,13 @@ public class StudentsList {
     @FXML
     public TableColumn <Etudiant,String> Prenom;
 
-//    @FXML
-//    public TableColumn <Etudiant, Integer> Nombre;
+  @FXML
+   public TableColumn <Etudiant, Integer> Nombre;
 
 @FXML
 public TableView<Etudiant> table ;
     public TableColumn <Etudiant,String> Matricule;
+    public TableColumn <Etudiant,String> id;
 
     @FXML
     public void initialize () throws IOException, InterruptedException {
@@ -45,6 +46,7 @@ public TableView<Etudiant> table ;
         Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         Matricule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
     }
 }

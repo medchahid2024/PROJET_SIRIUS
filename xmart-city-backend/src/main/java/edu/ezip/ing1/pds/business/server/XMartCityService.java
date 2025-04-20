@@ -29,7 +29,7 @@ public class XMartCityService {
         INSERT_STAGE("INSERT into offres_stages (titre, description, domaine,niveau_etude,duree,id_admin) values ( ?, ?,?,?,?, 1 )"),
 
                      // candidature pour une offre de stage en recuperant l'id de l'entreprise
-        INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre)VALUES  (?,?,?,?, ?, ?, ?, ?) "),
+        INSERT_CANDIDATURE("INSERT INTO candidature (nom,prenom,cv,email,adresse, lettre_de_motivation,autre_fichier ,id_offre ,id_etudiant)VALUES  (?,?,?,?,?, ?, ?, ?, ?) "),
 
                      // demande de creation d'un compte d'un etudiant
         INSERT_ETUDIANT("INSERT INTO etudiant (nom,prenom,matricule,email,mot_de_passe,cnf_mot_de_passe,photo)VALUES  (?,?,?,?,?, ?, ?) "),
@@ -37,7 +37,6 @@ public class XMartCityService {
 
         INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)"),
         INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
-        INSERT_DEPOSER("insert into deposer (id_etudiant,id_candidature) values (?,?)"),
 
 
 
@@ -60,7 +59,9 @@ public class XMartCityService {
                          //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
        SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
 
-        SELECT_ALL_STUDENTS ("SELECT nom,prenom,matricule FROM etudiant WHERE accepte=TRUE"),
+        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.nom, e.prenom, e.matricule " +
+                "FROM etudiant e LEFT JOIN candidature c ON c.id_etudiant = e.id_etudiant " +
+                "WHERE e.accepte = TRUE GROUP BY e.nom, e.prenom, e.matricule"),
 
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
@@ -162,9 +163,6 @@ public class XMartCityService {
             case  UPDATE_OFFRE:
                 response=updateOffre(request, connection);
                 break;
-            case  INSERT_DEPOSER:
-                response=InsertDeposer(request, connection);
-                break;
 
             case SELECT_CONN:
                 response=selectConn(request, connection);
@@ -208,7 +206,7 @@ public class XMartCityService {
         while (res.next()) {
             Etudiant et = new Etudiant();
 
-
+            et.setId(res.getInt("id_etudiant"));
             et.setNom(res.getString("nom"));
             et.setPrenom(res.getString("prenom"));
             et.setEmail(res.getString("email"));
@@ -308,6 +306,7 @@ private Response InsertCandidature(final Request request, final Connection conne
     stmt.setString(6, candidature.getLettre());
     stmt.setString(7, candidature.getAutres());
     stmt.setInt(8,candidature.getId());
+    stmt.setInt(9, candidature.getIdEtudiant());
 
 
 
@@ -317,22 +316,7 @@ private Response InsertCandidature(final Request request, final Connection conne
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(candidature));
 }
 
-    private Response InsertDeposer(final Request request, final Connection connection) throws SQLException, IOException {
 
-        final ObjectMapper objectMapper = new ObjectMapper();
-        final Deposer deposerDTO = objectMapper.readValue(request.getRequestBody(), Deposer.class);
-
-       final Etudiant etudiant = deposerDTO.getEtudiant();
-        final Candidature candidature = deposerDTO.getCandidature();
-
-        final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_DEPOSER.query);
-        stmt.setInt(1, candidature.getId());
-        stmt.setInt(2, etudiant.getId());
-
-        stmt.executeUpdate();
-
-        return new Response(request.getRequestId(), objectMapper.writeValueAsString(deposerDTO));
-    }
     private Response InsertStage(final Request request, final Connection connection) throws SQLException, IOException {
 
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -521,9 +505,11 @@ private Response InsertParticipation(final Request request, final Connection con
 
         while (res.next()) {
             Etudiant etudiant = new Etudiant();
-            etudiant.setNom(res.getString(1));
-            etudiant.setPrenom(res.getString(2));
-            etudiant.setMatricule(res.getString(3));
+            etudiant.setId(res.getInt("nombre_candidatures"));
+            etudiant.setNom(res.getString(2));
+            etudiant.setPrenom(res.getString(3));
+            etudiant.setMatricule(res.getString(4));
+
 
 
 
@@ -627,22 +613,5 @@ private Response InsertParticipation(final Request request, final Connection con
 
 
 
-//    private Response SelectAllconn(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
-//        final ObjectMapper objectMapper = new ObjectMapper();
-//        final Statement stmt = connection.createStatement();
-//        final ResultSet res = stmt.executeQuery(Queries.SELECT_CONN.query);
-//         Connexions connexions=new Connexions();
-//
-//        while (res.next()) {
-//            Connexion connexion = new Connexion();
-//            connexion.setEmail(res.getString(1));
-//            connexion.setMot_de_passe(res.getString(2));
-//            Connexions.add(connexion);
-//
-//        }
-//
-//        return new Response(request.getRequestId(), objectMapper.writeValueAsString(connexions));
-//
-//    }
 
 }

@@ -8,10 +8,10 @@
    <children>
       <TableView fx:id="table" prefHeight="400.0" prefWidth="600.0">
         <columns>
-          <TableColumn fx:id="Nom" prefWidth="75.0" text="Nom" />
-          <TableColumn fx:id="Prenom" prefWidth="75.0" text="Prenom" />
-            <TableColumn fx:id="Nombre" prefWidth="152.0" text="Nombre de candidature" />
             <TableColumn fx:id="Matricule" prefWidth="112.79998779296875" text="Matricule" />
+          <TableColumn fx:id="Prenom" prefWidth="75.0" text="Prenom" />
+          <TableColumn fx:id="Nom" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="id" prefWidth="152.0" text="Nombre de candidature" />
         </columns>
       </TableView>
    </children>

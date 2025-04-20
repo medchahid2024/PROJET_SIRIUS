@@ -1,7 +1,6 @@
 package edu.ezip.ing1.pds;
 
 import edu.ezip.ing1.pds.business.dto.Candidature;
-import edu.ezip.ing1.pds.business.dto.Deposer;
 import edu.ezip.ing1.pds.business.dto.Etudiant;
 import edu.ezip.ing1.pds.services.InsertCandidature;
 import javafx.event.ActionEvent;
@@ -14,9 +13,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class Candidater  {
 
@@ -35,7 +32,7 @@ public class Candidater  {
     FileChooser fileChooser = new FileChooser();
     private int id;
     private Etudiant etudiant;
-
+    private int idetudiant;
 
     public Candidater() throws InterruptedException {
     }
@@ -100,14 +97,8 @@ public class Candidater  {
 
 
         } else {
-            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id);
-            Candidature c1 = new Candidature( this.id);
-            Etudiant et = new Etudiant(5);
-            Deposer deposer = new Deposer();
-            deposer.setCandidature(c1);
-            deposer.setEtudiant(et);
+            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id,idetudiant);
 
-InsertCandidature.sendDeposer("INSERT_DEPOSER",deposer);
 
 
             System.out.println(" l'offre sélectionnée : " + id);
@@ -132,6 +123,9 @@ InsertCandidature.sendDeposer("INSERT_DEPOSER",deposer);
 public void setStudent ( Etudiant et) {
         nom.setText(et.getNom());
         prenom.setText(et.getPrenom());
+        System.out.println("L'ID de l'etudiant"+et.getId());
+        idetudiant = et.getId();
+
 
 }
 
