@@ -15,6 +15,7 @@ public class Etudiant {
     private String photo;
     private int id;
     private boolean accepte;
+     private int detail;
 
 
 
@@ -110,9 +111,15 @@ public class Etudiant {
         return accepte;
     }
 
+    public int getDetail() {
+        return detail;
+    }
 
     public void setId(int id) {
         this.id = id;
+    }
+    public void setdetail(int detail) {
+        this.detail=detail;
     }
 
     public void setNom(String nom) {

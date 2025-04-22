@@ -59,9 +59,9 @@ public class XMartCityService {
                          //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
        SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
 
-        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.nom, e.prenom, e.matricule " +
+        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.nom, e.prenom, e.matricule ,e.id_etudiant AS id " +
                 "FROM etudiant e LEFT JOIN candidature c ON c.id_etudiant = e.id_etudiant " +
-                "WHERE e.accepte = TRUE GROUP BY e.nom, e.prenom, e.matricule"),
+                "WHERE e.accepte = TRUE GROUP BY id, e.nom, e.prenom, e.matricule"),
 
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
@@ -506,9 +506,11 @@ private Response InsertParticipation(final Request request, final Connection con
         while (res.next()) {
             Etudiant etudiant = new Etudiant();
             etudiant.setId(res.getInt("nombre_candidatures"));
+
             etudiant.setNom(res.getString(2));
             etudiant.setPrenom(res.getString(3));
             etudiant.setMatricule(res.getString(4));
+            etudiant.setdetail(res.getInt("id"));
 
 
 
