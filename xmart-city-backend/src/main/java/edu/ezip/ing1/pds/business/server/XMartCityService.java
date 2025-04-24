@@ -61,9 +61,12 @@ public class XMartCityService {
                          //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
        SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
 
-        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.nom, e.prenom, e.matricule ,e.id_etudiant AS id " +
-                "FROM etudiant e LEFT JOIN candidature c ON c.id_etudiant = e.id_etudiant " +
-                "WHERE e.accepte = TRUE GROUP BY id, e.nom, e.prenom, e.matricule"),
+        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.photo AS photo ,e.email AS email, e.date_ajout AS date , e.nom AS nom , e.prenom AS prenom , e.matricule AS mat ,e.id_etudiant AS id , o.titre AS titre , o.duree AS duree , o.domaine AS domaine " +
+                "FROM etudiant e " +
+                " LEFT JOIN candidature c ON c.id_etudiant = e.id_etudiant " +
+                " LEFT JOIN offres_stages o ON o.id_offre = c.id_offre " +
+
+                " WHERE e.accepte = TRUE GROUP BY id, e.nom, e.prenom, date , e.matricule ,e.photo,titre,duree,domaine"),
 
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
@@ -523,12 +526,21 @@ private Response InsertParticipation(final Request request, final Connection con
 
         while (res.next()) {
             Etudiant etudiant = new Etudiant();
-            etudiant.setId(res.getInt("nombre_candidatures"));
+            Stagee stagee = new Stagee();
 
-            etudiant.setNom(res.getString(2));
-            etudiant.setPrenom(res.getString(3));
-            etudiant.setMatricule(res.getString(4));
+            etudiant.setId(res.getInt("nombre_candidatures"));
+            etudiant.setNom(res.getString("nom"));
+            etudiant.setPrenom(res.getString("prenom"));
+            etudiant.setMatricule(res.getString("mat"));
             etudiant.setdetail(res.getInt("id"));
+            etudiant.setPhoto(res.getString("photo"));
+            etudiant.setDate(res.getDate("date"));
+
+
+            etudiant.setTitre(res.getString("titre"));
+            etudiant.setDuree(res.getString("duree"));
+            etudiant.setDomaine(res.getString("domaine"));
+            etudiant.setEmail(res.getString("email"));
 
 
 

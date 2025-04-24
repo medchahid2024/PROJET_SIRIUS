@@ -50,7 +50,6 @@ public TableView<Etudiant> table ;
         ObservableList<Etudiant> observableList = FXCollections.observableArrayList(etudiants.getEtudiants());
         table.setItems(observableList);
 
-
         Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         Matricule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
@@ -64,7 +63,9 @@ public TableView<Etudiant> table ;
             {
                 btn.setOnAction(event -> {
                     Etudiant item = getTableView().getItems().get(getIndex());
+
                     System.out.println("Afficher les détails de : "+item.getDetail()+"\n" + "\n" + item.getNom()+ "\n" +item.getPrenom());
+                    System.out.println("Afficher les candidatures  : "+item.getTitre()+"\n" + "\n" + item.getDuree()+ "\n" +item.getDomaine());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonneeEtudiant.fxml"));
                     Stage stage = new Stage();
                     Scene scene = null;
@@ -74,6 +75,10 @@ public TableView<Etudiant> table ;
                         throw new RuntimeException(e);
                     }
                     stage.setScene(scene);
+                    DonneeEtudiant controller = loader.getController();
+                    controller.setEtudiant(item);
+
+
                     stage.show();
                 });
             }

@@ -24,20 +24,21 @@
       <Label fx:id="email" layoutX="273.0" layoutY="265.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
       <Label fx:id="matricule" layoutX="271.0" layoutY="219.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
       <Label fx:id="prenom" layoutX="273.0" layoutY="176.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
-      <ImageView fx:id="photo" fitHeight="130.0" fitWidth="181.0" layoutX="404.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="photo" fitHeight="130.0" fitWidth="181.0" layoutX="412.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="56.0" layoutY="328.0" prefHeight="27.0" prefWidth="187.0" text="Derniere connexion">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="257.0" layoutY="329.0" prefHeight="18.0" prefWidth="151.0" text="Label" />
-      <TableView layoutX="94.0" layoutY="424.0" prefHeight="122.0" prefWidth="318.0">
+      <Label fx:id="Derniere_conn" layoutX="257.0" layoutY="329.0" prefHeight="18.0" prefWidth="151.0" text="Label" />
+      <TableView fx:id="table" layoutX="76.0" layoutY="436.0" prefHeight="122.0" prefWidth="482.0">
         <columns>
-          <TableColumn prefWidth="100.0" text="C1" />
-          <TableColumn prefWidth="100.0" text="C2" />
+          <TableColumn fx:id="titre" prefWidth="160.0" text="Titre" />
+          <TableColumn fx:id="domaine" prefWidth="160.0" text="Domaine" />
+            <TableColumn fx:id="duree" prefWidth="160.0" text="Durée" />
         </columns>
       </TableView>
-      <Label layoutX="206.0" layoutY="392.0" prefHeight="18.0" prefWidth="222.0" text="Liste de candidatures">
+      <Label layoutX="221.0" layoutY="398.0" prefHeight="18.0" prefWidth="222.0" text="Liste de candidatures">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
