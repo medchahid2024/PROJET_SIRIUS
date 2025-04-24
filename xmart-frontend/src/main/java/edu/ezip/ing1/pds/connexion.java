@@ -6,6 +6,7 @@ import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.commons.Request;
+import edu.ezip.ing1.pds.services.Update;
 import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class connexion {
     private final static String networkConfigFile = "network.yaml";
 
 
-    public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException {
+    public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException, SQLException {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         final stageService stageService = new stageService(networkConfig);
 
@@ -46,6 +48,10 @@ public class connexion {
             etudiant=stageList.get(currentIndex);
        System.out.println(etudiant.getNom());
        System.out.println(etudiant.getPrenom());
+
+
+            Update.update("UPDATE_DATE",etudiant.getId());
+            System.out.println(etudiant.getId());
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));

@@ -51,6 +51,8 @@ public class XMartCityService {
                      //modification d'une demande par l'admin
        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,niveau_etude=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
 
+        UPDATE_DATE("UPDATE etudiant SET date_ajout= CURRENT_TIMESTAMP WHERE id_etudiant = ?"),
+
         //-----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -162,6 +164,9 @@ public class XMartCityService {
                 break;
             case  UPDATE_OFFRE:
                 response=updateOffre(request, connection);
+                break;
+            case  UPDATE_DATE:
+                response=updateDate(request, connection);
                 break;
 
             case SELECT_CONN:
@@ -289,6 +294,19 @@ public class XMartCityService {
         }
         return new Response(request.getRequestId(), "etudiant modifié avec succès");
     }
+    private Response updateDate(Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final int etudiantId = objectMapper.readValue(request.getRequestBody(), Integer.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.UPDATE_DATE.query);
+        stmt.setInt(1, etudiantId);
+
+        stmt.executeUpdate();
+
+
+            return new Response(request.getRequestId(),  objectMapper.writeValueAsString("la date a été modifier avec succès"));
+        }
+
 
 
 private Response InsertCandidature(final Request request, final Connection connection) throws SQLException, IOException {
