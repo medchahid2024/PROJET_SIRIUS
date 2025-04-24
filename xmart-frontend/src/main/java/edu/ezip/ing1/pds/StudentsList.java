@@ -10,8 +10,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,12 +59,22 @@ public TableView<Etudiant> table ;
 
 
         detail.setCellFactory(col -> new TableCell<Etudiant, Integer>() {
-            private final Button btn = new Button("detail");
+            private final Button btn = new Button("Visualiser");
 
             {
                 btn.setOnAction(event -> {
                     Etudiant item = getTableView().getItems().get(getIndex());
                     System.out.println("Afficher les détails de : "+item.getDetail()+"\n" + "\n" + item.getNom()+ "\n" +item.getPrenom());
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonneeEtudiant.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = null;
+                    try {
+                        scene = new Scene(loader.load());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    stage.setScene(scene);
+                    stage.show();
                 });
             }
 
