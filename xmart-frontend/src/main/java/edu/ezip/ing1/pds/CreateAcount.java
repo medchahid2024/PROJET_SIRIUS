@@ -1,6 +1,5 @@
 package edu.ezip.ing1.pds;
 
-import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Etudiant;
 import edu.ezip.ing1.pds.business.dto.Etudiants;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -20,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,7 +49,7 @@ public class CreateAcount {
 
 
     public void connexion(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion.fxml"));
         Stage stage = new Stage();
         Scene scene= new Scene(fxmlLoader.load());
         stage.setScene(scene);
@@ -167,7 +165,7 @@ public class CreateAcount {
             Optional<ButtonType> result = aler.showAndWait();
             if (result.get() == ButtonType.OK) {
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/connexion.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion.fxml"));
                 Stage fenetre = new Stage();
                 Scene scene = new Scene(fxmlLoader.load());
                 fenetre.setScene(scene);
@@ -197,5 +195,15 @@ public class CreateAcount {
             photo.setText("Aucun fichier sélectionné");
         }
 
+    }
+
+    public void connexion2(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+        Stage stage = new Stage();
+        Scene scene= new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 }

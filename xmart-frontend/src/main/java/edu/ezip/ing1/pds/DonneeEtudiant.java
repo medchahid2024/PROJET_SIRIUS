@@ -32,7 +32,10 @@ public class DonneeEtudiant {
         matricule.setText(etudiant.getMatricule());
         Derniere_conn.setText(etudiant.getDate().toString());
 
-        ObservableList <Etudiant> observableList = FXCollections.observableArrayList();
+        Etudiants etudiants = new Etudiants();
+
+
+        ObservableList <Etudiant> observableList = FXCollections.observableArrayList(etudiants.getEtudiants());
         observableList.add(etudiant);
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         domaine.setCellValueFactory(new PropertyValueFactory<>("domaine"));
