@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -146,4 +147,17 @@ public class Offres_stages_admin {
 
     }
 
+    public void home(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Admin.fxml"));
+
+        Scene offre = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(offre);
+
+
+        stage.show();
+
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 }

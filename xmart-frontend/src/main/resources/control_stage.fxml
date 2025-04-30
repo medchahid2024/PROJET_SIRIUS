@@ -37,5 +37,10 @@
       <Label fx:id="nombre" layoutX="328.0" layoutY="136.0" prefHeight="18.0" prefWidth="98.0" style="-fx-text-fill: red;" text="nombre" />
       <Label layoutX="88.0" layoutY="166.0" text="Nombre de candidature pour cette offre" />
       <Label fx:id="Nombrecandidatures" layoutX="328.0" layoutY="166.0" prefHeight="18.0" prefWidth="98.0" style="-fx-text-fill: red;" text="nombre" />
+      <ImageView fitHeight="48.0" fitWidth="50.0" layoutX="525.0" layoutY="721.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/home.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -19,8 +19,8 @@ public class UpdateEtudiantClientRequest extends ClientRequest<Object, String> {
     @Override
     public String readResult(String body) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        final Map<String, Integer> clientIdMap = mapper.readValue(body, Map.class);
-        final String result  = clientIdMap.get("update").toString();
+        final Map<String, String> clientIdMap = mapper.readValue(body, Map.class);
+        final String result  = clientIdMap.get("update");
         return result;
     }
 }

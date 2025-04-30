@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 import edu.ezip.ing1.pds.business.dto.*;
 import org.slf4j.Logger;
@@ -307,7 +308,7 @@ public class XMartCityService {
         stmt.executeUpdate();
 
 
-            return new Response(request.getRequestId(),  objectMapper.writeValueAsString("la date a été modifier avec succès"));
+            return new Response(request.getRequestId(),  objectMapper.writeValueAsString(Map.of("Update","la date a été modifier avec succès")));
         }
 
 

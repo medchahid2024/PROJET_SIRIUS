@@ -9,10 +9,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -194,4 +196,17 @@ public class ControlStage {
         System.out.println(etudiant.getPrenom());
     }
 
+    public void home(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
+
+        Scene offre = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(offre);
+        Principal2 controller = fxmlLoader.getController();
+        controller.setEtudiant(etudiant);
+        stage.show();
+
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 }

@@ -50,6 +50,9 @@ public class DemandeConnexion {
             currentIndex = 0;
             afficherStage(currentIndex);
         }
+        else {
+            nom.setText("Aucune demande");
+        }
     }
     private void afficherStage(int index) {
 

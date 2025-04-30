@@ -149,4 +149,13 @@ public class Principal2 {
         }
 }
 
+    public void profil(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profil.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+//        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+//        currentStage.close();
+    }
 }

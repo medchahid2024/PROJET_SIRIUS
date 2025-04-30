@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="556.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Connexion">
+<AnchorPane prefHeight="570.0" prefWidth="663.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Connexion">
    <children>
-      <ImageView fitHeight="72.0" fitWidth="132.0" layoutX="14.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="72.0" fitWidth="132.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@photo/myUp.jpg" />
          </image>
@@ -27,6 +27,6 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <ToggleButton fx:id="design2" layoutX="14.0" layoutY="525.0" mnemonicParsing="false" onAction="#NouveauDesign" prefHeight="26.0" prefWidth="107.0" text="Ancien design" />
+      <ToggleButton fx:id="design2" layoutX="14.0" layoutY="525.0" mnemonicParsing="false" onAction="#NouveauDesign" prefHeight="26.0" prefWidth="107.0" text="Nouveau design" />
    </children>
 </AnchorPane>
