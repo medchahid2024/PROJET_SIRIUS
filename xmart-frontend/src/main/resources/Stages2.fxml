@@ -16,7 +16,7 @@
             <Image url="@photo/Offres_StageBG.png" />
          </image>
       </ImageView>
-      <Pane fx:id="PA" layoutX="100.0" layoutY="86.0" prefHeight="547.0" prefWidth="472.0" style="-fx-background-color: &quot;7195e1&quot;;">
+      <Pane fx:id="P0" layoutX="100.0" layoutY="86.0" prefHeight="547.0" prefWidth="472.0" style="-fx-background-color: &quot;7195e1&quot;;">
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -56,9 +56,14 @@
             </Label>
             <Button layoutX="64.0" layoutY="489.0" mnemonicParsing="false" onAction="#precedent" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
             <Button layoutX="332.0" layoutY="489.0" mnemonicParsing="false" onAction="#suivant" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
+            <ImageView fx:id="A1" fitHeight="150.0" fitWidth="200.0" layoutX="160.0" layoutY="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@photo/suivant%20(1).png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="PB" layoutX="-505.0" layoutY="86.0" prefHeight="547.0" prefWidth="472.0" style="-fx-background-color: &quot;7195e1&quot;;">
+      <Pane fx:id="P1" layoutX="-472.0" layoutY="86.0" prefHeight="547.0" prefWidth="472.0" style="-fx-background-color: &quot;7195e1&quot;;">
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -109,5 +114,10 @@
       <Button layoutX="394.0" layoutY="37.0" mnemonicParsing="false" onAction="#rechercher" opacity="0.0" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="rechercher" />
       <TextField fx:id="mot" layoutX="169.0" layoutY="37.0" prefHeight="26.0" prefWidth="209.0" promptText="Mots Clés" />
       <Button fx:id="BHome" layoutX="582.0" layoutY="643.0" mnemonicParsing="false" onAction="#BHome" opacity="0.0" prefHeight="61.0" prefWidth="70.0" text="Home" />
+      <ImageView fx:id="A2" fitHeight="150.0" fitWidth="200.0" layoutX="97.0" layoutY="50.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/precedent.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
