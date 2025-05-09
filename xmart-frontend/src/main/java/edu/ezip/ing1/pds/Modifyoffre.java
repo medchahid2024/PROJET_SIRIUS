@@ -7,6 +7,9 @@ import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.Update;
 import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -69,9 +72,18 @@ public class Modifyoffre {
             String niv= niveau.getText();
             String dom = domaine.getText();
 
-Stagee stage = new Stagee(idStagee,tit, des,  dom, durr , niv);
+    Stagee stage = new Stagee(idStagee,tit, des,  dom, durr , niv);
 
             Update.updatestage("UPDATE_OFFRE",stage);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Offres_stages_admin.fxml"));
+            Stage fenetre = new Stage();
+            Scene scene = new Scene(loader.load());
+            fenetre.setScene(scene);
+            fenetre.show();
+
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.close();
 
 
 

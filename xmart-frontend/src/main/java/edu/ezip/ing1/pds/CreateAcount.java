@@ -1,6 +1,5 @@
 package edu.ezip.ing1.pds;
 
-import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Etudiant;
 import edu.ezip.ing1.pds.business.dto.Etudiants;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
@@ -12,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class CreateAcount {
     @FXML
@@ -49,7 +49,7 @@ public class CreateAcount {
 
 
     public void connexion(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion.fxml"));
         Stage stage = new Stage();
         Scene scene= new Scene(fxmlLoader.load());
         stage.setScene(scene);
@@ -162,7 +162,25 @@ public class CreateAcount {
             aler.setTitle("Validé");
             aler.setHeaderText(null);
             aler.setContentText("Nous avons bien reçu votre demande , il sera traiter dans 24h");
-            aler.showAndWait();
+            Optional<ButtonType> result = aler.showAndWait();
+            if (result.get() == ButtonType.OK) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion.fxml"));
+                Stage fenetre = new Stage();
+                Scene scene = new Scene(fxmlLoader.load());
+                fenetre.setScene(scene);
+                fenetre.show();
+
+                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                currentStage.close();
+
+                System.out.println("Demande transmis");
+
+            }
+            else{
+                System.out.println("Demande refusée");
+            }
+
         }
 
 
@@ -177,5 +195,15 @@ public class CreateAcount {
             photo.setText("Aucun fichier sélectionné");
         }
 
+    }
+
+    public void connexion2(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
+        Stage stage = new Stage();
+        Scene scene= new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 }

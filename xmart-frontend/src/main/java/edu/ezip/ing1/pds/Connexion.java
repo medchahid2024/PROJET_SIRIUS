@@ -2,36 +2,46 @@ package edu.ezip.ing1.pds;
 
 import edu.ezip.ing1.pds.business.dto.Etudiant;
 import edu.ezip.ing1.pds.business.dto.Etudiants;
-import edu.ezip.ing1.pds.business.dto.Stagee;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
-import edu.ezip.ing1.pds.commons.Request;
+import edu.ezip.ing1.pds.services.Update;
 import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class connexion {
+public class Connexion {
+    @FXML
     public PasswordField motdepasse;
+    @FXML
     public Button seConnecter;
+    @FXML
     public TextField email;
+    @FXML
+    public ToggleButton design;
+
+    @FXML
+    public ToggleButton design2;
+
     private List<Etudiant> stageList = new ArrayList<>();
     private int currentIndex = 0;
     private final static String networkConfigFile = "network.yaml";
+    @FXML
 
 
-    public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException {
+
+    public void seConnecter(ActionEvent actionEvent) throws IOException, InterruptedException, SQLException {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         final stageService stageService = new stageService(networkConfig);
 
@@ -44,17 +54,22 @@ public class connexion {
         if (etudiants != null && !etudiants.getEtudiants().isEmpty()) {
             stageList = new ArrayList<>(etudiants.getEtudiants());
             etudiant=stageList.get(currentIndex);
-System.out.println(etudiant.getNom());
-System.out.println(etudiant.getPrenom());
-            System.out.println(etudiant.getNom());
-            System.out.println(etudiant.getPrenom());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
+       System.out.println(etudiant.getNom());
+       System.out.println(etudiant.getPrenom());
 
+
+            Update.update("UPDATE_DATE",etudiant.getId());
+            System.out.println(etudiant.getId());
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
+
             Principal2 controller = loader.getController();
             controller.setEtudiant(etudiant);
+
             stage.show();
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             currentStage.close();
@@ -90,7 +105,11 @@ System.out.println(etudiant.getPrenom());
 
     }
     public void CreateAcount(MouseEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccount2.fxml"));
+        String des1 = null;
+        des1 = "/CreateAcount.fxml";
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(des1));
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
@@ -98,4 +117,43 @@ System.out.println(etudiant.getPrenom());
         Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         currentStage.close();
     }
+
+    public void AncienDesign(ActionEvent actionEvent) throws IOException {
+
+
+        String fenetre = null;
+        fenetre = "/Connexion.fxml";
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fenetre));
+        Parent root = loader.load();
+        Stage stage = (Stage) design.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void NouveauDesign(ActionEvent actionEvent) throws IOException {
+        String fenetre = null;
+            fenetre = "/Connexion2.fxml";
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fenetre));
+        Parent root = loader.load();
+        Stage stage = (Stage) design2.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void CreateAcount2(MouseEvent mouseEvent) throws IOException {
+        String des1 = null;
+        des1 = "/CreateAccount2.fxml";
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(des1));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 }
+

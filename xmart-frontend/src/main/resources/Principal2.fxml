@@ -25,6 +25,7 @@
             </ImageView>
             <Button fx:id="Deconnexion" layoutY="674.0" mnemonicParsing="false" onAction="#Deconnecter" opacity="0.0" prefHeight="26.0" prefWidth="206.0" text="Button" />
             <Label fx:id="fullName" layoutX="4.0" layoutY="176.0" prefHeight="72.0" prefWidth="206.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20px;" text="Label" />
+            <Label layoutX="4.0" layoutY="335.0" onMouseClicked="#profil" opacity="0.0" prefHeight="34.0" prefWidth="206.0" style="-fx-text-fill: white;" text="Label" />
          </children>
       </Pane>
       <Button fx:id="BStages" layoutX="266.0" layoutY="33.0" mnemonicParsing="false" onAction="#BStages" opacity="0.0" prefHeight="172.0" prefWidth="146.0" text="Button" />

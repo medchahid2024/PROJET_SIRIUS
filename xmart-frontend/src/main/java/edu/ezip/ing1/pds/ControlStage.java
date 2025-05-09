@@ -1,9 +1,6 @@
 package edu.ezip.ing1.pds;
 
-import edu.ezip.ing1.pds.business.dto.Candidature;
-import edu.ezip.ing1.pds.business.dto.Candidatures;
-import edu.ezip.ing1.pds.business.dto.Stagee;
-import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.business.dto.*;
 import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 
@@ -21,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -93,6 +91,7 @@ public class ControlStage {
         currentStage.close();
     }
 
+    private Etudiant etudiant;
 
 
     private final static String networkConfigFile = "network.yaml";
@@ -301,17 +300,17 @@ allerGauche.play();
     public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
         Stagee stageSelectionne = stageList.get(currentIndex); // Récupérer le stage affiché
         int idOffre = stageSelectionne.getId();
-   Candidater candidater= new Candidater();
-    candidater.setId(idOffre);
-        Candidater candidate= new Candidater();
-        candidate.setId(idOffre);
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 
         Scene offre = new Scene(fxmlLoader.load(), 700, 700);
         stage.setScene(offre);
         stage.setTitle("Candidature");
-        Candidater candidatureController = fxmlLoader.getController();
+       Candidater candidatureController = fxmlLoader.getController();
+        candidatureController.setId(idOffre);
+        candidatureController.setStudent(this.etudiant);
         candidatureController.setId(idOffre);
 
         stage.show();
@@ -356,6 +355,23 @@ allerGauche.play();
             }
         }
     }
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+        System.out.println(etudiant.getNom() );
+        System.out.println(etudiant.getPrenom());
+    }
 
+    public void home(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
 
+        Scene offre = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(offre);
+        Principal2 controller = fxmlLoader.getController();
+        controller.setEtudiant(etudiant);
+        stage.show();
+
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 }

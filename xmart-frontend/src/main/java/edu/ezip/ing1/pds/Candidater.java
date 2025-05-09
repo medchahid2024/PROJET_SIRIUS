@@ -1,6 +1,7 @@
 package edu.ezip.ing1.pds;
 
 import edu.ezip.ing1.pds.business.dto.Candidature;
+import edu.ezip.ing1.pds.business.dto.Etudiant;
 import edu.ezip.ing1.pds.services.InsertCandidature;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -30,10 +31,12 @@ public class Candidater  {
     public Button valider;
     FileChooser fileChooser = new FileChooser();
     private int id;
-
+    private Etudiant etudiant;
+    private int idetudiant;
 
     public Candidater() throws InterruptedException {
     }
+
 
     public void autres(MouseEvent actionEvent) {
         File file = fileChooser.showOpenDialog(null);
@@ -94,7 +97,8 @@ public class Candidater  {
 
 
         } else {
-            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id);
+            Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id,idetudiant);
+
 
 
             System.out.println(" l'offre sélectionnée : " + id);
@@ -116,5 +120,13 @@ public class Candidater  {
         System.out.println("ID de l'offre sélectionnée : " + id);
         this.id = id;
     }
+public void setStudent ( Etudiant et) {
+        nom.setText(et.getNom());
+        prenom.setText(et.getPrenom());
+        System.out.println("L'ID de l'etudiant"+et.getId());
+        idetudiant = et.getId();
+
+
+}
 
 }

@@ -1,6 +1,7 @@
 package edu.ezip.ing1.pds.business.dto;
 
 import java.lang.reflect.Field;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +16,51 @@ public class Etudiant {
     private String photo;
     private int id;
     private boolean accepte;
+     private int detail;
+     private Date date;
+     private String titre;
+     private String duree;
+     private String domaine;
+
+
 
 
     public Etudiant() {
+
+    }
+
+    public String getTitre(){
+       return titre;
+    }
+    public String getDuree(){
+        return duree;
+    }
+    public String getDomaine(){
+        return domaine;
+    }
+    public void setTitre(String titre){
+       this.titre = titre;
+    }
+    public void setDuree(String duree){
+        this.duree = duree;
+    }
+    public void setDomaine(String domaine){
+        this.domaine = domaine;
     }
     public Etudiant(String email, String mot_de_passe) {
         this.email = email;
         this.mot_de_passe = mot_de_passe;
+    }
+
+    public Etudiant(String nom, String prenom, int id) {
+       this.nom = nom;
+       this.prenom = prenom;
+       this.id = id;
+    }
+    public Etudiant(String nom, String prenom, String matricule) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.matricule = matricule;
     }
 
     public Etudiant(String email) {
@@ -60,8 +99,16 @@ public class Etudiant {
         this.accepte = accepte;
     }
 
+    public Etudiant(int i) {
+        this.id = i;
+    }
+
+
     public int getId() {
         return id;
+    }
+    public Date getDate() {
+        return date;
     }
 
     public String getNom() {
@@ -92,8 +139,18 @@ public class Etudiant {
         return accepte;
     }
 
+    public int getDetail() {
+        return detail;
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    public void setdetail(int detail) {
+        this.detail=detail;
     }
 
     public void setNom(String nom) {

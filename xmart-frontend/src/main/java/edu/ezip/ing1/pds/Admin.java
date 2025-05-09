@@ -1,5 +1,6 @@
 package edu.ezip.ing1.pds;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -21,13 +22,22 @@ public class Admin {
 
     public void DemandeConnexion(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/DemandeConnexion.fxml"));
-        Stage stage1 = new Stage();
+        Stage stage = new Stage();
 
-        Scene demande1 = new Scene(fxmlLoader.load());
-        stage1.setScene(demande1);
-        stage1.setTitle("Mes demandes");
-        stage1.show();
+        Scene demande = new Scene(fxmlLoader.load());
+        stage.setScene(demande);
+        stage.setTitle("Mes demandes");
+        stage.show();
 
+    }
 
+    public void liste(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/StudentsList.fxml"));
+        Stage stage = new Stage();
+
+        Scene demande = new Scene(fxmlLoader.load());
+        stage.setScene(demande);
+        stage.setTitle("Ma liste");
+        stage.show();
     }
 }

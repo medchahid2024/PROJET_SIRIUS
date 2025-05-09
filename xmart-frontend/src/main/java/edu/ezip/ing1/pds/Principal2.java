@@ -47,6 +47,9 @@ public class Principal2 {
     @FXML
     private Button BStages;
 
+    private Etudiant etudiant;
+
+
 
 
     @FXML
@@ -67,10 +70,18 @@ public class Principal2 {
 
     @FXML
     void BStages(ActionEvent event) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Stages2.fxml"));
+
+
+
+
+
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
+        ControlStage controller = loader.getController();
+        controller.setEtudiant(this.etudiant);
         stage.show();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
@@ -129,8 +140,22 @@ public class Principal2 {
 
     public void setEtudiant(Etudiant etudiant) {
         if (etudiant != null) {
-            fullName.setText(etudiant.getNom() + " " + etudiant.getPrenom());
+            this.etudiant = etudiant;
 
+            fullName.setText(etudiant.getNom() + " " + etudiant.getPrenom());
+            System.out.println(etudiant.getNom() );
+            System.out.println(etudiant.getPrenom());
 
         }
-}}
+}
+
+    public void profil(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profil.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+//        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+//        currentStage.close();
+    }
+}

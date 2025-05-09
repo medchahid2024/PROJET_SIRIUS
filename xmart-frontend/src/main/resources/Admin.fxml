@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -64,7 +65,7 @@
           <children>
                   <ImageView fitHeight="131.0" fitWidth="242.0" layoutX="11.0" layoutY="100.0" onMouseClicked="#DemandeConnexion" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@photo/www.conches-sur-gondoire.fr_capture-15.jpg" />
+                        <Image url="@photo/Demande.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="74.0" fitWidth="157.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
@@ -77,6 +78,7 @@
                         <Image url="@photo/images.jpeg" />
                      </image>
                   </ImageView>
+                  <Button layoutX="20.0" layoutY="408.0" mnemonicParsing="false" onAction="#liste" prefHeight="46.0" prefWidth="174.0" text="Liste des etudiants" />
           </children>
         </AnchorPane>
         <ScrollPane>

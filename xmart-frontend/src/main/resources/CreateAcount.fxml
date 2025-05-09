@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="691.0" prefWidth="603.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.CreateAcount">
    <children>
@@ -25,7 +26,10 @@
       <TextField fx:id="prenom" layoutX="265.0" layoutY="289.0" prefHeight="26.0" prefWidth="186.0" />
       <TextField fx:id="email" layoutX="265.0" layoutY="346.0" prefHeight="26.0" prefWidth="186.0" />
       <Button fx:id="seConnecter" layoutX="203.0" layoutY="622.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="S'inscrire" />
-      <Label layoutX="451.0" layoutY="631.0" onMouseClicked="#connexion" prefHeight="18.0" prefWidth="104.0" style="-fx-text-fill: blue;" text="j'ai déja un compte" />
+      <Label layoutX="451.0" layoutY="631.0" onMouseClicked="#connexion" prefHeight="22.0" prefWidth="142.0" style="-fx-text-fill: blue;" text="j'ai déja un compte">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Label layoutX="45.0" layoutY="166.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Numero étudiant" />
       <TextField fx:id="Matricule" layoutX="265.0" layoutY="166.0" prefHeight="26.0" prefWidth="186.0" />
       <Label layoutX="78.0" layoutY="538.0" prefHeight="26.0" prefWidth="186.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 15px;" text="Inserer votre photo" />

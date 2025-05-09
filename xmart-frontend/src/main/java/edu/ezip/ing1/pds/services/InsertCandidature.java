@@ -75,6 +75,8 @@ public class InsertCandidature {
                 birthdate++, request, null, requestBytes);
         etudiantsClientRequest.join();
     }
+
+
     public static void sendValue(String requestOrder, Object object) throws IOException, SQLException, InterruptedException {
 
         final NetworkConfig networkConfig =  ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
