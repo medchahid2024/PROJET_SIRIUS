@@ -16,11 +16,13 @@ import edu.ezip.ing1.pds.requests.SelectAllStagesClientRequest;
 //import edu.ezip.ing1.pds.requests.SelectAllStudentsClientRequest;
 import edu.ezip.ing1.pds.requests.SelectCountCandidatureClientRequest;
 import edu.ezip.ing1.pds.requests.SelectEtudiantClientRequest;
+import edu.ezip.ing1.pds.requests.UpdateStageClientRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.UUID;
@@ -216,6 +218,35 @@ public class stageService {
             joinedClientRequest.join();
             logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
             return (Candidatures) joinedClientRequest.getResult();
+        }
+        else {
+            logger.error("No student found");
+            return null;
+        }
+    }
+    public Stagess SelectEtudiantCandidature (String requestOrder, Object object) throws InterruptedException, IOException {
+        int birthdate = 0;
+        final Deque<ClientRequest> clientRequests = new ArrayDeque<ClientRequest>();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(requestOrder);
+        request.setRequestContent(objectMapper.writeValueAsString(object));
+
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte []  requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+        LoggingUtils.logDataMultiLine(logger, Level.TRACE, requestBytes);
+        final SelectAllStagesClientRequest clientRequest = new SelectAllStagesClientRequest(
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        clientRequests.push(clientRequest);
+
+        if(!clientRequests.isEmpty()) {
+            final ClientRequest joinedClientRequest = clientRequests.pop();
+            joinedClientRequest.join();
+            logger.debug("Thread {} complete.", joinedClientRequest.getThreadName());
+            return (Stagess) joinedClientRequest.getResult();
         }
         else {
             logger.error("No student found");

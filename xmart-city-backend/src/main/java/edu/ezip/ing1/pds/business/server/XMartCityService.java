@@ -69,6 +69,8 @@ public class XMartCityService {
 
                 " WHERE e.accepte = TRUE GROUP BY id, e.nom, e.prenom, date , e.matricule ,e.photo,titre,duree,domaine"),
 
+        SELECT_CANDIDATURES_ETUDIANT("SELECT o.titre, o.domaine, o.duree, c.id_etudiant FROM offres_stages o JOIN candidature c ON o.id_offre=c.id_offre WHERE c.id_etudiant = ?"),
+
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
 
@@ -156,6 +158,10 @@ public class XMartCityService {
                 break;
             case SELECT_CANDIDATURE:
                 response=SelectCandidature(request, connection);
+
+                break;
+            case SELECT_CANDIDATURES_ETUDIANT:
+                response=SelectCandidatureEtudiant(request, connection);
 
                 break;
             case DELETE_OFFRE:
@@ -573,6 +579,32 @@ private Response InsertParticipation(final Request request, final Connection con
                     stagee.setDuree(res.getString(4));
                     stagess.add(stagee);
                     System.out.println("DEBUG - Requête envoyée : " + rechercher);
+
+
+                }
+                res.close();
+                stmt.close();
+                return new Response(request.getRequestId(), objectMapper.writeValueAsString(stagess));
+            }
+        }
+    }
+    private Response SelectCandidatureEtudiant(final Request request, final Connection connection) throws SQLException, IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        final Stagee stageeInput = objectMapper.readValue(request.getRequestBody(), Stagee.class);
+        final int etudiantId = stageeInput.getId();
+
+        try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CANDIDATURES_ETUDIANT.query)) {
+            stmt.setInt(1,etudiantId);
+
+            try (ResultSet res = stmt.executeQuery()) {
+         Stagess stagess = new Stagess();
+                while (res.next()) {
+                    Stagee stagee = new Stagee();
+                    stagee.setTitre(res.getString("titre"));
+                    stagee.setDomaine(res.getString("domaine"));
+                    stagee.setDuree(res.getString("duree"));
+                    stagess.add(stagee);
 
 
                 }

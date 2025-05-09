@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +67,8 @@ public TableView<Etudiant> table ;
 
                     System.out.println("Afficher les détails de : "+item.getDetail()+"\n" + "\n" + item.getNom()+ "\n" +item.getPrenom());
                     System.out.println("Afficher les candidatures  : "+item.getTitre()+"\n" + "\n" + item.getDuree()+ "\n" +item.getDomaine()+"\n" +item.getDomaine());
+                    System.out.println(" taille de table: "+table.getItems().size());
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonneeEtudiant.fxml"));
                     Stage stage = new Stage();
                     Scene scene = null;
@@ -76,7 +79,15 @@ public TableView<Etudiant> table ;
                     }
                     stage.setScene(scene);
                     DonneeEtudiant controller = loader.getController();
-                    controller.setEtudiant(item);
+                    try {
+                        controller.setEtudiant(item);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     stage.show();
                 });
             }
