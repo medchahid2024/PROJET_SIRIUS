@@ -2,18 +2,25 @@ package edu.ezip.ing1.pds;
 
 import edu.ezip.ing1.pds.business.dto.Candidature;
 import edu.ezip.ing1.pds.business.dto.Etudiant;
+import edu.ezip.ing1.pds.business.dto.Stagee;
+import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.client.commons.ConfigLoader;
+import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.InsertCandidature;
+import edu.ezip.ing1.pds.services.stageService;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class Candidater  {
 
@@ -33,6 +40,8 @@ public class Candidater  {
     private int id;
     private Etudiant etudiant;
     private int idetudiant;
+    private final static String networkConfigFile = "network.yaml";
+
 
     public Candidater() throws InterruptedException {
     }
@@ -78,6 +87,11 @@ public class Candidater  {
         String lett1 = lett.getText();
         String autre1 = autre.getText();
 
+        Stagee stagee = new Stagee(idetudiant);
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        final stageService stageService = new stageService(networkConfig);
+        Stagess stagess = stageService.SelectEtudiantCandidature("SELECT_CANDIDATURES_ETUDIANT", stagee);
+
         // Vérification que tous les champs sont remplis correctement
         if (nom1 == null || nom1.isEmpty() || prenom1 == null || prenom1.isEmpty() || email1 == null || email1.isEmpty()
                 || adresse1 == null || adresse1.isEmpty() || lab1 == null || lab1.isEmpty() || lab1.equals("Aucun fichier sélectionné")
@@ -96,7 +110,30 @@ public class Candidater  {
                 alert3.showAndWait();
 
 
-        } else {
+        }
+
+
+
+            else if (!(stagess.getStages().isEmpty())){
+                Alert alert8 = new Alert(Alert.AlertType.ERROR);
+
+            alert8.setTitle("Erreur");
+            alert8.setHeaderText(null);
+            alert8.setContentText("Vous avez déja postulé a cette offre");
+             alert8.showAndWait();
+//            if (result.get() == ButtonType.OK) {
+//
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
+//                Stage stage = new Stage();
+//                Scene scene = new Scene(fxmlLoader.load());
+//                stage.setScene(scene);
+//                stage.show();
+//                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+//                currentStage.close();
+//
+//                                                 }
+        }
+            else {
             Candidature c = new Candidature(nom1, prenom1, email1, adresse1, lab1, lett1, autre1, this.id,idetudiant);
 
 
