@@ -32,10 +32,11 @@ public class Candidater  {
     public Label autre;
 
     public TextField adresse;
-    public TextField nom;
-    public TextField email;
-    public TextField prenom;
+
     public Button valider;
+    public Label nom;
+    public Label prenom;
+    public Label email;
     FileChooser fileChooser = new FileChooser();
     private int id;
     private Etudiant etudiant;
@@ -123,7 +124,7 @@ public class Candidater  {
             Optional<ButtonType> result1 = alert8.showAndWait();
             if (result1.get() == ButtonType.OK) {
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Stages2.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);
@@ -160,7 +161,7 @@ public class Candidater  {
             Optional<ButtonType> result = aler.showAndWait();
             if (result.get() == ButtonType.OK) {
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Stages2.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);
@@ -180,10 +181,23 @@ public class Candidater  {
 public void setStudent ( Etudiant et) {
         nom.setText(et.getNom());
         prenom.setText(et.getPrenom());
+        email.setText(et.getEmail());
         System.out.println("L'ID de l'etudiant"+et.getId());
         idetudiant = et.getId();
             this.etudiant = et;
 
 }
 
+    public void home(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Stages2.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        ControlStage controller = fxmlLoader.getController();
+        controller.setEtudiant(this.etudiant);
+        stage.show();
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+        currentStage.close();
+    }
 }

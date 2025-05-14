@@ -16,7 +16,7 @@
       </ImageView>
       <ImageView fx:id="Bar" fitHeight="590.0" fitWidth="160.0" layoutX="1080.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@photo/Calendar%20Bar.png" />
+            <Image url="@photo/Calendar Bar.png" />
          </image>
       </ImageView>
       <Label fx:id="Semaine" layoutX="489.0" layoutY="114.0" prefHeight="17.0" prefWidth="131.0" text="S99 - 99/99/9999" textFill="WHITE">

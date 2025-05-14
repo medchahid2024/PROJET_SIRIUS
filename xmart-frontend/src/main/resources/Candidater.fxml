@@ -6,8 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="628.0" prefWidth="693.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Candidater">
+<AnchorPane prefHeight="683.0" prefWidth="633.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Candidater">
    <children>
       <Label layoutX="109.0" layoutY="112.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre nom" />
       <Label layoutX="109.0" layoutY="172.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre prenom" />
@@ -19,10 +20,7 @@
       <Button fx:id="motivation" layoutX="347.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#lettre" text="Joindre ma lettre de motivation" />
       <Label layoutX="146.0" layoutY="451.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Autre document" />
       <Button fx:id="autres" layoutX="347.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#autres" text="Autres" />
-      <TextField fx:id="nom" layoutX="247.0" layoutY="108.0" />
       <TextField fx:id="adresse" layoutX="247.0" layoutY="277.0" />
-      <TextField fx:id="email" layoutX="247.0" layoutY="224.0" />
-      <TextField fx:id="prenom" layoutX="247.0" layoutY="168.0" />
       <Label fx:id="lab" layoutX="498.0" layoutY="346.0" prefHeight="18.0" prefWidth="86.0" />
       <Button fx:id="valider" layoutX="213.0" layoutY="544.0" mnemonicParsing="false" onAction="#valider" prefHeight="38.0" prefWidth="182.0" text="Valider" />
       <Label fx:id="lett" layoutX="548.0" layoutY="402.0" prefHeight="18.0" prefWidth="86.0" />
@@ -30,6 +28,26 @@
       <ImageView fitHeight="70.0" fitWidth="150.0" layoutX="7.0" layoutY="7.0">
          <image>
             <Image url="@photo/myUp.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nom" layoutX="247.0" layoutY="106.0" prefHeight="26.0" prefWidth="169.0" text="Label">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenom" layoutX="247.0" layoutY="166.0" prefHeight="26.0" prefWidth="136.0" text="Label">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="email" layoutX="247.0" layoutY="225.0" prefHeight="26.0" prefWidth="136.0" text="Label">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="48.0" fitWidth="50.0" layoutX="559.0" layoutY="621.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/home.png" />
          </image>
       </ImageView>
    </children>

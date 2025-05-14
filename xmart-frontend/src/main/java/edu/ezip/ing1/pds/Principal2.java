@@ -141,6 +141,7 @@ public class Principal2 {
             System.out.println(etudiant.getNom() );
             System.out.println(etudiant.getPrenom());
 
+
         }
 }
 
