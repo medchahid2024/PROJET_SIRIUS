@@ -11,17 +11,21 @@ public class Evenement {
     private String domaine;
     private String heure;
     private int id;
+    private String adresse;
+    private String jour;
 
 public Evenement(){
 
 }
 
 
-    public Evenement(String titre, String description, String domaine, String heure) {
+    public Evenement(String titre, String description, String domaine, String heure, String adresse, String jour) {
         this.titre=titre;
         this.description=description;
         this.domaine=domaine;
         this.heure=heure;
+        this.adresse=adresse;
+        this.jour=jour;
 
     }
     public String getTitre() {
@@ -44,6 +48,14 @@ public Evenement(){
         return id;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+     public String getJour() {
+        return jour;
+    }
+
     public void setDescription(String description) {
         this.description=description;
     }
@@ -64,10 +76,16 @@ public Evenement(){
     public void setTitre(String titre) {
         this.titre = titre; }
 
+    public void setAdresse(String adresse) {
+        this.adresse = adresse; }
+
+    public void setJour(String jour) {
+        this.jour = jour; }
+
 
     public final Evenement build(final ResultSet resultSet)
             throws SQLException, NoSuchFieldException, IllegalAccessException {
-        setFieldsFromResulset(resultSet, "titre", "description","heure","domaine");
+        setFieldsFromResulset(resultSet, "titre", "description","heure","domaine","adresse","jour");
         return this;
     }
 

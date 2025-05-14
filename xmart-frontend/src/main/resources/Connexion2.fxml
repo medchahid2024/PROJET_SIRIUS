@@ -20,6 +20,6 @@
       <Button fx:id="seConnecter" layoutX="259.0" layoutY="457.0" mnemonicParsing="false" onAction="#seConnecter" opacity="0.0" prefHeight="26.0" prefWidth="150.0" text="Button" />
       <PasswordField fx:id="motdepasse" layoutX="231.0" layoutY="400.0" prefHeight="26.0" prefWidth="208.0" />
       <Label layoutX="245.0" layoutY="490.0" onMouseClicked="#CreateAcount2" opacity="0.0" prefHeight="18.0" prefWidth="182.0" text="Label" />
-      <ToggleButton fx:id="design" layoutX="542.0" layoutY="671.0" mnemonicParsing="false" onAction="#AncienDesign" prefHeight="26.0" prefWidth="107.0" text="Ancien design" />
+      <ToggleButton fx:id="design" layoutX="542.0" layoutY="671.0" mnemonicParsing="false" onAction="#AncienDesign" prefHeight="26.0" prefWidth="107.0" text="Ancien design" visible="false" />
    </children>
 </AnchorPane>

@@ -54,15 +54,16 @@ public class Principal2 {
 
     @FXML
     void BEven(ActionEvent event) throws IOException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, InterruptedException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier2.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         // Récupérer le contrôleur de la vue Calendrier
-        CalendrierController calendrierController = loader.getController();
+        Calendrier2Controller calendrier2Controller = loader.getController();
 
         // Appeler la méthode InitialisationCalendrier() sur l'instance du contrôleur
-        calendrierController.InitialisationCalendrier();
+        calendrier2Controller.InitialisationCalendrier();
+        calendrier2Controller.setEtudiant(this.etudiant);
         stage.show();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
@@ -70,13 +71,7 @@ public class Principal2 {
 
     @FXML
     void BStages(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/control_stage.fxml"));
-
-
-
-
-
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Stages2.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);

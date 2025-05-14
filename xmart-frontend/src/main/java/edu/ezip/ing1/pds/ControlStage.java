@@ -5,6 +5,8 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 
 import edu.ezip.ing1.pds.services.stageService;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +33,10 @@ public class ControlStage {
     public TextField mot;
     public Label nombre;
     public Label Nombrecandidatures;
+    public Label nombre1;
+    public Label Nombrecandidatures1;
     public Label Niveau;
+    public Label Niveau1;
 
     @FXML
     private Label titre;
@@ -38,10 +46,41 @@ public class ControlStage {
     private Label description;
     @FXML
     private Label duree;
+    
+    
     @FXML
     private Button btnSuivant;
     @FXML
     private Button btnPrecedent;
+    @FXML
+    private Button BHome;
+
+    @FXML
+    private ImageView A1;
+
+    @FXML
+    private ImageView A2;
+
+    @FXML
+    private Pane P0;
+
+    private TranslateTransition t0 = new TranslateTransition();
+    
+    
+
+    @FXML
+    private Pane P1;
+
+    @FXML
+    void BHome(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 
     private Etudiant etudiant;
 
@@ -113,19 +152,136 @@ public class ControlStage {
     }
 
     @FXML
-    public void suivant() throws IOException, InterruptedException {
-        if (currentIndex < stageList.size() - 1) {
-            currentIndex++;
-            afficherStage(currentIndex);
-        }
+public void suivant() throws IOException, InterruptedException {
+    if (currentIndex < stageList.size() - 1) {
+        currentIndex++;
+        System.out.println("currentIndex =" + currentIndex);
+    } else {
+        currentIndex = 0;
+        System.out.println("currentIndex =" + currentIndex);
     }
+
+    
+TranslateTransition allerDroite = new TranslateTransition(Duration.seconds(0.5), P0);
+allerDroite.setByX(572);
+
+allerDroite.setOnFinished(event -> {
+    
+    P0.setTranslateX(0); 
+    P0.setLayoutX(-472);    
+
+    
+    TranslateTransition retourCentre = new TranslateTransition(Duration.seconds(0.5), P0);
+    retourCentre.setByX(572); 
+
+    retourCentre.setOnFinished(e -> {
+        
+        P0.setTranslateX(0);
+        P0.setLayoutX(100);
+    });
+    
+    
+        Stagee stage = stageList.get(currentIndex);
+        int idStage = stage.getId();
+        Candidatures candidatures;
+        try {
+            candidatures = stageService.selectCountCandidature("SELECT_CANDIDATURE", idStage);
+            int idCandidature = candidatures.getCandidatures().iterator().next().getId();
+        
+        Nombrecandidatures.setText(String.valueOf(idCandidature));
+        nombre.setText(String.valueOf(stageList.size()));
+        titre.setText(stage.getTitre());
+        domaine.setText(stage.getDomaine());
+        description.setText(stage.getDescription());
+        duree.setText(stage.getDuree());
+        Niveau.setText(stage.getNiveau());
+        
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
+        
+
+
+    retourCentre.play();
+});
+
+
+allerDroite.play();
+
+    
+        
+    
+}
+
 
     @FXML
     public void precedent() throws IOException, InterruptedException {
+
         if (currentIndex > 0) {
             currentIndex--;
-            afficherStage(currentIndex);
+            System.out.println("currentIndex =" + currentIndex);
+        } else {
+            currentIndex = stageList.size() - 1;
+            System.out.println("currentIndex =" + currentIndex);
         }
+
+        
+    
+TranslateTransition allerGauche = new TranslateTransition(Duration.seconds(0.5), P0);
+allerGauche.setByX(-572); 
+
+allerGauche.setOnFinished(event -> {
+    
+    P0.setTranslateX(0);    
+    P0.setLayoutX(672);
+
+   
+    TranslateTransition retourCentre = new TranslateTransition(Duration.seconds(0.5), P0);
+    retourCentre.setByX(-572); // 100 - (-472)
+
+    retourCentre.setOnFinished(e -> {
+       
+        P0.setTranslateX(0);
+        P0.setLayoutX(100);
+    });
+    
+    
+        Stagee stage = stageList.get(currentIndex);
+        int idStage = stage.getId();
+        Candidatures candidatures;
+        try {
+            candidatures = stageService.selectCountCandidature("SELECT_CANDIDATURE", idStage);
+            int idCandidature = candidatures.getCandidatures().iterator().next().getId();
+        
+        Nombrecandidatures.setText(String.valueOf(idCandidature));
+        nombre.setText(String.valueOf(stageList.size()));
+        titre.setText(stage.getTitre());
+        domaine.setText(stage.getDomaine());
+        description.setText(stage.getDescription());
+        duree.setText(stage.getDuree());
+        Niveau.setText(stage.getNiveau());
+        
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
+        
+
+
+    retourCentre.play();
+});
+
+// Lancer l'animation
+allerGauche.play();
     }
 
     public void postuler(ActionEvent actionEvent) throws IOException, InterruptedException {
