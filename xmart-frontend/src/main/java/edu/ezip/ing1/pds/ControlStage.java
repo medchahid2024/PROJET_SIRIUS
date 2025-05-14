@@ -38,8 +38,6 @@ public class ControlStage {
     public Label Niveau;
     public Label Niveau1;
 
-    private int currentPannel = 0;
-
     @FXML
     private Label titre;
     @FXML
@@ -48,14 +46,7 @@ public class ControlStage {
     private Label description;
     @FXML
     private Label duree;
-    @FXML
-    private Label titre1;
-    @FXML
-    private Label domaine1;
-    @FXML
-    private Label description1;
-    @FXML
-    private Label duree1;
+    
     
     @FXML
     private Button btnSuivant;

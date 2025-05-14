@@ -54,8 +54,6 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <Button layoutX="64.0" layoutY="489.0" mnemonicParsing="false" onAction="#precedent" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
-            <Button layoutX="332.0" layoutY="489.0" mnemonicParsing="false" onAction="#suivant" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
             <ImageView fx:id="A1" fitHeight="150.0" fitWidth="200.0" layoutX="160.0" layoutY="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@photo/suivant%20(1).png" />
@@ -63,48 +61,18 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="P1" layoutX="-472.0" layoutY="86.0" prefHeight="547.0" prefWidth="472.0" style="-fx-background-color: &quot;7195e1&quot;;">
-         <children>
-            <ImageView pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@photo/Stage_Pannel.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="nombre1" layoutX="249.0" layoutY="30.0" text="00" textFill="#fafafa">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="Nombrecandidatures1" layoutX="432.0" layoutY="57.0" text="00" textFill="#fafafa">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="titre1" layoutX="20.0" layoutY="93.0" text="Titre" textFill="#fafafa">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="domaine1" layoutX="23.0" layoutY="130.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="Domaine" textFill="WHITE">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="duree1" layoutX="23.0" layoutY="144.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="Durée" textFill="WHITE">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="description1" layoutX="24.0" layoutY="175.0" prefHeight="278.0" prefWidth="398.0" text="Description" textFill="WHITE" />
-            <Label fx:id="Niveau1" layoutX="23.0" layoutY="158.0" prefHeight="18.0" prefWidth="46.0" style="-fx-font-weight: bold;" text="Niveau" textFill="WHITE">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
-            <Button layoutX="64.0" layoutY="489.0" mnemonicParsing="false" onAction="#precedent" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
-            <Button layoutX="332.0" layoutY="489.0" mnemonicParsing="false" onAction="#suivant" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
-         </children>
-      </Pane>
+      <ImageView layoutX="28.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@photo/Arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="572.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/Arrow.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="572.0" layoutY="295.0" mnemonicParsing="false" onAction="#suivant" opacity="0.0" prefHeight="61.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
+      <Button layoutX="25.0" layoutY="299.0" mnemonicParsing="false" onAction="#precedent" opacity="0.0" prefHeight="61.0" prefWidth="75.0" rotate="180.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
       <ImageView layoutX="283.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@photo/Postuler.png" />

@@ -459,6 +459,8 @@ private Response InsertParticipation(final Request request, final Connection con
             evenement.setDescription(res.getString(3));
             evenement.setDomaine(res.getString(4));
             evenement.setHeure(res.getString(5));
+            evenement.setAdresse(res.getString(6));
+            evenement.setJour(res.getString(7));
             evenements.add(evenement);
         }
 

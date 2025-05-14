@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Calendrier2Controller">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/Calendar.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Bar" fitHeight="590.0" fitWidth="160.0" layoutX="1080.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@photo/Calendar%20Bar.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Semaine" layoutX="489.0" layoutY="114.0" prefHeight="17.0" prefWidth="131.0" text="S99 - 99/99/9999" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Adresse" layoutX="1109.0" layoutY="179.0" prefHeight="41.0" prefWidth="119.0" text="71 Rue Saint Simon, Crétel" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true" />
+      <Label fx:id="Instruction" alignment="CENTER" layoutX="1083.0" layoutY="258.0" prefHeight="206.0" prefWidth="151.0" text="SURVOLEZ UN ÉVÉNEMENT POUR AFFICHER LES DÉTAILS" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="Heure" layoutX="1120.0" layoutY="221.0" prefHeight="21.0" prefWidth="119.0" text="09:00 - 11:00" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true" />
+      <Label fx:id="Titre" alignment="CENTER" layoutX="1085.0" layoutY="113.0" prefHeight="53.0" prefWidth="151.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Description" layoutX="1084.0" layoutY="280.0" prefHeight="179.0" prefWidth="151.0" text="Tournoi d'échecs ouvert à tous les niveaux. Venez relever le défi, améliorer votre stratégie et partager votre passion du jeu dans une ambiance conviviale." textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true" />
+      <Label fx:id="Source" alignment="CENTER" layoutX="1084.0" layoutY="562.0" prefHeight="53.0" prefWidth="151.0" text="Publié par le BDE" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="Icon" fitHeight="130.0" fitWidth="130.0" layoutX="1094.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@photo/Divertissement.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Lu1_T" alignment="CENTER" layoutX="70.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu1_H" layoutX="90.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu2_T" alignment="CENTER" layoutX="70.0" layoutY="305.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu2_H" layoutX="90.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu3_T" alignment="CENTER" layoutX="70.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu3_H" layoutX="90.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu4_H" layoutX="90.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu5_H" layoutX="90.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma1_H" layoutX="230.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma2_H" layoutX="230.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma3_H" layoutX="230.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma4_H" layoutX="230.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma5_H" layoutX="230.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me1_H" layoutX="370.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me2_H" layoutX="370.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me3_H" layoutX="370.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me4_H" layoutX="370.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me5_H" layoutX="370.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je1_H" layoutX="510.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je2_H" layoutX="510.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je3_H" layoutX="510.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je4_H" layoutX="510.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je5_H" layoutX="510.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve1_H" layoutX="650.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve2_H" layoutX="650.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve3_H" layoutX="650.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve4_H" layoutX="650.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve5_H" layoutX="650.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa1_H" layoutX="790.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa2_H" layoutX="790.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa3_H" layoutX="790.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa4_H" layoutX="790.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa5_H" layoutX="790.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di1_H" layoutX="930.0" layoutY="265.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di2_H" layoutX="930.0" layoutY="365.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di3_H" layoutX="930.0" layoutY="465.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di4_H" layoutX="930.0" layoutY="565.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di5_H" layoutX="930.0" layoutY="665.0" text="09:00 - 11:00" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu4_T" alignment="CENTER" layoutX="70.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Lu5_T" alignment="CENTER" layoutX="70.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma1_T" alignment="CENTER" layoutX="210.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma2_T" alignment="CENTER" layoutX="210.0" layoutY="305.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma3_T" alignment="CENTER" layoutX="210.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma4_T" alignment="CENTER" layoutX="210.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ma5_T" alignment="CENTER" layoutX="210.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me1_T" alignment="CENTER" layoutX="350.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me2_T" alignment="CENTER" layoutX="350.0" layoutY="305.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me3_T" alignment="CENTER" layoutX="350.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me4_T" alignment="CENTER" layoutX="350.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Me5_T" alignment="CENTER" layoutX="350.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je1_T" alignment="CENTER" layoutX="490.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je2_T" alignment="CENTER" layoutX="490.0" layoutY="310.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je3_T" alignment="CENTER" layoutX="490.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je4_T" alignment="CENTER" layoutX="490.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Je5_T" alignment="CENTER" layoutX="490.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve1_T" alignment="CENTER" layoutX="630.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve2_T" alignment="CENTER" layoutX="630.0" layoutY="305.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve3_T" alignment="CENTER" layoutX="630.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve4_T" alignment="CENTER" layoutX="630.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Ve5_T" alignment="CENTER" layoutX="630.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa1_T" alignment="CENTER" layoutX="770.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa2_T" alignment="CENTER" layoutX="770.0" layoutY="305.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa3_T" alignment="CENTER" layoutX="770.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa4_T" alignment="CENTER" layoutX="770.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Sa5_T" alignment="CENTER" layoutX="770.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di1_T" alignment="CENTER" layoutX="910.0" layoutY="205.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di2_T" alignment="CENTER" layoutX="910.0" layoutY="305.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di3_T" alignment="CENTER" layoutX="910.0" layoutY="405.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di4_T" alignment="CENTER" layoutX="910.0" layoutY="505.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Di5_T" alignment="CENTER" layoutX="910.0" layoutY="605.0" prefHeight="53.0" prefWidth="119.0" text="Tournoi d'échecs" textAlignment="CENTER" textFill="#fcfcfc" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="S_Precedente" layoutX="454.0" layoutY="112.0" mnemonicParsing="false" onAction="#Semaine_Precedente" opacity="0.0" prefHeight="0.0" prefWidth="24.0" text="Button" />
+      <Button fx:id="S_Suivante" layoutX="622.0" layoutY="111.0" mnemonicParsing="false" onAction="#Semaine_Suivante" opacity="0.0" prefHeight="0.0" prefWidth="24.0" text="Button" />
+      <Button fx:id="BHome" layoutX="1204.0" layoutY="654.0" mnemonicParsing="false" onAction="#BHome" opacity="0.0" prefHeight="61.0" prefWidth="70.0" text="Home" />
+      <Button fx:id="Di1" layoutX="902.0" layoutY="201.0" mnemonicParsing="false" onAction="#Di1_P" onMouseEntered="#Di1_Ent" onMouseExited="#Di1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Lu2" layoutX="60.0" layoutY="300.0" mnemonicParsing="false" onAction="#Lu2_P" onMouseEntered="#Lu2_Ent" onMouseExited="#Lu2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Lu1" layoutX="60.0" layoutY="200.0" mnemonicParsing="false" onAction="#Lu1_P" onMouseEntered="#Lu1_Ent" onMouseExited="#Lu1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Di2" layoutX="902.0" layoutY="301.0" mnemonicParsing="false" onAction="#Di2_P" onMouseEntered="#Di2_Ent" onMouseExited="#Di2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Di3" layoutX="903.0" layoutY="401.0" mnemonicParsing="false" onAction="#Di3_P" onMouseEntered="#Di3_Ent" onMouseExited="#Di3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Je2" layoutX="483.0" layoutY="301.0" mnemonicParsing="false" onAction="#Je2_P" onMouseEntered="#Je2_Ent" onMouseExited="#Je2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ve5" layoutX="622.0" layoutY="600.0" mnemonicParsing="false" onAction="#Ve5_P" onMouseEntered="#Ve5_Ent" onMouseExited="#Ve5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ve4" layoutX="623.0" layoutY="500.0" mnemonicParsing="false" onAction="#Ve4_P" onMouseEntered="#Ve4_Ent" onMouseExited="#Ve4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Lu3" layoutX="60.0" layoutY="400.0" mnemonicParsing="false" onAction="#Lu3_P" onMouseEntered="#Lu3_Ent" onMouseExited="#Lu3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Lu4" layoutX="60.0" layoutY="500.0" mnemonicParsing="false" onAction="#Lu4_P" onMouseEntered="#Lu4_Ent" onMouseExited="#Lu4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Lu5" layoutX="60.0" layoutY="600.0" mnemonicParsing="false" onAction="#Lu5_P" onMouseEntered="#Lu5_Ent" onMouseExited="#Lu5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ma5" layoutX="201.0" layoutY="600.0" mnemonicParsing="false" onAction="#Ma5_P" onMouseEntered="#Ma5_Ent" onMouseExited="#Ma5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ma4" layoutX="202.0" layoutY="500.0" mnemonicParsing="false" onAction="#Ma4_P" onMouseEntered="#Ma4_Ent" onMouseExited="#Ma4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ma3" layoutX="202.0" layoutY="400.0" mnemonicParsing="false" onAction="#Ma3_P" onMouseEntered="#Ma3_Ent" onMouseExited="#Ma3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ma2" layoutX="201.0" layoutY="300.0" mnemonicParsing="false" onAction="#Ma2_P" onMouseEntered="#Ma2_Ent" onMouseExited="#Ma2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ma1" layoutX="202.0" layoutY="200.0" mnemonicParsing="false" onAction="#Ma1_P" onMouseEntered="#Ma1_Ent" onMouseExited="#Ma1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Me1" layoutX="342.0" layoutY="200.0" mnemonicParsing="false" onAction="#Me1_P" onMouseEntered="#Me1_Ent" onMouseExited="#Me1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Me2" layoutX="343.0" layoutY="300.0" mnemonicParsing="false" onAction="#Me2_P" onMouseEntered="#Me2_Ent" onMouseExited="#Me2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Me3" layoutX="343.0" layoutY="399.0" mnemonicParsing="false" onAction="#Me3_P" onMouseEntered="#Me3_Ent" onMouseExited="#Me3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Me4" layoutX="343.0" layoutY="499.0" mnemonicParsing="false" onAction="#Me4_P" onMouseEntered="#Me4_Ent" onMouseExited="#Me4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Me5" layoutX="342.0" layoutY="599.0" mnemonicParsing="false" onAction="#Me5_P" onMouseEntered="#Me5_Ent" onMouseExited="#Me5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Je1" layoutX="483.0" layoutY="201.0" mnemonicParsing="false" onAction="#Je1_P" onMouseEntered="#Je1_Ent" onMouseExited="#Je1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Je3" layoutX="483.0" layoutY="401.0" mnemonicParsing="false" onAction="#Je3_P" onMouseEntered="#Je3_Ent" onMouseExited="#Je3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Je4" layoutX="483.0" layoutY="501.0" mnemonicParsing="false" onAction="#Je4_P" onMouseEntered="#Je4_Ent" onMouseExited="#Je4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Je5" layoutX="483.0" layoutY="601.0" mnemonicParsing="false" onAction="#Je5_P" onMouseEntered="#Je5_Ent" onMouseExited="#Je5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ve1" layoutX="622.0" layoutY="198.0" mnemonicParsing="false" onAction="#Ve1_P" onMouseEntered="#Ve1_Ent" onMouseExited="#Ve1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ve2" layoutX="622.0" layoutY="300.0" mnemonicParsing="false" onAction="#Ve2_P" onMouseEntered="#Ve2_Ent" onMouseExited="#Ve2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Ve3" layoutX="622.0" layoutY="400.0" mnemonicParsing="false" onAction="#Ve3_P" onMouseEntered="#Ve3_Ent" onMouseExited="#Ve3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Sa1" layoutX="763.0" layoutY="200.0" mnemonicParsing="false" onAction="#Sa1_P" onMouseEntered="#Sa1_Ent" onMouseExited="#Sa1_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Sa2" layoutX="763.0" layoutY="300.0" mnemonicParsing="false" onAction="#Sa2_P" onMouseEntered="#Sa2_Ent" onMouseExited="#Sa2_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Sa3" layoutX="763.0" layoutY="400.0" mnemonicParsing="false" onAction="#Sa3_P" onMouseEntered="#Sa3_Ent" onMouseExited="#Sa3_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Sa4" layoutX="763.0" layoutY="500.0" mnemonicParsing="false" onAction="#Sa4_P" onMouseEntered="#Sa4_Ent" onMouseExited="#Sa4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Sa5" layoutX="763.0" layoutY="600.0" mnemonicParsing="false" onAction="#Sa5_P" onMouseEntered="#Sa5_Ent" onMouseExited="#Sa5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Di5" layoutX="904.0" layoutY="600.0" mnemonicParsing="false" onAction="#Di5_P" onMouseEntered="#Di5_Ent" onMouseExited="#Di5_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+      <Button fx:id="Di4" layoutX="903.0" layoutY="501.0" mnemonicParsing="false" onAction="#Di4_P" onMouseEntered="#Di4_Ent" onMouseExited="#Di4_Exi" opacity="0.0" prefHeight="99.0" prefWidth="137.0" text="Button" />
+   </children>
+</AnchorPane>
