@@ -67,6 +67,7 @@ public TableView<Etudiant> table ;
 
                     System.out.println("Afficher les détails de : "+item.getDetail()+"\n" + "\n" + item.getNom()+ "\n" +item.getPrenom());
                     System.out.println("Afficher les candidatures  : "+item.getTitre()+"\n" + "\n" + item.getDuree()+ "\n" +item.getDomaine()+"\n" +item.getDomaine());
+                    System.out.println("Afficher l'id de l'offre'  : "+item.getId_offre());
                     System.out.println(" taille de table: "+table.getItems().size());
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonneeEtudiant.fxml"));

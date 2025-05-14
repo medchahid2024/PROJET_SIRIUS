@@ -40,11 +40,12 @@ public class DonneeEtudiant {
         prenom.setText(etudiant.getPrenom());
         photo.setImage(new Image((getClass().getResource("/photo/" + etudiant.getPhoto()).toExternalForm())));
         int id= etudiant.getDetail();
+        int idoffre= etudiant.getId_offre();
         System.out.println(etudiant.getDetail());
 
         matricule.setText(etudiant.getMatricule());
         Derniere_conn.setText(etudiant.getDate().toString());
-     Stagee stagee =new Stagee(id);
+     Stagee stagee =new Stagee(id,idoffre);
 
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
         final stageService stageService = new stageService(networkConfig);

@@ -21,6 +21,7 @@ public class Etudiant {
      private String titre;
      private String duree;
      private String domaine;
+     private int id_offre;
 
 
 
@@ -102,6 +103,10 @@ public class Etudiant {
     public Etudiant(int i) {
         this.id = i;
     }
+    public Etudiant(int i ,int id_offre) {
+        this.id = i;
+        this.id_offre = id_offre;
+    }
 
 
     public int getId() {
@@ -135,6 +140,7 @@ public class Etudiant {
         return cnf_mot_de_passe;
     }
     public String getPhoto() {return photo;}
+    public int getId_offre() {return id_offre;}
     public boolean isAccepte() {
         return accepte;
     }
@@ -180,6 +186,10 @@ public class Etudiant {
         this.cnf_mot_de_passe = cnf_mot_de_passe;
     }
     public void setPhoto(String photo) {this.photo = photo;}
+
+    public void setId_offre(int id_offre) {
+        this.id_offre = id_offre;
+    }
 
     public final Etudiant build(final ResultSet resultSet)
             throws SQLException, NoSuchFieldException, IllegalAccessException {

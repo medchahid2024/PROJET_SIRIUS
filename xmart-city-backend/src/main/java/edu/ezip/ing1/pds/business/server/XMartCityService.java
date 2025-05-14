@@ -62,20 +62,20 @@ public class XMartCityService {
                          //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
        SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
 
-        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.photo AS photo ,e.email AS email, e.date_ajout AS date , e.nom AS nom , e.prenom AS prenom , e.matricule AS mat ,e.id_etudiant AS id , o.titre AS titre , o.duree AS duree , o.domaine AS domaine " +
+        SELECT_ALL_STUDENTS ("SELECT DISTINCT COUNT(c.id_etudiant) AS nombre_candidatures , e.photo AS photo ,e.email AS email, e.date_ajout AS date , e.nom AS nom , e.prenom AS prenom , e.matricule AS mat ,e.id_etudiant AS id , o.titre AS titre , o.duree AS duree , o.id_offre AS id_offre , o.domaine AS domaine " +
                 "FROM etudiant e " +
                 " LEFT JOIN candidature c ON c.id_etudiant = e.id_etudiant " +
                 " LEFT JOIN offres_stages o ON o.id_offre = c.id_offre " +
 
-                " WHERE e.accepte = TRUE GROUP BY id, e.nom, e.prenom, date , e.matricule ,e.photo,titre,duree,domaine"),
+                " WHERE e.accepte = TRUE GROUP BY id,id_offre, e.nom, e.prenom, date , e.matricule ,e.photo,titre,duree,domaine"),
 
-        SELECT_CANDIDATURES_ETUDIANT("SELECT o.titre, o.domaine, o.duree, c.id_etudiant FROM offres_stages o JOIN candidature c ON o.id_offre=c.id_offre WHERE c.id_etudiant = ?"),
+        SELECT_CANDIDATURES_ETUDIANT("SELECT DISTINCT o.titre, o.domaine, o.duree, c.id_etudiant FROM offres_stages o JOIN candidature c ON o.id_offre=c.id_offre WHERE c.id_etudiant = ? AND c.id_offre= ?"),
 
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
 
                             // viualiser les etudiant non acceptés par l'admin avant la decision
-        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL ORDER BY id_etudiant DESC"),
+        SELECT_ETUDIANT("SELECT  nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL ORDER BY id_etudiant DESC"),
 
                              // l'affichage des offres de stages par ordre decroissant
         SELECT_STAGE("SELECT * FROM offres_stages ORDER BY id_offre DESC"),
@@ -538,6 +538,7 @@ private Response InsertParticipation(final Request request, final Connection con
             etudiant.setId(res.getInt("nombre_candidatures"));
             etudiant.setNom(res.getString("nom"));
             etudiant.setPrenom(res.getString("prenom"));
+            etudiant.setId_offre(res.getInt("id_offre"));
             etudiant.setMatricule(res.getString("mat"));
             etudiant.setdetail(res.getInt("id"));
             etudiant.setPhoto(res.getString("photo"));
@@ -593,9 +594,11 @@ private Response InsertParticipation(final Request request, final Connection con
 
         final Stagee stageeInput = objectMapper.readValue(request.getRequestBody(), Stagee.class);
         final int etudiantId = stageeInput.getId();
+        final int offreId = stageeInput.getIdOffre();
 
         try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CANDIDATURES_ETUDIANT.query)) {
             stmt.setInt(1,etudiantId);
+            stmt.setInt(2,offreId);
 
             try (ResultSet res = stmt.executeQuery()) {
          Stagess stagess = new Stagess();

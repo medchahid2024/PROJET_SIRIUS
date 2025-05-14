@@ -100,10 +100,6 @@ public class ControlStage {
 
 
         System.out.println(idStage);
-        System.out.println(idStage);
-        System.out.println(idStage);
-        System.out.println(idStage);
-
 
 
         Nombrecandidatures.setText(String.valueOf(idCandidature));
