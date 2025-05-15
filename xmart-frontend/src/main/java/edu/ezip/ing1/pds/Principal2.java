@@ -3,6 +3,7 @@ package edu.ezip.ing1.pds;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import edu.ezip.ing1.pds.business.dto.Etudiant;
@@ -53,7 +54,7 @@ public class Principal2 {
 
 
     @FXML
-    void BEven(ActionEvent event) throws IOException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, InterruptedException {
+    void BEven(ActionEvent event) throws IOException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, InterruptedException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier2.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());

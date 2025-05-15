@@ -37,7 +37,11 @@ public class XMartCityService {
 
 
         INSERT_ARTICLE("INSERT INTO article (nom_etudiant, titre, description, id_etudiant, prix, type_transaction, ville) VALUES (?,?,?,?,?,?,?)"),
+        
+                    // Insertion de la participation d'un étudiant a un évènement
         INSERT_PARTICIPATION("INSERT INTO participations (nom,prenom,email,id_even)VALUES  (?,?,?,?) "),
+
+        INSERT_EVENEMENT("INSERT INTO evenements (titre,description,domaine,heure,adresse,jour) VALUES (?,?,?,?,?,?)"),
 
 
 
@@ -89,6 +93,8 @@ public class XMartCityService {
 
         SELECT_EVENEMENT("SELECT * FROM evenements"),
 
+        SELECT_PARTICIPATION("SELECT * FROM participations"),
+
         SELECT_ARTICLE("SELECT * FROM article"),
         //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -137,6 +143,9 @@ public class XMartCityService {
             case INSERT_PARTICIPATION:
                 response = InsertParticipation(request, connection);
                 break;
+             case INSERT_EVENEMENT:
+                response = InsertEvenement(request, connection);
+                break;
             case SELECT_STAGE:
                response=SelectAllstages(request, connection);
                 break;
@@ -154,6 +163,10 @@ public class XMartCityService {
                 break;
             case SELECT_EVENEMENT:
                 response=SelectAllevenements(request, connection);
+
+                break;
+                case SELECT_PARTICIPATION:
+                response=SelectAllparticipations(request, connection);
 
                 break;
             case SELECT_CANDIDATURE:
@@ -387,6 +400,29 @@ private Response InsertParticipation(final Request request, final Connection con
 
     return new Response(request.getRequestId(), objectMapper.writeValueAsString(participation));
 }
+
+private Response InsertEvenement(final Request request, final Connection connection) throws SQLException, IOException {
+
+    final ObjectMapper objectMapper = new ObjectMapper();
+    final Evenement evenement = objectMapper.readValue(request.getRequestBody(), Evenement.class);
+
+    final PreparedStatement stmt = connection.prepareStatement(Queries.INSERT_EVENEMENT.query);
+
+    stmt.setString(1, evenement.getTitre());
+    stmt.setString(2, evenement.getDescription());
+    stmt.setString(3, evenement.getDomaine());
+    stmt.setString(4,evenement.getHeure());
+    stmt.setString(5,evenement.getAdresse());
+    stmt.setString(6,evenement.getJour());
+
+
+
+    stmt.executeUpdate();
+
+
+    return new Response(request.getRequestId(), objectMapper.writeValueAsString(evenement));
+}
+
     private Response deleteCandidature(final Request request, final Connection connection) throws SQLException, IOException {
 
         final ObjectMapper objectMapper = new ObjectMapper();
@@ -471,6 +507,26 @@ private Response InsertParticipation(final Request request, final Connection con
         }
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(evenements));
+
+    }
+
+     private Response SelectAllparticipations(final Request request, final Connection connection) throws SQLException, JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Statement stmt = connection.createStatement();
+        final ResultSet res = stmt.executeQuery(Queries.SELECT_PARTICIPATION.query);
+        Participations participations = new Participations();
+
+        while (res.next()) {
+           Participation participation = new Participation();
+           participation.setId(res.getInt(5));
+            participation.setNom(res.getString(2));
+            participation.setPrenom(res.getString(3));
+            participation.setEmail(res.getString(4));
+        
+            participations.add(participation);
+        }
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(participations));
 
     }
     

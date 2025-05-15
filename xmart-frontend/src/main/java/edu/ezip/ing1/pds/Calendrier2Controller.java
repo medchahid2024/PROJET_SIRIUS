@@ -18,6 +18,7 @@ import edu.ezip.ing1.pds.client.commons.ConfigLoader;
 import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.EvenementService;
 import edu.ezip.ing1.pds.services.InsertParticipation;
+import edu.ezip.ing1.pds.services.ParticipationService;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -49,6 +50,7 @@ import edu.ezip.ing1.pds.client.commons.NetworkConfig;
 import edu.ezip.ing1.pds.services.EvenementService;
 import edu.ezip.ing1.pds.services.InsertCandidature;
 import edu.ezip.ing1.pds.services.InsertParticipation;
+import edu.ezip.ing1.pds.services.InsertEvenement;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -78,12 +80,11 @@ public class Calendrier2Controller {
     private Etudiant etudiant;
 
 
-      public void InitialisationCalendrier() throws IOException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+      public void InitialisationCalendrier() throws IOException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, SQLException {
          loadEvenementData();
         currentWeek();
-       
-        
-}
+
+        }
 
     private void loadEvenementData() throws IOException, InterruptedException {
         final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
@@ -97,6 +98,7 @@ public class Calendrier2Controller {
 
     }
 
+    
     private void currentWeek() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException{
         // Obtenir la date actuelle
         LocalDate today = LocalDate.now();
@@ -135,11 +137,12 @@ public class Calendrier2Controller {
                 
                 labelT.setVisible(false);
                 labelH.setVisible(false);
-                id_evenements = new int[35];
+                
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace(); // Pour le débogage, si un champ est introuvable ou inaccessible
             }
         }
+        id_evenements = new int[35];
     }
 }
 
@@ -161,6 +164,11 @@ public class Calendrier2Controller {
                 
              
                 Evenement evenement = evenementList.get(j);
+
+                
+            
+    
+                
                
 
                 if (evenement.getJour().equals(semaineActuelle[i])) {
@@ -179,8 +187,7 @@ public class Calendrier2Controller {
             horaire = 5;
         }
 
-        System.out.println("Valeur de i "+i);
-        System.out.println("Valeur du calcul "+id_evenements[i*5 + horaire]);
+        
         id_evenements[i*5 + horaire-1] = evenement.getId();
 
                 Label label = (Label) getClass().getDeclaredField(joursSemaine[i] + horaire + "_T").get(this);
