@@ -45,8 +45,12 @@ public class Profil {
         Optional<ButtonType> result = aler.showAndWait();
         if (result.get() == ButtonType.OK) {
             String chem= chemin.getText();
-            Etudiant et =new Etudiant(nom.getText(),prenom.getText(),etudiant.getId(),chem,email.getText());
+            String n= nom.getText();
+            String pr= prenom.getText();
+            String em= email.getText();
+            Etudiant et =new Etudiant(n,pr,chem,em,etudiant.getMatricule());
             Update.updateInformationEtudiant("UPDATE_INFORMATION_ETUDIANT",et);
+            etudiant=et;
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
@@ -79,9 +83,9 @@ public class Profil {
         matricule.setText(etudiant.getMatricule());
         email.setText(etudiant.getEmail());
         System.out.println("Nom du fichier photo : " + etudiant.getPhoto());
+        System.out.println("Matricule : " + etudiant.getMatricule());
         photo.setImage(new Image((getClass().getResource("/photo/" + etudiant.getPhoto()).toExternalForm())));
-        this.etudiant = etudiant;
-
+        this.etudiant=etudiant;
 
     }
 
