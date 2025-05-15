@@ -580,7 +580,7 @@ private Response InsertParticipation(final Request request, final Connection con
             etudiant.setId(res.getInt("nombre_candidatures"));
             etudiant.setNom(res.getString("nom"));
             etudiant.setPrenom(res.getString("prenom"));
-
+            etudiant.setEmail(res.getString("email"));
             etudiant.setMatricule(res.getString("mat"));
             etudiant.setdetail(res.getInt("id"));
             etudiant.setPhoto(res.getString("photo"));
