@@ -142,6 +142,7 @@ public class Principal2 {
             System.out.println(etudiant.getNom() );
             System.out.println(etudiant.getPrenom());
 
+
         }
 }
 
@@ -151,7 +152,10 @@ public class Principal2 {
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
-//        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//        currentStage.close();
+        Profil controller = loader.getController();
+        controller.setEtudiant(etudiant);
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+
     }
 }

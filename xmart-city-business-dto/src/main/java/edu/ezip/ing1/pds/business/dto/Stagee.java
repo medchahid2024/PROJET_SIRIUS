@@ -12,12 +12,18 @@ public class Stagee {
        private String duree;
     private int id;
     String niveau;
+    private int idOffre;
 
 public Stagee(){
 
 }
     public Stagee( int id){
     this.id = id;
+
+    }
+    public Stagee( int id, int idOffre){
+        this.id = id;
+        this.idOffre = idOffre;
 
     }
 
@@ -59,6 +65,7 @@ public Stagee(){
     public int getId() {
         return id;
     }
+    public int getIdOffre() {return idOffre;}
 
     public void setDescription(String description) {
         this.description=description;
@@ -76,6 +83,7 @@ public Stagee(){
         this.id = id;
     }
     public void setNiveau(String niveau) {this.niveau = niveau;}
+    public void setIdOffre(int idOffre) {this.idOffre = idOffre;}
 
 
     public void setTitre(String titre) {

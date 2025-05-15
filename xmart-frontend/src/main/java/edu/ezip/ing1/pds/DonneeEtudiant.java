@@ -37,10 +37,17 @@ public class DonneeEtudiant {
     public void setEtudiant(Etudiant etudiant) throws InterruptedException, SQLException, IOException {
         nom.setText(etudiant.getNom());
         email.setText(etudiant.getEmail());
+
+
+
         prenom.setText(etudiant.getPrenom());
         photo.setImage(new Image((getClass().getResource("/photo/" + etudiant.getPhoto()).toExternalForm())));
         int id= etudiant.getDetail();
+
         System.out.println(etudiant.getDetail());
+        System.out.println(etudiant.getNom());
+        System.out.println(etudiant.getEmail());
+        System.out.println(etudiant.getMatricule());
 
         matricule.setText(etudiant.getMatricule());
         Derniere_conn.setText(etudiant.getDate().toString());

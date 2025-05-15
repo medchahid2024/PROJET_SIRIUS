@@ -77,6 +77,8 @@ public class ControlStage {
         Stage stage = new Stage();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
+        Principal2 controller = loader.getController();
+        controller.setEtudiant(this.etudiant);
         stage.show();
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
@@ -139,10 +141,6 @@ public class ControlStage {
 
 
         System.out.println(idStage);
-        System.out.println(idStage);
-        System.out.println(idStage);
-        System.out.println(idStage);
-
 
 
         Nombrecandidatures.setText(String.valueOf(idCandidature));
@@ -305,6 +303,8 @@ allerGauche.play();
         candidatureController.setId(idOffre);
 
         stage.show();
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     public void rechercher(ActionEvent actionEvent) throws InterruptedException, IOException {

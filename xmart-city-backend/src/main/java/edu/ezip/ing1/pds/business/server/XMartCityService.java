@@ -55,6 +55,7 @@ public class XMartCityService {
 
                      //modification d'une demande par l'admin
        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,niveau_etude=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
+        UPDATE_INFORMATION_ETUDIANT("UPDATE etudiant SET nom = ?, prenom = ?, email=? ,photo=?  WHERE id_etudiant = ?"),
 
         UPDATE_DATE("UPDATE etudiant SET date_ajout= CURRENT_TIMESTAMP WHERE id_etudiant = ?"),
 
@@ -66,20 +67,31 @@ public class XMartCityService {
                          //affichage de l'email des etudiant acceptés (contrainte avant la creation de compte il affiche un message d'erreur que le compte existe deja)
        SELECT_CONDITION_CONN ("SELECT * FROM etudiant WHERE email = ?  AND accepte=TRUE"),
 
-        SELECT_ALL_STUDENTS ("SELECT COUNT(c.id_etudiant) AS nombre_candidatures , e.photo AS photo ,e.email AS email, e.date_ajout AS date , e.nom AS nom , e.prenom AS prenom , e.matricule AS mat ,e.id_etudiant AS id , o.titre AS titre , o.duree AS duree , o.domaine AS domaine " +
-                "FROM etudiant e " +
-                " LEFT JOIN candidature c ON c.id_etudiant = e.id_etudiant " +
-                " LEFT JOIN offres_stages o ON o.id_offre = c.id_offre " +
+        SELECT_ALL_STUDENTS ("SELECT \n" +
+                "    e.id_etudiant AS id,\n" +
+                "    COUNT(c.id_etudiant) AS nombre_candidatures,\n" +
+                "    e.photo AS photo,\n" +
+                "    e.email AS email,\n" +
+                "    e.date_ajout AS date,\n" +
+                "    e.nom AS nom,\n" +
+                "    e.prenom AS prenom,\n" +
+                "    e.matricule AS mat\n" +
+                "FROM \n" +
+                "    etudiant e\n" +
+                "LEFT JOIN \n" +
+                "    candidature c ON c.id_etudiant = e.id_etudiant\n" +
+                "WHERE \n" +
+                "    e.accepte = TRUE\n" +
+                "GROUP BY \n" +
+                "    e.id_etudiant, e.photo, e.email, e.date_ajout, e.nom, e.prenom, e.matricule;\n "),
 
-                " WHERE e.accepte = TRUE GROUP BY id, e.nom, e.prenom, date , e.matricule ,e.photo,titre,duree,domaine"),
-
-        SELECT_CANDIDATURES_ETUDIANT("SELECT o.titre, o.domaine, o.duree, c.id_etudiant FROM offres_stages o JOIN candidature c ON o.id_offre=c.id_offre WHERE c.id_etudiant = ?"),
+        SELECT_CANDIDATURES_ETUDIANT("SELECT  o.titre, o.domaine, o.duree, c.id_etudiant FROM offres_stages o JOIN candidature c ON o.id_offre=c.id_offre WHERE c.id_etudiant = ? "),
 
                            //connexion avec succés des etudiant acceptés
         SELECT_CONN("SELECT * FROM etudiant WHERE email = ? AND mot_de_passe =? AND accepte=TRUE"),
 
                             // viualiser les etudiant non acceptés par l'admin avant la decision
-        SELECT_ETUDIANT("SELECT nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL ORDER BY id_etudiant DESC"),
+        SELECT_ETUDIANT("SELECT  nom,prenom,matricule,email,photo,id_etudiant FROM etudiant WHERE accepte IS NULL ORDER BY id_etudiant DESC"),
 
                              // l'affichage des offres de stages par ordre decroissant
         SELECT_STAGE("SELECT * FROM offres_stages ORDER BY id_offre DESC"),
@@ -157,6 +169,9 @@ public class XMartCityService {
                 break;
             case SELECT_ALL_STUDENTS:
                 response=SelectAllStudents(request, connection);
+                break;
+            case UPDATE_INFORMATION_ETUDIANT:
+                response=updateInformationEtudiant(request, connection);
                 break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
@@ -238,6 +253,8 @@ public class XMartCityService {
             et.setNom(res.getString("nom"));
             et.setPrenom(res.getString("prenom"));
             et.setEmail(res.getString("email"));
+            et.setMatricule(res.getString("matricule"));
+            et.setPhoto(res.getString("photo"));
             et.setMot_de_passe(res.getString("mot_de_passe"));
             etudiants.add(et);
         }
@@ -299,6 +316,29 @@ public class XMartCityService {
 
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(stage));
+
+
+    }
+    private Response updateInformationEtudiant(Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        Etudiant etudiant = objectMapper.readValue(request.getRequestBody(), Etudiant.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.UPDATE_INFORMATION_ETUDIANT.query);
+
+
+        stmt.setString(1, etudiant.getNom());
+        stmt.setString(2, etudiant.getPrenom());
+        stmt.setString(3, etudiant.getEmail());
+        stmt.setString(4, etudiant.getPhoto());
+        stmt.setInt(5, etudiant.getId());
+
+
+
+
+        stmt.executeUpdate();
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiant));
 
 
     }
@@ -591,21 +631,19 @@ private Response InsertEvenement(final Request request, final Connection connect
 
         while (res.next()) {
             Etudiant etudiant = new Etudiant();
-            Stagee stagee = new Stagee();
+
 
             etudiant.setId(res.getInt("nombre_candidatures"));
             etudiant.setNom(res.getString("nom"));
             etudiant.setPrenom(res.getString("prenom"));
+            etudiant.setEmail(res.getString("email"));
             etudiant.setMatricule(res.getString("mat"));
             etudiant.setdetail(res.getInt("id"));
             etudiant.setPhoto(res.getString("photo"));
             etudiant.setDate(res.getDate("date"));
 
 
-            etudiant.setTitre(res.getString("titre"));
-            etudiant.setDuree(res.getString("duree"));
-            etudiant.setDomaine(res.getString("domaine"));
-            etudiant.setEmail(res.getString("email"));
+
 
 
 
@@ -652,8 +690,10 @@ private Response InsertEvenement(final Request request, final Connection connect
         final Stagee stageeInput = objectMapper.readValue(request.getRequestBody(), Stagee.class);
         final int etudiantId = stageeInput.getId();
 
+
         try (PreparedStatement stmt = connection.prepareStatement(Queries.SELECT_CANDIDATURES_ETUDIANT.query)) {
             stmt.setInt(1,etudiantId);
+
 
             try (ResultSet res = stmt.executeQuery()) {
          Stagess stagess = new Stagess();
