@@ -58,6 +58,13 @@ public class Etudiant {
        this.prenom = prenom;
        this.id = id;
     }
+    public Etudiant(String nom, String prenom, int id,String photo,String email) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id = id;
+        this.photo = photo;
+        this.email = email;
+    }
     public Etudiant(String nom, String prenom, String matricule) {
         this.nom = nom;
         this.prenom = prenom;

@@ -51,6 +51,7 @@ public class XMartCityService {
 
                      //modification d'une demande par l'admin
        UPDATE_OFFRE("UPDATE offres_stages SET titre = ?, description = ?, domaine=? ,niveau_etude=? ,duree=?,id_admin=1 WHERE id_offre = ?"),
+        UPDATE_INFORMATION_ETUDIANT("UPDATE etudiant SET nom = ?, prenom = ?, email=? ,photo=?  WHERE id_etudiant = ?"),
 
         UPDATE_DATE("UPDATE etudiant SET date_ajout= CURRENT_TIMESTAMP WHERE id_etudiant = ?"),
 
@@ -149,6 +150,9 @@ public class XMartCityService {
             case SELECT_ALL_STUDENTS:
                 response=SelectAllStudents(request, connection);
                 break;
+            case UPDATE_INFORMATION_ETUDIANT:
+                response=updateInformationEtudiant(request, connection);
+                break;
             case SELECT_OFFRE:
                 response=SelectAlloffres(request, connection);
                 break;
@@ -225,6 +229,8 @@ public class XMartCityService {
             et.setNom(res.getString("nom"));
             et.setPrenom(res.getString("prenom"));
             et.setEmail(res.getString("email"));
+            et.setMatricule(res.getString("matricule"));
+            et.setPhoto(res.getString("photo"));
             et.setMot_de_passe(res.getString("mot_de_passe"));
             etudiants.add(et);
         }
@@ -286,6 +292,29 @@ public class XMartCityService {
 
 
         return new Response(request.getRequestId(), objectMapper.writeValueAsString(stage));
+
+
+    }
+    private Response updateInformationEtudiant(Request request, Connection connection) throws IOException, SQLException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        Etudiant etudiant = objectMapper.readValue(request.getRequestBody(), Etudiant.class);
+
+        final PreparedStatement stmt = connection.prepareStatement(Queries.UPDATE_INFORMATION_ETUDIANT.query);
+
+
+        stmt.setString(1, etudiant.getNom());
+        stmt.setString(2, etudiant.getPrenom());
+        stmt.setString(3, etudiant.getEmail());
+        stmt.setString(4, etudiant.getPhoto());
+        stmt.setInt(5, etudiant.getId());
+
+
+
+
+        stmt.executeUpdate();
+
+
+        return new Response(request.getRequestId(), objectMapper.writeValueAsString(etudiant));
 
 
     }

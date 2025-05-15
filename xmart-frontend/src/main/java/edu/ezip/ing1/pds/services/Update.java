@@ -57,7 +57,7 @@ public class Update {
 
         final ObjectMapper objectMapper = new ObjectMapper();
         final String jsonifiedGuy = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
-        logger.trace("Candidat to be inserted : {}", jsonifiedGuy);
+        logger.trace("Candidat to be modified : {}", jsonifiedGuy);
         final String requestId = UUID.randomUUID().toString();
         final Request request = new Request();
         request.setRequestId(requestId);
@@ -71,5 +71,31 @@ public class Update {
                 networkConfig,
                 birthdate++, request, null, requestBytes);
         updateStageClientRequest.join();
+    }
+    public static void updateInformationEtudiant(String requestOrder, Object object) throws IOException, SQLException, InterruptedException {
+
+        final NetworkConfig networkConfig =  ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+
+        logger.trace("Clients loaded : {}", object.toString());
+        logger.debug("Load Network config file : {}", networkConfig.toString());
+
+        int birthdate = 0;
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final String jsonifiedGuy = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+        logger.trace("Student to be modifid: {}", jsonifiedGuy);
+        final String requestId = UUID.randomUUID().toString();
+        final Request request = new Request();
+        request.setRequestId(requestId);
+        request.setRequestOrder(requestOrder);
+        request.setRequestContent(jsonifiedGuy);
+        objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        final byte [] requestBytes = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(request);
+
+
+        final UpdateEtudiantClientRequest updateEtudiantClientRequest = new UpdateEtudiantClientRequest (
+                networkConfig,
+                birthdate++, request, null, requestBytes);
+        updateEtudiantClientRequest.join();
     }
 }

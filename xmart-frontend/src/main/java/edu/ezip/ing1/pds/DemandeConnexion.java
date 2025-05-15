@@ -93,7 +93,7 @@ public class DemandeConnexion {
         Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
         aler.setTitle("CANFIRMATION");
         aler.setHeaderText(null);
-        aler.setContentText("Vous voulez vraiment aceepter cet etudiant ");
+        aler.setContentText("Vous voulez vraiment accepter cet etudiant ");
         Optional<ButtonType> result = aler.showAndWait();
         if (result.get() == ButtonType.OK) {
             Etudiant etudiant = stageList.get(currentIndex);

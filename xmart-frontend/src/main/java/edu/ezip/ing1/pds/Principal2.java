@@ -151,7 +151,10 @@ public class Principal2 {
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
-//        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//        currentStage.close();
+        Profil controller = loader.getController();
+        controller.setEtudiant(etudiant);
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+
     }
 }
