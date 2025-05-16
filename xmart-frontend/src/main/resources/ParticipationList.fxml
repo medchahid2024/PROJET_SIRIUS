@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.ParticipationList">
+   <children>
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+            <TableColumn fx:id="Email" prefWidth="204.0" text="eMail" />
+          <TableColumn fx:id="Prenom" prefWidth="166.0" text="Prenom" />
+          <TableColumn fx:id="Nom" prefWidth="229.0" text="Nom" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

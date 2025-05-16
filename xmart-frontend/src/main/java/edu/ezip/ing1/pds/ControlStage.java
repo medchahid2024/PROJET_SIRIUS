@@ -294,7 +294,7 @@ allerGauche.play();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Candidater.fxml"));
         Stage stage = new Stage();
 
-        Scene offre = new Scene(fxmlLoader.load(), 700, 700);
+        Scene offre = new Scene(fxmlLoader.load());
         stage.setScene(offre);
         stage.setTitle("Candidature");
        Candidater candidatureController = fxmlLoader.getController();

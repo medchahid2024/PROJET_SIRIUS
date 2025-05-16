@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Admin {
     public void mesDemandes(MouseEvent mouseEvent) throws IOException {
@@ -38,6 +39,19 @@ public class Admin {
         Scene demande = new Scene(fxmlLoader.load());
         stage.setScene(demande);
         stage.setTitle("Ma liste");
+        stage.show();
+    }
+
+     public void Parti(MouseEvent event) throws IOException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, InterruptedException, SQLException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier2Admin.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        // Récupérer le contrôleur de la vue Calendrier
+        Calendrier2ControllerAdmin calendrier2ControllerAdmin = loader.getController();
+
+        // Appeler la méthode InitialisationCalendrier() sur l'instance du contrôleur
+        calendrier2ControllerAdmin.InitialisationCalendrier();
         stage.show();
     }
 }

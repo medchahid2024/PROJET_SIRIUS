@@ -9,40 +9,48 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.DonneeEtudiant">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="672.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.DonneeEtudiant">
    <children>
-      <ImageView fitHeight="73.0" fitWidth="145.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/InformationsEtu.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="145.0" layoutX="10.0" layoutY="10.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@photo/myUp.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="115.0" layoutY="130.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Nom" />
-      <Label layoutX="115.0" layoutY="176.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Prenom" />
-      <Label layoutX="115.0" layoutY="265.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Email" />
-      <Label layoutX="115.0" layoutY="219.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Numero étudiant" />
-      <Label fx:id="nom" layoutX="271.0" layoutY="130.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
-      <Label fx:id="email" layoutX="273.0" layoutY="265.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
-      <Label fx:id="matricule" layoutX="271.0" layoutY="219.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
-      <Label fx:id="prenom" layoutX="273.0" layoutY="176.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" />
-      <ImageView fx:id="photo" fitHeight="130.0" fitWidth="181.0" layoutX="412.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="56.0" layoutY="328.0" prefHeight="27.0" prefWidth="187.0" text="Derniere connexion">
+      <Label layoutX="115.0" layoutY="130.0" opacity="0.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Nom" />
+      <Label layoutX="115.0" layoutY="176.0" opacity="0.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Prenom" />
+      <Label layoutX="115.0" layoutY="265.0" opacity="0.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Email" />
+      <Label layoutX="115.0" layoutY="219.0" opacity="0.0" prefHeight="27.0" prefWidth="162.0" style="-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;" text="Numero étudiant" />
+      <Label fx:id="nom" layoutX="291.0" layoutY="120.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" textFill="WHITE" />
+      <Label fx:id="email" layoutX="292.0" layoutY="242.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" textFill="WHITE" />
+      <Label fx:id="matricule" layoutX="291.0" layoutY="201.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" textFill="WHITE" />
+      <Label fx:id="prenom" layoutX="291.0" layoutY="161.0" prefHeight="27.0" prefWidth="242.0" style="-fx-font-size: 16px;" text="Label" textFill="WHITE" />
+      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="150.0" layoutX="435.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="56.0" layoutY="328.0" opacity="0.0" prefHeight="27.0" prefWidth="187.0" text="Derniere connexion">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Derniere_conn" layoutX="257.0" layoutY="329.0" prefHeight="18.0" prefWidth="151.0" text="Label" />
-      <TableView fx:id="table" layoutX="76.0" layoutY="436.0" prefHeight="122.0" prefWidth="482.0">
+      <Label fx:id="Derniere_conn" layoutX="294.0" layoutY="283.0" prefHeight="26.0" prefWidth="163.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TableView fx:id="table" layoutX="91.0" layoutY="419.0" prefHeight="122.0" prefWidth="482.0">
         <columns>
           <TableColumn fx:id="titre" prefWidth="160.0" text="Titre" />
           <TableColumn fx:id="domaine" prefWidth="160.0" text="Domaine" />
             <TableColumn fx:id="duree" prefWidth="160.0" text="Durée" />
         </columns>
       </TableView>
-      <Label layoutX="221.0" layoutY="398.0" prefHeight="18.0" prefWidth="222.0" text="Liste de candidatures">
+      <Label alignment="CENTER" layoutX="221.0" layoutY="392.0" prefHeight="18.0" prefWidth="222.0" text="Liste de candidatures" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="217.0" layoutY="620.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: red; -fx-font-weight: bold;" text="Telecharger" />
+      <Button layoutX="217.0" layoutY="620.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: red; -fx-font-weight: bold;" text="Telecharger" />
    </children>
 </AnchorPane>

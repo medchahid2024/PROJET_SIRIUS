@@ -20,7 +20,27 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
+import edu.ezip.ing1.pds.business.dto.Etudiant;
+import edu.ezip.ing1.pds.business.dto.Etudiants;
+import edu.ezip.ing1.pds.business.dto.Stagee;
+import edu.ezip.ing1.pds.business.dto.Stagess;
+import edu.ezip.ing1.pds.client.commons.ConfigLoader;
+import edu.ezip.ing1.pds.client.commons.NetworkConfig;
+import edu.ezip.ing1.pds.services.stageService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.SQLException;
 public class Principal2 {
 
     public Label fullName;
@@ -49,6 +69,8 @@ public class Principal2 {
     private Button BStages;
 
     private Etudiant etudiant;
+
+    public ImageView photo;
 
 
 
@@ -84,15 +106,8 @@ public class Principal2 {
     }
 
     @FXML
-    void BServices(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connexion2.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(loader.load());
-        stage.setScene(scene);
-        stage.show();
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        currentStage.close();
-    }
+    void BServices(ActionEvent event) throws IOException, InterruptedException {
+        }
 
     private TranslateTransition translate = new TranslateTransition();
 
@@ -137,7 +152,7 @@ public class Principal2 {
     public void setEtudiant(Etudiant etudiant) {
         if (etudiant != null) {
             this.etudiant = etudiant;
-
+            photo.setImage(new Image((getClass().getResource("/photo/" + etudiant.getPhoto()).toExternalForm())));
             fullName.setText(etudiant.getNom() + " " + etudiant.getPrenom());
             System.out.println(etudiant.getNom() );
             System.out.println(etudiant.getPrenom());

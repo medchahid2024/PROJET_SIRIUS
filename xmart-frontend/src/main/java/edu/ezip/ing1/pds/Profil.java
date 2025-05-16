@@ -39,18 +39,19 @@ public class Profil {
     public void modifier(MouseEvent mouseEvent) throws InterruptedException, SQLException, IOException {
 
         Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
-        aler.setTitle("CANFIRMATION");
+        aler.setTitle("CONFIRMATION");
         aler.setHeaderText(null);
         aler.setContentText("Vous voulez vraiment modifier l'offre ");
         Optional<ButtonType> result = aler.showAndWait();
         if (result.get() == ButtonType.OK) {
-            String chem= chemin.getText();
-            String n= nom.getText();
-            String pr= prenom.getText();
-            String em= email.getText();
-            Etudiant et =new Etudiant(n,pr,chem,em,etudiant.getMatricule());
-            Update.updateInformationEtudiant("UPDATE_INFORMATION_ETUDIANT",et);
-            etudiant=et;
+
+            etudiant.setNom(nom.getText());
+            etudiant.setPrenom(prenom.getText());
+            etudiant.setEmail(email.getText());
+            etudiant.setPhoto(chemin.getText());
+
+            Update.updateInformationEtudiant("UPDATE_INFORMATION_ETUDIANT",etudiant);
+          
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Principal2.fxml"));
@@ -59,7 +60,7 @@ public class Profil {
             fenetre.setScene(scene);
 
             Principal2 controller = loader.getController();
-            controller.setEtudiant(et);
+            controller.setEtudiant(etudiant);
             fenetre.show();
 
             Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

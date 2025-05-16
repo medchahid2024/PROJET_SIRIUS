@@ -8,44 +8,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="683.0" prefWidth="633.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Candidater">
+<AnchorPane prefHeight="720.0" prefWidth="672.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Candidater">
    <children>
-      <Label layoutX="109.0" layoutY="112.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre nom" />
-      <Label layoutX="109.0" layoutY="172.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre prenom" />
-      <Label layoutX="108.0" layoutY="228.0" prefHeight="18.0" prefWidth="57.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Email" />
-      <Label layoutX="107.0" layoutY="281.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Adresse postal" />
-      <Label layoutX="153.0" layoutY="344.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre CV" />
-      <Label layoutX="146.0" layoutY="403.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre lettre de motivation" />
-      <Button fx:id="CV" layoutX="347.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#CV" prefHeight="26.0" prefWidth="100.0" text="Joindre mon cv" />
-      <Button fx:id="motivation" layoutX="347.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#lettre" text="Joindre ma lettre de motivation" />
-      <Label layoutX="146.0" layoutY="451.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Autre document" />
-      <Button fx:id="autres" layoutX="347.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#autres" text="Autres" />
-      <TextField fx:id="adresse" layoutX="247.0" layoutY="277.0" />
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/Postuler1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="109.0" layoutY="112.0" opacity="0.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre nom" />
+      <Label layoutX="109.0" layoutY="172.0" opacity="0.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre prenom" />
+      <Label layoutX="108.0" layoutY="228.0" opacity="0.0" prefHeight="18.0" prefWidth="57.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Email" />
+      <Label layoutX="107.0" layoutY="281.0" opacity="0.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Adresse postal" />
+      <Label layoutX="153.0" layoutY="344.0" opacity="0.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre CV" />
+      <Label layoutX="146.0" layoutY="403.0" opacity="0.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Votre lettre de motivation" />
+      <Button fx:id="CV" layoutX="323.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#CV" opacity="0.0" prefHeight="26.0" prefWidth="114.0" text="Joindre mon cv" />
+      <Button fx:id="motivation" layoutX="323.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#lettre" opacity="0.0" prefHeight="25.0" prefWidth="114.0" text="Joindre ma lettre de motivation" />
+      <Label layoutX="146.0" layoutY="451.0" opacity="0.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: red;" text="Autre document" />
+      <Button fx:id="autres" layoutX="323.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#autres" opacity="0.0" prefHeight="25.0" prefWidth="114.0" text="Autres" />
+      <TextField fx:id="adresse" layoutX="304.0" layoutY="269.0" prefHeight="25.0" prefWidth="198.0" />
       <Label fx:id="lab" layoutX="498.0" layoutY="346.0" prefHeight="18.0" prefWidth="86.0" />
-      <Button fx:id="valider" layoutX="213.0" layoutY="544.0" mnemonicParsing="false" onAction="#valider" prefHeight="38.0" prefWidth="182.0" text="Valider" />
+      <Button fx:id="valider" layoutX="245.0" layoutY="537.0" mnemonicParsing="false" onAction="#valider" opacity="0.0" prefHeight="38.0" prefWidth="169.0" text="Valider" />
       <Label fx:id="lett" layoutX="548.0" layoutY="402.0" prefHeight="18.0" prefWidth="86.0" />
       <Label fx:id="autre" layoutX="541.0" layoutY="452.0" prefHeight="18.0" prefWidth="86.0" />
-      <ImageView fitHeight="70.0" fitWidth="150.0" layoutX="7.0" layoutY="7.0">
+      <ImageView fitHeight="70.0" fitWidth="150.0" layoutX="7.0" layoutY="7.0" opacity="0.0">
          <image>
             <Image url="@photo/myUp.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="nom" layoutX="247.0" layoutY="106.0" prefHeight="26.0" prefWidth="169.0" text="Label">
+      <Label fx:id="nom" layoutX="300.0" layoutY="146.0" prefHeight="26.0" prefWidth="169.0" text="Label" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="prenom" layoutX="247.0" layoutY="166.0" prefHeight="26.0" prefWidth="136.0" text="Label">
+      <Label fx:id="prenom" layoutX="299.0" layoutY="188.0" prefHeight="26.0" prefWidth="136.0" text="Label" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="email" layoutX="247.0" layoutY="225.0" prefHeight="26.0" prefWidth="136.0" text="Label">
+      <Label fx:id="email" layoutX="301.0" layoutY="229.0" prefHeight="26.0" prefWidth="136.0" text="Label" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <ImageView fitHeight="48.0" fitWidth="50.0" layoutX="559.0" layoutY="621.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="135.0" fitWidth="233.0" layoutX="505.0" layoutY="575.0" onMouseClicked="#home" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@photo/home.png" />
          </image>

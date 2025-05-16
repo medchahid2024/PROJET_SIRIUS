@@ -68,7 +68,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Calendrier2Controller {
+public class Calendrier2ControllerAdmin {
 
     private final static String networkConfigFile = "network.yaml";
     private List<Evenement> evenementList = new ArrayList<>();
@@ -78,10 +78,13 @@ public class Calendrier2Controller {
     private int horaire;
     private int[] id_evenements = new int[35];
     private Etudiant etudiant;
+    private List<Participation> participationList = new ArrayList<>();
+    private String horaireIns;
 
 
       public void InitialisationCalendrier() throws IOException, InterruptedException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, SQLException {
-         loadEvenementData();
+        loadEvenementData();
+        loadParticipationData();
         currentWeek();
 
         }
@@ -94,6 +97,18 @@ public class Calendrier2Controller {
 
         if (evenements != null) {
             evenementList = new ArrayList<>(evenements.getEvenements());
+    }
+
+    }
+
+    private void loadParticipationData() throws IOException, InterruptedException {
+        final NetworkConfig networkConfig = ConfigLoader.loadConfig(NetworkConfig.class, networkConfigFile);
+        final ParticipationService participationService = new ParticipationService(networkConfig);
+
+        Participations participations = participationService.selectParticipations();
+
+        if (participations != null) {
+            participationList = new ArrayList<>(participations.getParticipations());
     }
 
     }
@@ -215,24 +230,36 @@ public class Calendrier2Controller {
     public void participer(int i) throws IOException, SQLException, InterruptedException {
         
         if (id_evenements[i]!=0) {
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ParticipationList.fxml"));
+        Stage stage = new Stage();
 
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            
-            alert.setTitle("Confirmation");
-            alert.setHeaderText(null);
-            alert.setContentText("Voulez-vous vraiment participer à cet événement ?");
+        Scene demande = new Scene(fxmlLoader.load());
+        stage.setScene(demande);
+        // Récupérer le contrôleur de la vue Calendrier
+        ParticipationList part = fxmlLoader.getController();
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                 Participation parti = new Participation(etudiant.getNom(),etudiant.getPrenom(),etudiant.getEmail(),id_evenements[i]);
-            InsertParticipation.sendValue("INSERT_PARTICIPATION", parti);
-            
-            Alert aler = new Alert(Alert.AlertType.CONFIRMATION);
-            aler.setTitle("Validé");
-            aler.setHeaderText(null);
-            aler.setContentText("Inscription réussie !");
-            aler.showAndWait();
-            } 
+        // Appeler la méthode InitialisationCalendrier() sur l'instance du contrôleur
+        part.Afficher_Participations(id_evenements[i]);
+        stage.setTitle("Ma liste");
+        stage.show();
+        }
+        else {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/InserEvenA.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        // Récupérer le contrôleur de la vue Calendrier
+        InsertEvent inser = loader.getController();
+       
+        if(i%5==0){horaireIns="09:00-11:00";}
+         if(i%5==1){horaireIns="11:00-13:00";}
+          if(i%5==2){horaireIns="13:00-15:00";}
+           if(i%5==3){horaireIns="15:00-17:00";}
+            if(i%5==4){horaireIns="17:00-19:00";}
+        // Appeler la méthode InitialisationCalendrier() sur l'instance du contrôleur
+        inser.InitialisationEvenements(semaineActuelle[i/5],horaireIns);
+
+        stage.show();
 
         }
         
@@ -586,8 +613,13 @@ public class Calendrier2Controller {
 
     @FXML
     private Label Ve5_T;
-
-  
+    
+    @FXML
+    private Button Ajouter;
+      
+    @FXML
+void Ajouter_Evenement(ActionEvent event){
+}
 
    @FXML
 void Lu1_Ent(MouseEvent event) {

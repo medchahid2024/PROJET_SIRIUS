@@ -6,35 +6,48 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="627.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Offres_stages_admin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="672.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ezip.ing1.pds.Offres_stages_admin">
    <children>
-      <ScrollPane layoutX="88.0" layoutY="195.0" prefHeight="490.0" prefWidth="377.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="162.0">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="366.0" style="-fx-background-color: white;">
-               <children>
-                  <Label fx:id="titre" layoutX="29.0" layoutY="23.0" prefHeight="36.0" prefWidth="374.0" style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-alignment: center;" text="    titre" textAlignment="CENTER" />
-                  <Label fx:id="description" layoutX="1.0" layoutY="127.0" prefHeight="342.0" prefWidth="358.0" text="description" />
-                  <Label fx:id="duree" layoutX="67.0" layoutY="105.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="duree" />
-                  <Label fx:id="domaine" layoutX="44.0" layoutY="70.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="domaine" />
-                  <Label fx:id="Niveau" layoutX="96.0" layoutY="150.0" prefHeight="18.0" prefWidth="46.0" style="-fx-font-weight: bold;" text="Niveau" />
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <Button layoutX="307.0" layoutY="698.0" mnemonicParsing="false" onAction="#suivant" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
-      <Button layoutX="206.0" layoutY="698.0" mnemonicParsing="false" onAction="#precedent" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
-      <ImageView fitHeight="57.0" fitWidth="122.0" layoutX="10.0" layoutY="10.0">
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photo/GestionStage.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="25.0" layoutY="174.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="225.0">
+         <children>
+            <ScrollPane prefHeight="454.0" prefWidth="377.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="366.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label fx:id="titre" layoutX="29.0" layoutY="23.0" prefHeight="36.0" prefWidth="374.0" style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-alignment: center;" text="    titre" textAlignment="CENTER" />
+                        <Label fx:id="description" layoutX="4.0" layoutY="127.0" prefHeight="342.0" prefWidth="358.0" text="description" />
+                        <Label fx:id="duree" layoutX="67.0" layoutY="105.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="duree" />
+                        <Label fx:id="domaine" layoutX="44.0" layoutY="70.0" prefHeight="18.0" prefWidth="166.0" style="-fx-font-weight: bold;" text="domaine" />
+                        <Label fx:id="Niveau" layoutX="96.0" layoutY="150.0" prefHeight="18.0" prefWidth="46.0" style="-fx-font-weight: bold;" text="Niveau" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <Button layoutX="313.0" layoutY="644.0" mnemonicParsing="false" onAction="#suivant" opacity="0.0" prefHeight="57.0" prefWidth="88.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Suivant" />
+      <Button layoutX="34.0" layoutY="634.0" mnemonicParsing="false" onAction="#precedent" opacity="0.0" prefHeight="57.0" prefWidth="88.0" style="-fx-background-color: white; -fx-text-fill: red; -fx-font-weight: bold; -fx-border-color: red;" text="Précedent" />
+      <ImageView fitHeight="57.0" fitWidth="122.0" layoutX="10.0" layoutY="10.0" opacity="0.0">
          <image>
             <Image url="@photo/myUp.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="57.0" layoutY="135.0" text="Nombre total des offres " />
-      <Label fx:id="nombre" layoutX="218.0" layoutY="135.0" prefHeight="18.0" prefWidth="98.0" text="nombre" />
-      <Button layoutX="485.0" layoutY="254.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;" text="Ajouter" />
-      <Button layoutX="485.0" layoutY="569.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Supprimer" />
-      <Button layoutX="485.0" layoutY="419.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: yellow; -fx-font-weight: bold; -fx-text-fill: white;" text="Modifier" />
-      <ImageView fitHeight="48.0" fitWidth="50.0" layoutX="540.0" layoutY="725.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="57.0" layoutY="135.0" opacity="0.0" text="Nombre total des offres " />
+      <Label fx:id="nombre" layoutX="334.0" layoutY="134.0" prefHeight="18.0" prefWidth="98.0" text="8" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button layoutX="506.0" layoutY="223.0" mnemonicParsing="false" onAction="#Ajouter" opacity="0.0" prefHeight="35.0" prefWidth="144.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;" text="Ajouter" />
+      <Button layoutX="500.0" layoutY="426.0" mnemonicParsing="false" onAction="#Supprimer" opacity="0.0" prefHeight="35.0" prefWidth="151.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Supprimer" />
+      <Button layoutX="500.0" layoutY="323.0" mnemonicParsing="false" onAction="#Modifier" opacity="0.0" prefHeight="35.0" prefWidth="144.0" style="-fx-background-color: yellow; -fx-font-weight: bold; -fx-text-fill: white;" text="Modifier" />
+      <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="594.0" layoutY="640.0" onMouseClicked="#home" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@photo/home.png" />
          </image>
